@@ -1,13 +1,13 @@
 body {
   position: relative;
-  width: 1080px;
+  width: auto;
   height: 1920px;
   border:1px solid black;
   overflow: hidden;
 }
 div.comments {
   position: relative;
-  width: 1080px;
+  width: auto;
   height: 1920px;
   z-index: 2;
   top: 0;

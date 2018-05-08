@@ -1,14 +1,14 @@
 body {
   position: relative;
-  width: 360px;
-  height: 640px;
+  width: 1080px;
+  height: 1920px;
   border:1px solid black;
   overflow: hidden;
 }
 div.comments {
   position: relative;
-  width: 360px;
-  height: 640px;
+  width: 1080px;
+  height: 1920px;
   z-index: 2;
   top: 0;
   overflow: scroll;
@@ -54,4 +54,9 @@ button#exit {
   padding-bottom: 3px;
   padding-left: 3px;
   z-index: 3;
+}
+button {
+  font-size: 50px;
+  border-radius: 50px;
+  size: 50px;
 }

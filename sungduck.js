@@ -85,7 +85,7 @@ function prev_video() {
 
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
 
-	video_pause();
+	video_play();
 }
 
 /* COMMENTS */

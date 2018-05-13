@@ -11,7 +11,7 @@ body {
     left: 0;
     z-index: 2000;
     background-color: #000000;
-	opacity: 0.7;
+	opacity: 0.5;
 }
 
 .video{
@@ -25,6 +25,8 @@ body {
   max-width:100%;
   font-family: 'Pacifico';
   z-index:10;
+  display:flex;
+  justify-content:space-between;
 }
 
 .topnav a {

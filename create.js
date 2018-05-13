@@ -93,15 +93,6 @@ init();
 	
 	}
 
-	function resize() {
-		$( "#resizable" ).resizable({
-		handles: {
-			e: ".ui-resizable-e"
-		},
-		minWidth: 50
-	});
-
-	}
 
 	//resize
 	//limit drag to parent -- sort of done
@@ -124,7 +115,7 @@ init();
 
 		//$(screenshot).append($('<div class="ui-widget-content" id = "textbox" contenteditable="true">').draggable().append($('<textarea rows="4" cols="50">At w3schools.com you will learn how to make a website. We offer free tutorials in all web development technologies.</textarea>')));
 
-		$(screenshot).append($('<div id="textbox" left="50%" top= "50%" contenteditable = "true">').resizable().on("touchstart", start).on("touchmove", move).on("touchend", end).text("hi").append($("<a class = 'handle r' href ='#'>  <i class='icon flipped adjust'></i> </a>").on('click', resize)));
+		$(screenshot).append($('<div id="textbox" left="50%" top= "50%" contenteditable = "true">').on("touchstart", start).on("touchmove", move).on("touchend", end).text("hi").append($("<a class = 'handle r' href ='#'>  <i class='icon flipped adjust'></i> </a>")));
 	}
 	else {
 		$('#textbox').focus();

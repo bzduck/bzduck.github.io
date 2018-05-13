@@ -4,32 +4,43 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>Sungduck</title>
-        <link href="./sungduck.css" rel="stylesheet"/>
+        <link href="css/sungduck.css" rel="stylesheet"/>
         <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
         <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     </head>
 <body>
     <div class="video"><video id="video" style="width:100%; height:100%;" autoplay=""/></div>
     <div class="main-nav" style="display:none">
-      <div class="top-nav">
-        <img src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png" style="width:48px;height:48px; margin-left:20px"/>
-        <!-- <button id="profile-button">Home</button>           -->
-        <button id="emotion-button" style="margin-left:10px">누군가에게 위로 받고 싶어요</button>
-        <!-- <button id="jjal-button">Contact</button> -->
-        <img src="https://image.flaticon.com/icons/png/512/39/39414.png" style="width:48px;height:48px; margin-left:10px"/>
+      <div class="topnav">
+        <!--
+        <a style="float: left;" id = "big_icon" href="profile.html"><img id="big_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png"/></a>
+        <button id="emotion-button">누군가에게 위로받고 싶어요</button>
+        <a style="float: right;" id = "big_icon" href="comments.html"><img id="big_icon" src="https://image.flaticon.com/icons/png/512/39/39414.png"/></a>
+        -->
+        <a style="float: left;" id = "big_icon" href="profile.html"><i id = "big_icon" class="far fa-circle"></i></a>
+        <button id="emotion-button">누군가에게 위로받고 싶어요</button>
+        <a style="float: right;" id = "big_icon" href="comments.html"><i id = "big_icon" class="far fa-circle"></i></a>
+
       </div>
       <div class="star-capture-nav">
-        <div id="star" style="display:none"><img src="http://cdn.onlinewebfonts.com/svg/img_76197.png" style="width:13px;height:13px;"/> 찜하기</div>
+        <div id="star" style="display:none"><i id = "small_icon" class="far fa-star"></i> 찜하기</div>
         <div id="capture">짤 만들기</button>
       </div>
       <div class="video-control-nav">
-        <img id="rewind" src="https://png.icons8.com/metro/50/000000/rewind.png" style="width:36px; height:36px;">
+        <i id = "big_icon" class="far fa-circle"></i>
+        <i id = "big_icon" class="far fa-circle"></i>
+        <i id = "big_icon" class="far fa-circle"></i>
+        <!--<img id="rewind" src="https://png.icons8.com/metro/50/000000/rewind.png" style="width:36px; height:36px;">
         <img id="play-pause" src="https://png.icons8.com/metro/1600/play.png" style="width:36px; height:36px;"></img>
         <img id="fast-forward" src="https://png.icons8.com/metro/50/000000/fast-forward.png" style="width:36px; height:36px;"/>
+        -->
       </div>
     </div>
     <script src="./sungduck.js"></script>
 </body>
 </html>
-

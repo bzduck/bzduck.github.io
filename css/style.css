@@ -1,0 +1,170 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Arimo');
+
+
+
+body {
+  background-color:#000000;
+  margin: 0; height: 100%; overflow: hidden
+}
+
+*{
+margin: 0px;
+padding: 0px;
+}
+
+.topnav {
+  color:#ffffff;
+  overflow: hidden;
+  max-width:100%;
+  font-family: 'Pacifico';
+  z-index:10;
+}
+
+.topnav a {
+    padding: 10px 10px;
+    color: #ffffff;
+    max-width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+    /*background-color: #4CAF50;*/
+    color: white;
+}
+
+.far{
+  color: #fff;
+  text-shadow: 1px 1px 1px #ccc;
+  font-size: 2em;
+}
+
+.content {
+  max-width: 100%;
+  max-height:100%;
+}
+
+.video {
+  max-width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  z-index:-1;
+}
+
+
+/* Comments */
+
+#comments {
+  background-color:#000000;
+	height: 458px;
+	width: 84.5%;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+#likes {
+	display: inline-block;
+	position: absolute;
+	background-color: rgba(0,0,0,.5);
+	float:left;
+	color: white;
+	height: 28px;
+	padding: 4px;
+	width: max-content;
+	left: 4px;
+	bottom: 4px;
+}
+
+#download {
+	display: inline-block;
+	position: absolute;
+	padding: 4px;
+	float:right;
+	height: 28px;
+	width: max-content;
+	right: 4px;
+	bottom: 4px;
+}
+
+#heart {
+	display: inline-block;
+	position: relative;
+	padding: 4px;
+	height: 28px;
+	width: max-content;
+	float:right;
+	margin-right: 4px;
+	bottom: 4px;
+}
+
+
+
+/* Profile */
+.column{
+width:100%;
+min-height:200px;
+}
+
+
+.image-container{
+width: 31%;
+height: 200px;
+float: left;
+border:3px solid white;
+margin:auto;
+}
+
+.image-container img{
+max-height: 200px;
+width: 100%;
+}
+
+
+
+#overlay {
+    position: fixed; /* Sit on top of the page content */
+    display: none; /* Hidden by default */
+    width: 100%; /* Full width (cover the whole page) */
+    height: 100%; /* Full height (cover the whole page) */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+    z-index: 2; /* Specify a stack order in case you're using a different order for other elements */
+    cursor: pointer; /* Add a pointer on hover */
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width:100%;
+    height:180px;
+    font-family: 'Pacifico';
+    background-color: #8AD6C9;
+
+    margin: auto;
+    text-align: center;
+
+}
+
+.bottom-left {
+    position: relative;
+    bottom: 25px;
+    left: 1px;
+    color:white;
+    font-family:'Arimo';
+    font-size:12px;
+
+}
+.intro {
+    position: relative;
+    bottom: -40px;
+
+
+}

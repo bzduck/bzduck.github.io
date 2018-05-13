@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jua.css);
 @import url(https://fonts.googleapis.com/css?family=Jua);
 
 body {
@@ -12,7 +12,7 @@ ul, li {
   list-style-type: none;
 }
 
-.hanna{
+.jua{
  font-family: 'Jua', sans-serif;
  size:20px;
  font-size: 1.6rem;

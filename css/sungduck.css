@@ -120,3 +120,17 @@ iframe {
     height: 100%;
     z-index: 2001;
 }
+
+button.iframe-exitbutton {
+    position: absolute;
+    left: 85%;
+    top: 5%;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    z-index: 2002;
+    font-size: 35px;
+    border-radius: 35px;
+    size: 35px;
+  }

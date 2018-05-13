@@ -2,7 +2,7 @@ var video_url = "http://45.119.146.126:5000/video/";
 var photos_url = "http://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
-var group = "twice/";
+var group = "bts/";
 
 var config = {
     apiKey: "",
@@ -16,7 +16,7 @@ var database = firebase.database();
 var video = document.getElementById("video");
 $( document ).ready(function() {
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
- 	video_play();
+ 	video.play();
 
 	$(".emotion-button").on("click", function(){
 		event.stopPropagation();
@@ -157,12 +157,24 @@ $('#text').on('click', function(event) {
 	}
 });
 
+
+$('.create-screenshot').on('click', function(event) {
+	if (text_show == false) {
+		$('.textarea').show();
+		text_show = true;
+	}
+	else {
+		$('.textarea').hide();
+		text_show = false;
+	}
+});
+
 $('.create-overlay').unbind();
 
 $('#share').on('click', function(event) {
 	var canvas = document.querySelector('canvas');
 	if (text_show == true) {
-		
+
 		var textarea = $('.textarea');
 
 		ctx.font = "28px Arial";
@@ -199,7 +211,7 @@ $('#share').on('click', function(event) {
 	var dataURI = canvas.toDataURL("image/png"); // can also use 'image/png'
 	dataURI = dataURI.replace("data:image/png;base64,", "");
 	console.log(dataURI);
-	
+
 
 	$.ajax({
         type: "POST",

@@ -1,4 +1,4 @@
-@import url(http://fonts.googleapis.com/earlyaccess/hanna.css);
+@import url(http://fonts.googleapis.com/earlyaccess/jua.css);
 @import url(https://fonts.googleapis.com/css?family=Jua);
 
 body {
@@ -12,7 +12,7 @@ ul, li {
   list-style-type: none;
 }
 
-.hanna{
+.jua{
  font-family: 'Jua', sans-serif;
  size:20px;
  font-size: 1.6rem;
@@ -195,10 +195,6 @@ ul, li {
 }
 
 
-
-
-
-
 .textarea {
   position: absolute;
   margin-left: 9.5%;
@@ -210,8 +206,6 @@ ul, li {
   text-align: center;
   text-shadow: none;
 }
-
-
 
 
 
@@ -293,7 +287,7 @@ button.iframe-exitbutton {
   }
 
   /* line 42, C:/Users/Shubham/Desktop/test/sass/app.sass */
-  .filter_nav .ham-nav .menu a {
+  .filter_nav .ham-nav .menu a{
     display: block;
     background: #e74c3c;
     text-decoration: none;

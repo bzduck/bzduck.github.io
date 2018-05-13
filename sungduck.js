@@ -1,11 +1,12 @@
 var video_url = "http://45.119.146.126:5000/video/";
 var index = 1;
 var emotion = "happy/";
-var group = "twice/"
+var group = "twice/";
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
+
  	// video_play();
 });
 
@@ -95,4 +96,20 @@ $(".video").on("click", function() {
 
 $('.main-nav').on('click', function() {
 	$('.main-nav').hide();
+});
+
+$('#comments_button').on('click', function(){
+	video.pause();
+	var iframe = document.createElement('iframe');
+	iframe.src = 'comments.html?' + group + emotion + index;
+	document.body.appendChild(iframe);
+	iframe.onload = function(){
+		var ifr = document.getElementsByTagName('iframe')[0]
+		console.log(ifr.contentWindow.document.getElementById('exit'))
+		ifr.contentWindow.document.getElementById('exit').onclick = function(){
+			document.getElementsByTagName('iframe')[0].remove();
+			$('.main-nav').show();
+			video.play();
+		}
+	};
 });

@@ -7,6 +7,15 @@ var video = document.getElementById("video");
 $( document ).ready(function() {
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
  	video_play();
+
+	$(".emotion-button").on("click", function(){
+		event.stopPropagation();
+		// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
+		$(".menu").animate({
+			height: 'toggle'
+		});
+
+	});
 });
 
 // var playPause = document.getElementById("play-pause");
@@ -192,26 +201,26 @@ $('#text').on('click', function(event) {
 //          switch(event.type)
 //     {
 //         case "touchstart": type = "mousedown"; break;
-//         case "touchmove":  type="mousemove"; break;        
+//         case "touchmove":  type="mousemove"; break;
 //         case "touchend":   type="mouseup"; break;
 //         default: return;
 //     }
- 
+
 //     var simulatedEvent = document.createEvent("MouseEvent");
-//     simulatedEvent.initMouseEvent(type, true, true, window, 1, 
-//                               first.screenX, first.screenY, 
-//                               first.clientX, first.clientY, false, 
+//     simulatedEvent.initMouseEvent(type, true, true, window, 1,
+//                               first.screenX, first.screenY,
+//                               first.clientX, first.clientY, false,
 //                               false, false, false, 0/*left*/, null);
 //     first.target.dispatchEvent(simulatedEvent);
 //     //event.preventDefault();
 // }
- 
-// function init() 
+
+// function init()
 // {
 //     document.addEventListener("touchstart", touchHandler, {passive: true});
 //     document.addEventListener("touchmove", touchHandler, {passive: true});
 //     document.addEventListener("touchend", touchHandler, {passive: true});
-//     document.addEventListener("touchcancel", touchHandler, {passive: true});    
+//     document.addEventListener("touchcancel", touchHandler, {passive: true});
 // }
 
 // init();
@@ -227,9 +236,9 @@ $('#text').on('click', function(event) {
 // 		  var pY =  touch.pageY;
 
 // 		dragging = true;
-		
+
 // 		console.log(pX);
-    	
+
 //     	console.log(pY);
 //     	var position = $(capture).position();
 //     	var s1 = position.left;
@@ -255,14 +264,14 @@ $('#text').on('click', function(event) {
 //       	$(text).addClass("active");
 //       	$('#textbox').focus();
 
-     
+
 // 	}
 
 // 	function start(ev) {
 // 		ev.preventDefault();
 // 		console.log('s');
 // 		dragging = false;
-	
+
 // 	}
 
 
@@ -280,7 +289,7 @@ $('#text').on('click', function(event) {
 // 			if (!str.replace(/\s/g, '').length) {
 // 			    document.getElementById("textbox").parentNode.removeChild(document.getElementById("textbox"));
 // 			}
-				
+
 // 		}
 // 		else {
 // 			if(!document.getElementById("textbox")) {
@@ -296,9 +305,9 @@ $('#text').on('click', function(event) {
 // 	$(text).addClass("active");
 // 	}
 // 	}
-	
-	
-	
+
+
+
 // 	share.onclick = function(e) {
 // 		e.preventDefault();
 // 	}
@@ -308,7 +317,7 @@ $('#text').on('click', function(event) {
 // 		e.preventDefault();
 // 		var container = $("#textbox");
 // 		var container1 = $('#text');
-// 		if ((!container.is(e.target) && container.has(e.target).length === 0) && (!container1.is(e.target) && container1.has(e.target).length === 0)) 
+// 		if ((!container.is(e.target) && container.has(e.target).length === 0) && (!container1.is(e.target) && container1.has(e.target).length === 0))
 //     {
 //         $(text).removeClass("active");
 //         var str = $('#textbox').text();
@@ -316,7 +325,7 @@ $('#text').on('click', function(event) {
 // 			    document.getElementById("textbox").parentNode.removeChild(document.getElementById("textbox"));
 // 			}
 //     }
-		
+
 // 	}
 
 // });

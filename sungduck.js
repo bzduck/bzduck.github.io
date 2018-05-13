@@ -80,6 +80,8 @@ function prev_video() {
 	video_pause();
 }
 
+/* COMMENTS */
+
 $('.glyphicon-step-backward').on("click", function(event) {
 	event.stopPropagation();
 	video.currentTime -= 5;
@@ -164,7 +166,7 @@ $('#share').on('click', function(event) {
 
 		var current_text = $('.textarea').text();
 		var no_line = $('.textarea').height() / 31 - 1;
-		for (i = 0; i < text_lines.length; i++) { 
+		for (i = 0; i < text_lines.length; i++) {
 			current_text = current_text.replace(text_lines[i], "");
 		}
 		text_lines.push(current_text);
@@ -181,7 +183,7 @@ $('#share').on('click', function(event) {
 			ctx.fillText(text_lines[i], canvas.width/2, canvas.height-textarea.height() + i * 31 + 2);
 		}
 
-		// ctx.fillText(textarea.text(), canvas.width/2, canvas.height-textarea.height()); 
+		// ctx.fillText(textarea.text(), canvas.width/2, canvas.height-textarea.height());
 		// console.log(canvas.height);
 		// console.log($('.textarea').text());
 		// console.log($('.textarea').height());
@@ -199,7 +201,7 @@ $('.textarea').on('keypress', function(e) {
 		var current_text = $('.textarea').text();
 		console.log($('.textarea').height());
 		var no_line = $('.textarea').height() / 31 - 1;
-		for (i = 0; i < text_lines.length; i++) { 
+		for (i = 0; i < text_lines.length; i++) {
 			current_text = current_text.replace(text_lines[i], "");
 		}
 		if (no_line < text_lines.length) {
@@ -226,5 +228,7 @@ $('#comments_button').on('click', function(){
 	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
 	iframe.src = 'comments.html?' + group + emotion + index;
+	//var el = document.getElementById('main_nav');
+	//$(".main_nav").after(iframe);
 	document.body.appendChild(iframe);
 });

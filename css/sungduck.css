@@ -355,15 +355,13 @@ button.download{
   z-index: 5;
 }
 img.comments-img{
-  width: 100%;
+  width: 80%;
   height: auto;
   z-index: 2;
   position: relative;
-  padding-top: 3px;
-  padding-right: 3px;
-  padding-bottom: 3px;
-  padding-left: 3px;
-
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top:2em;
 }
 button#exit {
   position: absolute;

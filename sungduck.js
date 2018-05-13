@@ -6,7 +6,7 @@ var group = "twice/";
 var video = document.getElementById("video");
 $( document ).ready(function() {
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
- 	video_play();
+ 	video.play();
 
 	$(".emotion-button").on("click", function(){
 		event.stopPropagation();

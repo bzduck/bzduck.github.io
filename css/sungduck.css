@@ -291,7 +291,7 @@ button.iframe-exitbutton {
   }
 
   /* line 42, C:/Users/Shubham/Desktop/test/sass/app.sass */
-  .filter_nav .ham-nav .menu a {
+  .filter_nav .ham-nav .menu a{
     display: block;
     background: #e74c3c;
     text-decoration: none;

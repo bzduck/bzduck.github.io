@@ -155,15 +155,9 @@ body {
   position:relative;
   width: max-content;
   text-align: center;
-  margin-left: 40%;
-  /*margin-left: auto;*/
-  /*margin-right: auto;*/
+  margin-left: auto;
+  margin-right: auto;
 }
-
-
-
-
-
 
 .textarea {
   position: absolute;
@@ -172,7 +166,7 @@ body {
   width: 81%;
   background-color: rgba(0, 0, 0, 0.6);
   color: #ffffff;
-  font-size: 18px;
+  font-size: 24px;
   text-align: center;
 }
 

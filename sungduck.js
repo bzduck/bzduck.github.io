@@ -214,7 +214,8 @@ $('#share').on('click', function(event) {
         	key: response,
         	// imageBase64: dataURI,
         	src: photos_url+group+emotion+index+"/"+response,
-        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"}
+        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
+        	author: '0xdeadbeef123'
 
         });
       });
@@ -260,3 +261,30 @@ $('#comments_button').on('click', function(){
 	//$(".main_nav").after(iframe);
 	document.body.appendChild(iframe);
 });
+
+$('.menu a').click(function(e) {
+  var txt = $(e.target).text();
+  console.log(txt);
+  $('.emotion-button > li').text(txt);
+  var index = ($( "li" ).index($(e.target)) -1 ) % 3;
+  switch(index) {
+	case 0:
+	    emotion="happy/"
+	    break;
+	case 1:
+	    emotion="bored/"
+	    break;
+	default:
+	    emotion="stressed/"
+	}
+  $(".menu").animate({
+		height: 'toggle'
+	});
+  new_type_video();
+});
+
+function new_type_video() {
+	index = 1;
+	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
+	video_play();
+}

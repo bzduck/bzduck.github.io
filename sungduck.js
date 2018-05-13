@@ -118,7 +118,7 @@ $('#exit').on('click', function(event) {
 })
 
 $('#text').on('click', function(event) {
-	$('.movable').show();
+	$('.textarea').show();
 	// $('.movable').draggable({ axis: "y" });
 })
 

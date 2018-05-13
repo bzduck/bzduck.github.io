@@ -215,7 +215,8 @@ $('#comments_button').on('click', function(){
 	video.pause();
 	var exitbutton = document.createElement('button');
 	exitbutton.classList.add('iframe-exitbutton')
-	exitbutton.innerHTML = 'X'
+	exitbutton.classList.add('mdc-button')
+	exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">clear</i></span>'
 	exitbutton.onclick = function(){
 		video.play();
 		document.getElementsByTagName('iframe')[0].remove();

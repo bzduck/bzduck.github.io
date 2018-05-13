@@ -27,7 +27,7 @@ function like(commentID){
     })
     var like_button = document.getElementById(commentID + '-like')
     like_button.classList = ['unlike']
-    like_button.innerText = 'U'
+    //like_button.innerText = 'U'
     like_button.onclick = function(){unlike(commentID)}
     like_button.id = commentID + '-unlike'
     var likes = document.getElementById(commentID + '-likes')
@@ -43,7 +43,7 @@ function unlike(commentID){
     })
     var like_button = document.getElementById(commentID + '-unlike')
     like_button.classList = ['like']
-    like_button.innerText = 'L'
+    //like_button.innerText = 'L'
     like_button.onclick = function(){like(commentID)}
     like_button.id = commentID + '-like'
     var likes = document.getElementById(commentID + '-likes')

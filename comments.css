@@ -1,17 +1,17 @@
 body {
   position: relative;
-  width: 1080px;
-  height: 1920px;
+  width: auto;
+  height: auto;
   border:1px solid black;
-  overflow: hidden;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 div.comments {
   position: relative;
-  width: 1080px;
-  height: 1920px;
+  width: auto;
+  height: auto;
   z-index: 2;
   top: 0;
-  overflow: scroll;
 }
 div.comments-content{
   position: relative;

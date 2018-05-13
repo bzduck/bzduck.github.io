@@ -1,6 +1,8 @@
 body {
   background-color:#000000;
   margin: 0; height: 100%; overflow: hidden;
+  position: relative;
+  overflow: hidden;
 }
 
 .main-nav{
@@ -38,11 +40,11 @@ body {
     font-size: 15px;
 }
 
-#big_icon{
+.big_icon{
   font-size:32px;
 }
 
-#small_icon{
+.small_icon{
   font-size:20px;
 }
 
@@ -199,4 +201,11 @@ body {
     width: 50px;
     height: 50px;
     background-color: green;
+}
+
+iframe {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 2001;
 }

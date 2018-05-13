@@ -41,8 +41,8 @@ function renderComments(comments) {
             <div id=${comment.key} class="comments-content">
             <img id="${comment.key}-comments-img" class="comments-img" src="${comment.src}"/>
             <div id="${comment.key}-likes likes">${comment.like_names.length}likes</div>
-            <button id="${comment.key}-unlike unlike" onclick="unlike('${comment.key}')">U</button>
-            <button id="download">D</button>
+            <button id="${comment.key}-unlike unlike" class="mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
+            <button id = "download" class="mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
             </div>
             `
         }
@@ -51,8 +51,8 @@ function renderComments(comments) {
             <div class="comments-content">
             <img id="${comment.key}-comments-img" class="comments-img" src="${comment.src}"/>
             <div id="${comment.key}-likes" class ="likes">${comment.like_names.length}likes</div>
-            <button id="${comment.key}-like" class = "like" onclick="like('${comment.key}')">L</button>
-            <button id="${comment.key}-download" class="download">D</button>
+            <button id="${comment.key}-like" class = "like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
+            <button id="${comment.key}-download" class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
             </div>
             `
         }

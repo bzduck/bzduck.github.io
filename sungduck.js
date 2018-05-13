@@ -88,6 +88,8 @@ function prev_video() {
 	video_pause();
 }
 
+/* COMMENTS */
+
 $('.glyphicon-step-backward').on("click", function(event) {
 	event.stopPropagation();
 	video.currentTime -= 5;
@@ -170,7 +172,7 @@ $('#share').on('click', function(event) {
 		// parsing final line text
 		var current_text = $('.textarea').text();
 		var no_line = $('.textarea').height() / 31 - 1;
-		for (i = 0; i < text_lines.length; i++) { 
+		for (i = 0; i < text_lines.length; i++) {
 			current_text = current_text.replace(text_lines[i], "");
 		}
 
@@ -224,9 +226,9 @@ var text_lines = [];
 $('.textarea').on('keypress', function(e) {
 	if(e.which ===13) {
 		var current_text = $('.textarea').text();
-		console.log($('.textarea').height());
+		// console.log($('.textarea').height());
 		var no_line = $('.textarea').height() / 31 - 1;
-		for (i = 0; i < text_lines.length; i++) { 
+		for (i = 0; i < text_lines.length; i++) {
 			current_text = current_text.replace(text_lines[i], "");
 		}
 		if (no_line < text_lines.length) {
@@ -235,7 +237,7 @@ $('.textarea').on('keypress', function(e) {
 		}
 		else
 			text_lines.push(current_text);
-		console.log(text_lines);
+		// console.log(text_lines);
 	}
 })
 
@@ -243,7 +245,8 @@ $('#comments_button').on('click', function(){
 	video.pause();
 	var exitbutton = document.createElement('button');
 	exitbutton.classList.add('iframe-exitbutton')
-	exitbutton.innerHTML = 'X'
+	exitbutton.classList.add('mdc-button')
+	exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">clear</i></span>'
 	exitbutton.onclick = function(){
 		video.play();
 		document.getElementsByTagName('iframe')[0].remove();
@@ -253,5 +256,7 @@ $('#comments_button').on('click', function(){
 	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
 	iframe.src = 'comments.html?' + group + emotion + index;
+	//var el = document.getElementById('main_nav');
+	//$(".main_nav").after(iframe);
 	document.body.appendChild(iframe);
 });

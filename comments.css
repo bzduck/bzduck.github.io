@@ -2,7 +2,7 @@ body {
   position: relative;
   width: auto;
   height: 100%;
-  border:1px solid black;
+  background-color: rgba(0,0,0,.5);
   overflow-y: scroll;
   overflow-x: hidden;
 }
@@ -68,10 +68,10 @@ button {
   size: 50px;
 }
 .dot {
-	height: 34px; 
-	width: 34px; 
-	background-color: none; 
-	border: 1px white solid; 
-	border-radius: 50px; 
+	height: 34px;
+	width: 34px;
+	background-color: none;
+	border: 1px white solid;
+	border-radius: 50px;
 	display: inline-block;
 }

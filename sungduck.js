@@ -6,14 +6,14 @@ var group = "twice/"
 var video = document.getElementById("video");
 $( document ).ready(function() {
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
- 	video_play();
+ 	// video_play();
 });
 
-var playPause = document.getElementById("play-pause");
+// var playPause = document.getElementById("play-pause");
 
 var star_capture = document.getElementById("star");
 
-$("#play-pause").on("click", function(event) {
+$(".play-pause").on("click", function(event) {
   event.stopPropagation();
   if (video.paused == true) {
     video_play();
@@ -30,7 +30,8 @@ function video_play() {
 	video.play();
 
 	// Update the button text to 'Pause'
-    playPause.src = "https://png.icons8.com/metro/1600/pause.png";
+	$(".play-pause").removeClass('glyphicon glyphicon-play').addClass('glyphicon glyphicon-pause');
+    // playPause.src = "https://png.icons8.com/metro/1600/pause.png";
 
     // Display star button
     $('#capture').hide();
@@ -42,7 +43,8 @@ function video_pause() {
     video.pause();
 
 	// Update the button text to 'Play'
-	playPause.src = "https://png.icons8.com/metro/1600/play.png";
+	$(".play-pause").removeClass('glyphicon glyphicon-pause').addClass('glyphicon glyphicon-play');
+	// playPause.src = "https://png.icons8.com/metro/1600/play.png";
 
 	// Display capture button
 	$('#star').hide();
@@ -69,12 +71,12 @@ function prev_video() {
 	video_pause();
 }
 
-$('#rewind').on("click", function(event) {
+$('.glyphicon-step-backward').on("click", function(event) {
 	event.stopPropagation();
 	video.currentTime -= 5;
 });
 
-$('#fast-forward').on("click", function(event) {
+$('.glyphicon-step-forward').on("click", function(event) {
 	event.stopPropagation();
 	video.currentTime += 5;
 });

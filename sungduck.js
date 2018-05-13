@@ -7,6 +7,15 @@ var video = document.getElementById("video");
 $( document ).ready(function() {
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
  	video_play();
+
+	$(".emotion-button").on("click", function(){
+		event.stopPropagation();
+		// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
+		$(".menu").animate({
+			height: 'toggle'
+		});
+
+	});
 });
 
 // var playPause = document.getElementById("play-pause");
@@ -96,6 +105,12 @@ $(".video").on("click", function() {
 $('.main-nav').on('click', function() {
 	$('.main-nav').hide();
 });
+function closeframe(){
+	document.getElementsByTagName('iframe')[0].remove()
+}
+$('#comments_button').on('click', function(event){
+	event.stopPropagation();
+})
 
 var ctx;
 
@@ -198,16 +213,17 @@ $('.textarea').on('keypress', function(e) {
 
 $('#comments_button').on('click', function(){
 	video.pause();
+	var exitbutton = document.createElement('button');
+	exitbutton.classList.add('iframe-exitbutton')
+	exitbutton.innerHTML = 'X'
+	exitbutton.onclick = function(){
+		video.play();
+		document.getElementsByTagName('iframe')[0].remove();
+		document.getElementsByClassName('iframe-exitbutton')[0].remove();
+	}
+	document.body.appendChild(exitbutton)
+	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
 	iframe.src = 'comments.html?' + group + emotion + index;
 	document.body.appendChild(iframe);
-	iframe.onload = function(){
-		var ifr = document.getElementsByTagName('iframe')[0]
-		console.log(ifr.contentWindow.document.getElementById('exit'))
-		ifr.contentWindow.document.getElementById('exit').onclick = function(){
-			document.getElementsByTagName('iframe')[0].remove();
-			$('.main-nav').show();
-			video.play();
-		}
-	};
 });

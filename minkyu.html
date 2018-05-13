@@ -8,7 +8,6 @@
         <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
         <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
-
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
         <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
@@ -16,29 +15,46 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
-
-        <!-- <link href="css/create.css" rel="stylesheet" /> -->
-        <!-- <script src="./create.js"></script> -->
 
     </head>
 <body>
     <div class="video"><video id="video" style="width:100%; height:100%;" autoplay=""/></div>
     <div class="main-nav" style="display:none">
       <div class="topnav">
-        <!--
-        <a style="float: left;" id = "big_icon" href="profile.html"><img id="big_icon" src="https://d30y9cdsu7xlg0.cloudfront.net/png/138926-200.png"/></a>
-        <button id="emotion-button">누군가에게 위로받고 싶어요</button>
-        <a style="float: right;" id = "big_icon" href="comments.html"><img id="big_icon" src="https://image.flaticon.com/icons/png/512/39/39414.png"/></a>
-        -->
-        <a class = "big_icon" href="profile.html"><span class = 'dot' style = " height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons" style = "text-shadow: none; color: white">person</i></span></a>
-        <button id="emotion-button">누군가에게 위로받고 싶어요</button>
+        <a class = "big_icon" href="profile.html"><i class = "big_icon far fa-circle"></i></a>
+        <button class="emotion-button" style="max-height:40px;"><li class="hanna">날아갈 것 같아요</li></button>
         <a  id="comments_button" class = "big_icon" href="#"><span class = 'dot' style = " height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><p style = "text-shadow: none; color: white; width: max-content; margin-top: 15%;
-    margin-left: auto;
-    margin-right: auto;">짤</p></span></a>
-
+          margin-left: auto;
+          margin-right: auto;">짤</p></span></a>
       </div>
+
+      <div class="filter_nav">
+        <div class="ham-nav">
+          <div class="menu">
+            <a id="happy" style="background:#F0433A"><li class="hanna">날아갈 것 같아요</li></a>
+            <a id="study" style="background:#C9283E"><li class="hanna">아 공부해야 되는데</li></a>
+            <a id="bored" style="background:#820333"><li class="hanna">심심해요</li></a>
+            <a id="lonely" style="background:#540032"><li class="hanna">외로워요</li></a>
+            <a id="sad" style="background:#2E112D"><li class="hanna">우울해요</li></a>
+          </div>
+        </div>
+      </div>
+
+      <script type="text/javascript">
+
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', 'UA-36251023-1']);
+        _gaq.push(['_setDomainName', 'jqueryscript.net']);
+        _gaq.push(['_trackPageview']);
+
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+
       <div class="star-capture-nav">
         <div id="star" style="display:none"><i class = "small_icon far fa-star"></i> 찜하기</div>
         <div id="capture">짤 만들기</button>
@@ -47,10 +63,6 @@
         <i class = "big_icon glyphicon glyphicon-step-backward"></i>
         <i class = "big_icon glyphicon glyphicon-pause play-pause"></i>
         <i class = "big_icon glyphicon glyphicon-step-forward"></i>
-        <!--<img id="rewind" src="https://png.icons8.com/metro/50/000000/rewind.png" style="width:36px; height:36px;">
-        <img id="play-pause" src="https://png.icons8.com/metro/1600/play.png" style="width:36px; height:36px;"></img>
-        <img id="fast-forward" src="https://png.icons8.com/metro/50/000000/fast-forward.png" style="width:36px; height:36px;"/>
-        -->
       </div>
     </div>
     </div>
@@ -58,7 +70,6 @@
         <canvas class='create-screenshot'>
         </canvas>
         <div class='textarea' style="display:none" contenteditable='true'>짤 텍스트</div>
-        <!-- <textarea placeholder="짤 텍스트" class='textarea' style="display:none"></textarea> -->
         <div class="create-capture-nav">
             <div id="exit" class="ui left floated toggle circular icon button full-circle" tabindex="0">
                 <i class="icon window close"></i>

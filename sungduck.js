@@ -231,7 +231,7 @@ $('#share').on('click', function(event) {
 
         });
       });
-	// $('.create-overlay').hide();
+	$('.create-overlay').hide();
 });
 
 var text_lines = [];

@@ -107,12 +107,101 @@ body {
 	/*margin: 2px;*/
 }
 
-#star-button {
-    /*position: relative;*/
-    /*margin-top: 500px;
-    margin-left: auto;
-    margin-right: auto;*/
+.create-overlay {
+  position:fixed;
+  top:0;
+  left:0;
+  bottom:0;
+  right:0;
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 3000;
 }
+
+.create-screenshot {
+  background-color: #2a5d6f;
+  border: 3px solid white;
+  margin-top: 6%;
+  margin-bottom: 5%;
+  margin-left: 8.5%;
+  margin-right: auto;
+  width: 83%;
+  height: 83%;
+}
+
+.create-capture-nav {
+  position: absolute;
+  width: 80%;
+  /*margin-left: 8.5%;
+  margin-right: auto;*/
+  top: 5%;
+  left: 10%;
+}
+
+#exit {
+  margin-top: 1%;
+  margin-left: 1%;
+} 
+
+#text {
+  margin-top: 1%;
+  margin-right: 1%;
+} 
+
+#share {
+  position:relative;
+  width: max-content;
+  text-align: center;
+  margin-left: 40%;
+  /*margin-left: auto;*/
+  /*margin-right: auto;*/
+}
+
+
+
+
+
+
+.textarea {
+  position: absolute;
+  margin-left: 9.5%;
+  bottom: 14%;
+  width: 81%;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+}
+
+
+
+
+
+/*
+#textbox {
+  background-color: rgba(0,0,0,.38);
+  border: 1px solid white;
+  max-width: max-content;
+  padding: 10px;
+  color: #FFFFFF;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: s;
+  text-shadow: none;
+}
+
+#text_area {
+    position: absolute;
+    left: 5px;
+    top: 5px;
+    width: 50px;
+    height: 50px;
+    background-color: green;
+}*/
 
 iframe {
     position: fixed;

@@ -1,4 +1,4 @@
-need to fix handle when go to next line
+/*need to fix handle when go to next line*/
 
 
 body{
@@ -14,15 +14,15 @@ body{
 #create-overlay {
 	position:fixed;
   	top:0;
-	  left:0;
-	  bottom:0;
-	  right:0;
-	  height: 100%;
-	  width: 100%;
-	  margin: 0;
-	  padding: 0;
-	  background: #000000;
-	  opacity: .50;
+	left:0;
+	bottom:0;
+	right:0;
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	padding: 0;
+	background: #000000;
+	opacity: .50;
 
 }
 

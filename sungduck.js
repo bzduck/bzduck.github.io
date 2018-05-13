@@ -2,7 +2,7 @@ var video_url = "http://45.119.146.126:5000/video/";
 var photos_url = "http://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
-var group = "twice/";
+var group = "bts/";
 
 var config = {
     apiKey: "",
@@ -16,7 +16,7 @@ var database = firebase.database();
 var video = document.getElementById("video");
 $( document ).ready(function() {
 	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
- 	video_play();
+ 	video.play();
 
 	$(".emotion-button").on("click", function(){
 		event.stopPropagation();
@@ -157,12 +157,24 @@ $('#text').on('click', function(event) {
 	}
 });
 
+
+$('.create-screenshot').on('click', function(event) {
+	if (text_show == false) {
+		$('.textarea').show();
+		text_show = true;
+	}
+	else {
+		$('.textarea').hide();
+		text_show = false;
+	}
+});
+
 $('.create-overlay').unbind();
 
 $('#share').on('click', function(event) {
 	var canvas = document.querySelector('canvas');
 	if (text_show == true) {
-		
+
 		var textarea = $('.textarea');
 
 		ctx.font = "28px Arial";
@@ -199,7 +211,7 @@ $('#share').on('click', function(event) {
 	var dataURI = canvas.toDataURL("image/png"); // can also use 'image/png'
 	dataURI = dataURI.replace("data:image/png;base64,", "");
 	console.log(dataURI);
-	
+
 
 	$.ajax({
         type: "POST",
@@ -214,11 +226,12 @@ $('#share').on('click', function(event) {
         	key: response,
         	// imageBase64: dataURI,
         	src: photos_url+group+emotion+index+"/"+response,
-        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"}
+        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
+        	author: '0xdeadbeef123'
 
         });
       });
-	// $('.create-overlay').hide();
+	$('.create-overlay').hide();
 });
 
 var text_lines = [];
@@ -260,3 +273,30 @@ $('#comments_button').on('click', function(){
 	//$(".main_nav").after(iframe);
 	document.body.appendChild(iframe);
 });
+
+$('.menu a').click(function(e) {
+  var txt = $(e.target).text();
+  console.log(txt);
+  $('.emotion-button > li').text(txt);
+  var index = ($( "li" ).index($(e.target)) -1 ) % 3;
+  switch(index) {
+	case 0:
+	    emotion="happy/"
+	    break;
+	case 1:
+	    emotion="bored/"
+	    break;
+	default:
+	    emotion="stressed/"
+	}
+  $(".menu").animate({
+		height: 'toggle'
+	});
+  new_type_video();
+});
+
+function new_type_video() {
+	index = 1;
+	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
+	video_play();
+}

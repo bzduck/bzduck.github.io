@@ -91,7 +91,7 @@ function renderComments(comments) {
             <div id=${comment.key} class="comments-content">
             <img id="${comment.key}-comments-img" class="comments-img" src="${comment.src}"/>
             <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
-            <button id="${comment.key}-unlike" class="unlike mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
+            <button id="${comment.key}-like" class="like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
             <button class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
             <button id="${comment.key}-delete" onclick="delete_post('${comment.key}')">~DELETE~</button>
             </div>

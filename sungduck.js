@@ -119,7 +119,7 @@ $('#exit').on('click', function(event) {
 
 $('#text').on('click', function(event) {
 	$('.movable').show();
-	$('.movable').draggable({ axis: "y" });
+	// $('.movable').draggable({ axis: "y" });
 })
 
 // $('.movable').on('click', function(event) {

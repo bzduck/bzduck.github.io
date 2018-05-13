@@ -2,6 +2,7 @@
 @import url(https://fonts.googleapis.com/css?family=Jua);
 
 body {
+  font-family: 'Jua', sans-serif;
   background-color:#000000;
   margin: 0; height: 100%; overflow: hidden;
   position: relative;
@@ -57,10 +58,12 @@ body {
 
 .big_icon{
   font-size:32px;
+  max-height:40px;
 }
 
 .small_icon{
-  font-size:20px;
+  font-size:30px;
+  max-height:20px;
 }
 
 
@@ -72,7 +75,6 @@ body {
 .star-capture-nav{
 
     width:100px;
-    /*margin-top: 500px;*/
     margin-left: auto;
     margin-right: auto;
     color:#ffffff;
@@ -80,10 +82,8 @@ body {
 }
 
 .video-control-nav{
-    position: absolute;
-    bottom:20px;
+
     width:120px;
-    /*margin-top: 500px;*/
     margin-left: auto;
     margin-right: auto;
 }
@@ -93,23 +93,26 @@ body {
     margin-right: auto;
 }
 
-#star {
-    border-style: solid;
-    border-width: 2px;
-    cursor: pointer;
-    border-radius: 5px;
-    padding: 3px 0px 0px 15px;
-    border-color:#ffffff;
-    color:#ffffff;
+.bottom-nav{
+  position: absolute;
+  bottom:5%;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
 }
 
-#capture {
+#star, #capture{
+    font-family: 'Jua', sans-serif;
     border-style: solid;
-    border-width: 2px;
+    border-width: 1px;
     cursor: pointer;
-    border-radius: 5px;
-    padding: 3px 0px 0px 15px;
+    border-radius: 20px;
+    height:40px;
+    padding: 3px 5px 5px 15px;
+    border-color:#ffffff;
     color:#ffffff;
+    margin-bottom:16px;
 }
 
 #profile-button, #emotion-button, #jjal-button {

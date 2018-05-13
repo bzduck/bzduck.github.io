@@ -4,9 +4,12 @@
 body {
   font-family: 'Jua', sans-serif;
   background-color:#000000;
-  margin: 0; height: 100%; overflow: hidden;
+  margin: 0; height: 100%;
   position: relative;
-  overflow: hidden;
+}
+
+ul, li {
+  list-style-type: none;
 }
 
 .hanna{
@@ -62,8 +65,7 @@ body {
 }
 
 .small_icon{
-  font-size:30px;
-  max-height:20px;
+  max-height:1em;
 }
 
 
@@ -109,10 +111,17 @@ body {
     cursor: pointer;
     border-radius:0.6em;
     height:40px;
-    padding: 3px 5px 5px 15px;
+    padding: 0.4em 5px 5px 15px;
     border-color:#ffffff;
     color:#ffffff;
-    margin-bottom:10%;
+    position:absolute;
+    margin:auto;
+    font-size:1.4em;
+    width:6em;
+    bottom:2.8em;
+    left:0;
+    right:0;
+    text-align:center;
 }
 
 #emotion-button{
@@ -305,3 +314,76 @@ button.iframe-exitbutton {
   .filter_nav .ham-nav .menu a li {
     color: white;
   }
+
+
+/* COMMENTS */
+
+div.comments {
+  position: relative;
+  width: auto;
+  height: auto;
+  z-index: 2;
+  top: 0;
+}
+div.comments-content{
+  position: relative;
+  height: auto;
+  width: 100%;
+}
+div.likes{
+  position: absolute;
+  bottom: 5%;
+  left: 10%;
+  z-index: 5;
+  color: white;
+}
+button.like{
+  position: absolute;
+  bottom: 5%;
+  left: 80%;
+  z-index: 5;
+}
+button.unlike{
+  position: absolute;
+  bottom: 5%;
+  left: 80%;
+  z-index: 5;
+}
+button.download{
+  position: absolute;
+  bottom: 5%;
+  left: 90%;
+  z-index: 5;
+}
+img.comments-img{
+  width: 100%;
+  height: auto;
+  z-index: 2;
+  position: relative;
+  padding-top: 3px;
+  padding-right: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+
+}
+button#exit {
+  position: absolute;
+  left: 95%;
+  padding-top: 3px;
+  padding-right: 3px;
+  padding-bottom: 3px;
+  padding-left: 3px;
+  z-index: 3;
+}
+button {
+  font-size: 50px;
+  size: 50px;
+}
+.dot {
+	height: 34px;
+	width: 34px;
+	background-color: none;
+	border: 1px white solid;
+	border-radius: 50px;
+	display: inline-block;
+}

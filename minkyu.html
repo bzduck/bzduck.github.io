@@ -5,15 +5,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
         <title>Sungduck</title>
         <link href="css/sungduck.css" rel="stylesheet"/>
-        <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
         <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet" />
         <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+
+        <!-- <link href="css/create.css" rel="stylesheet" /> -->
+        <!-- <script src="./create.js"></script> -->
 
     </head>
 <body>
@@ -43,6 +50,24 @@
         <img id="fast-forward" src="https://png.icons8.com/metro/50/000000/fast-forward.png" style="width:36px; height:36px;"/>
         -->
       </div>
+    </div>
+    </div>
+    <div id="create-tmp" class="create-overlay" style="display:none">
+        <canvas class='create-screenshot'>
+        </canvas>
+        <div class='movable' contenteditable='true'>HTML</div>
+        <div class="movable" style="display:none">*
+            <textarea placeholder="짤만들기 텍스트"></textarea>
+        </div>
+        <div class="create-capture-nav">
+            <div id="exit" class="ui left floated toggle circular icon button full-circle" tabindex="0">
+                <i class="icon window close"></i>
+            </div>
+            <div id="text" class="ui right floated toggle circular icon button full-circle" tabindex="0">
+                <i class="icon edit outline"></i>
+            </div>
+        </div>
+        <button id='share' class='ui basic white button'>공유하기</button>
     </div>
     <script src="./sungduck.js"></script>
 </body>

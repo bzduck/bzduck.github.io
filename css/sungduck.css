@@ -166,21 +166,21 @@ body {
 
 
 .movable {
-
-  /*z-index: 4000;*/
   position: absolute;
-  left: 100px;
-  top: 100px;
-  /*width: 100px;*/
-  /*height: 100px;*/
-  /*background-color: blue;*/
+  margin-left: 8.5%;
+  top: 45%;
+  width: 83%;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
 }
 
 
 
 
 
-
+/*
 #textbox {
   background-color: rgba(0,0,0,.38);
   border: 1px solid white;
@@ -201,7 +201,7 @@ body {
     width: 50px;
     height: 50px;
     background-color: green;
-}
+}*/
 
 iframe {
     position: fixed;

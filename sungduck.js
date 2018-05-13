@@ -1,7 +1,17 @@
 var video_url = "http://45.119.146.126:5000/video/";
+var photos_url = "http://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
 var group = "twice/";
+
+var config = {
+    apiKey: "",
+    databaseURL: "https://mine-704af.firebaseio.com/",
+  };
+
+firebase.initializeApp(config);
+
+var database = firebase.database();
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
@@ -17,8 +27,6 @@ $( document ).ready(function() {
 
 	});
 });
-
-// var playPause = document.getElementById("play-pause");
 
 var star_capture = document.getElementById("star");
 
@@ -126,9 +134,6 @@ $('#capture').on('click', function(event) {
 	//draw image to canvas. scale to target dimensions
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-
-	//convert to desired file format
-	// var dataURI = canvas.toDataURL('image/png'); // can also use 'image/png'
 });
 
 
@@ -155,43 +160,65 @@ $('#text').on('click', function(event) {
 $('.create-overlay').unbind();
 
 $('#share').on('click', function(event) {
+	var canvas = document.querySelector('canvas');
 	if (text_show == true) {
-		var canvas = document.querySelector('canvas');
-
+		
 		var textarea = $('.textarea');
 
 		ctx.font = "28px Arial";
 		ctx.fillStyle = "white";
 		ctx.textAlign = "center";
 
+		// parsing final line text
 		var current_text = $('.textarea').text();
 		var no_line = $('.textarea').height() / 31 - 1;
 		for (i = 0; i < text_lines.length; i++) {
 			current_text = current_text.replace(text_lines[i], "");
 		}
-		text_lines.push(current_text);
 
-		// for (i = 0; i < text_lines.length; i++) {
-		// 	if (text_lines[i].length > 14) {
-		// 		// text_lines.splice(i, );
-		// 		$('.textarea').text().width;
-		// 	}
-		// }
-		console.log($('.textarea').text().width);
+		// adding to text_lines
+		var no_line = $('.textarea').height() / 31;
+		if (no_line < text_lines.length) {
+			text_lines[no_line] = current_text;
+			text_lines.splice(no_line+1);
+		}
+		else
+			text_lines.push(current_text);
 
 		for (i = 0; i < text_lines.length; i++) {
 			ctx.fillText(text_lines[i], canvas.width/2, canvas.height-textarea.height() + i * 31 + 2);
 		}
 
-		// ctx.fillText(textarea.text(), canvas.width/2, canvas.height-textarea.height());
-		// console.log(canvas.height);
-		// console.log($('.textarea').text());
-		// console.log($('.textarea').height());
 		text_show = false;
 		$('.textarea').html("짤 텍스트");
 		$('.textarea').hide();
 	}
 	text_lines = [];
+
+	//convert to desired file format
+	var dataURI = canvas.toDataURL("image/png"); // can also use 'image/png'
+	dataURI = dataURI.replace("data:image/png;base64,", "");
+	console.log(dataURI);
+	
+
+	$.ajax({
+        type: "POST",
+        url: "http://45.119.146.126:5000/photos/"+group+emotion+index,
+        data: {
+        	imageBase64: dataURI
+        }
+      }).done(function(response) {
+        console.log('saved: ' + response);
+
+        var comments = database.ref(group+emotion+index+"/"+response).set({
+        	key: response,
+        	// imageBase64: dataURI,
+        	src: photos_url+group+emotion+index+"/"+response,
+        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"}
+
+        });
+      });
+	// $('.create-overlay').hide();
 });
 
 var text_lines = [];
@@ -199,7 +226,7 @@ var text_lines = [];
 $('.textarea').on('keypress', function(e) {
 	if(e.which ===13) {
 		var current_text = $('.textarea').text();
-		console.log($('.textarea').height());
+		// console.log($('.textarea').height());
 		var no_line = $('.textarea').height() / 31 - 1;
 		for (i = 0; i < text_lines.length; i++) {
 			current_text = current_text.replace(text_lines[i], "");
@@ -210,6 +237,7 @@ $('.textarea').on('keypress', function(e) {
 		}
 		else
 			text_lines.push(current_text);
+		// console.log(text_lines);
 	}
 })
 

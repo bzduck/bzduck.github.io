@@ -24,19 +24,21 @@
     <div class="video"><video id="video" crossOrigin='anonymous' style="width:100%; height:100%;" autoplay=""/></div>
     <div class="main-nav" style="display:none">
       <div class="topnav">
-        <a href="profile.html"><img class="big_icon" src="icons/profile.png"/></a>
-        <button class="emotion-button"><li class="jua">날아갈 것 같아요</li></button>
-        <a id="comments_button" href="#"><img class="big_icon" src="icons/jjal.png"/></a>
+        <a class = "big_icon" href="profile.html"><i class = "big_icon far fa-circle"></i></a>
+        <button class="emotion-button" style="max-height:40px;"><li class="hanna">날아갈 것 같아요</li></button>
+        <a  id="comments_button" class = "big_icon" href="#"><span class = 'dot' style = " height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><p style = "text-shadow: none; color: white; width: max-content; margin-top: 15%;
+          margin-left: auto;
+          margin-right: auto;">짤</p></span></a>
       </div>
 
       <div class="filter_nav">
         <div class="ham-nav">
           <div class="menu">
-            <a id="happy" style="background:#F0433A"><li class="jua">날아갈 것 같아요</li></a>
-            <a id="study" style="background:#C9283E"><li class="jua">아 공부해야 되는데</li></a>
-            <a id="bored" style="background:#820333"><li class="jua">심심해요</li></a>
-            <a id="lonely" style="background:#540032"><li class="jua">외로워요</li></a>
-            <a id="sad" style="background:#2E112D"><li class="jua">우울해요</li></a>
+            <a id="happy" style="background:#F0433A"><li class="hanna">날아갈 것 같아요</li></a>
+            <a id="study" style="background:#C9283E"><li class="hanna">아 공부해야 되는데</li></a>
+            <a id="bored" style="background:#820333"><li class="hanna">심심해요</li></a>
+            <a id="lonely" style="background:#540032"><li class="hanna">외로워요</li></a>
+            <a id="sad" style="background:#2E112D"><li class="hanna">우울해요</li></a>
           </div>
         </div>
       </div>
@@ -55,17 +57,16 @@
         })();
       </script>
 
-      <div class="bottom-nav">
-        <div class="star-capture-nav">
-          <div id="star" style="display:none"><img class="small_icon" src="icons/star_empty.png"/> 찜하기</div>
-          <div id="capture">짤 만들기</button></div>
-          <div class="video-control-nav">
-            <i class = "big_icon glyphicon glyphicon-step-backward"></i>
-            <i class = "big_icon glyphicon glyphicon-pause play-pause"></i>
-            <i class = "big_icon glyphicon glyphicon-step-forward"></i>
-          </div>
-        </div>
+      <div class="star-capture-nav">
+        <div id="star" style="display:none"><i class = "small_icon far fa-star"></i> 찜하기</div>
+        <div id="capture">짤 만들기</button>
       </div>
+      <div class="video-control-nav">
+        <i class = "big_icon glyphicon glyphicon-step-backward"></i>
+        <i class = "big_icon glyphicon glyphicon-pause play-pause"></i>
+        <i class = "big_icon glyphicon glyphicon-step-forward"></i>
+      </div>
+    </div>
     </div>
     <div id="create-tmp" class="create-overlay" style="display:none">
         <canvas class='create-screenshot'>
@@ -79,7 +80,8 @@
                 <i class="icon edit outline"></i>
             </div>
         </div>
-        <button id='share'>공유하기</button>
+        <button id="share">공유하기</button>
+        <!-- <button id='share' class='ui basic white button'>공유하기</button> -->
     </div>
     <script src="./sungduck.js"></script>
 </body>

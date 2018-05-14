@@ -2,7 +2,7 @@ var video_url = "https://45.119.146.126:5000/video/";
 var photos_url = "https://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
-var group = "bts/";
+var group = "twice/";
 
 var config = {
     apiKey: "",

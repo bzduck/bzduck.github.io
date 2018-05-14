@@ -18,7 +18,7 @@ $( document ).ready(function() {
 	video.setAttribute("src", video_url+group+emotion+index);
  	video.play();
 
-	$(".emotion-button").on("click", function(){
+	$(".emotion-button").on("click", function(event){
 		event.stopPropagation();
 		// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
 		$(".menu").animate({

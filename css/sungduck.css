@@ -1,4 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Jua);
+.minkyu {
+  size: 10px;
+}
 
 body {
   font-family: 'Jua', sans-serif;

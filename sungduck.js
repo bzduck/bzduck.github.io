@@ -1,5 +1,5 @@
-var video_url = "http://45.119.146.126:5000/video/";
-var photos_url = "http://45.119.146.126:5000/photos/"
+var video_url = "https://45.119.146.126:5000/video/";
+var photos_url = "https://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
 var group = "bts/";
@@ -15,7 +15,7 @@ var database = firebase.database();
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
-	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
+	video.setAttribute("src", video_url+group+emotion+index);
  	video.play();
 
 	$(".emotion-button").on("click", function(){
@@ -74,7 +74,7 @@ function next_video() {
 
 	index = (index == 3) ? 1 : index + 1;
 
-	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
+	video.setAttribute("src", video_url+group+emotion+index);
 
 	video_play();
 }
@@ -83,7 +83,7 @@ function prev_video() {
 
 	index = (index == 1) ? 3 : index - 1;
 
-	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
+	video.setAttribute("src", video_url+group+emotion+index);
 
 	video_play();
 }
@@ -215,7 +215,7 @@ $('#share').on('click', function(event) {
 
 	$.ajax({
         type: "POST",
-        url: "http://45.119.146.126:5000/photos/"+group+emotion+index,
+        url: photos_url+group+emotion+index,
         data: {
         	imageBase64: dataURI
         }
@@ -297,6 +297,6 @@ $('.menu a').click(function(e) {
 
 function new_type_video() {
 	index = 1;
-	video.setAttribute("src", "http://45.119.146.126:5000/video/"+group+emotion+index);
+	video.setAttribute("src", video_url+group+emotion+index);
 	video_play();
 }

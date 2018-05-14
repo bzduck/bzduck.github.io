@@ -13,7 +13,10 @@ $( document ).ready(function() {
     var url = window.location.search.substring(1);
     var commentsRef = database.ref(url);
     var comments = database.ref(url).once('value').then(function(snapshot){
-        renderComments(snapshot.val())
+        if (snapshot.val() !== null)
+            renderComments(snapshot.val());
+        else
+            $('.jua').text("아직 컨텐츠가 없습니다");
     })
  	// video_play();
 });
@@ -60,6 +63,7 @@ function delete_post(commentID){
 
 
 function renderComments(comments) {
+
     const htmls = Object.values(comments).map(function (comment) {
         if (Object.keys(comment).indexOf('like_names') == -1){
             comment.like_names=[]

@@ -3,20 +3,42 @@ var photos_url = "https://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
 var group = "twice/";
+var extender = ".mp4"
 
+// var config = {
+//     apiKey: "",
+//     databaseURL: "https://mine-704af.firebaseio.com/",
+//   };
+
+
+// Initialize Firebase
 var config = {
-    apiKey: "",
-    databaseURL: "https://mine-704af.firebaseio.com/",
-  };
-
+	apiKey: "AIzaSyDHxrepWNTbLTKrtCWuDae-A2asMqrcPt8",
+	authDomain: "sungduck-fed76.firebaseapp.com",
+	databaseURL: "https://sungduck-fed76.firebaseio.com",
+	projectId: "sungduck-fed76",
+	storageBucket: "sungduck-fed76.appspot.com",
+	messagingSenderId: "445818456963"
+};
 firebase.initializeApp(config);
 
 var database = firebase.database();
+var storage = firebase.storage();
+
+
+// var storageRef = storage.ref('twice/happy/1.mp4');
+// console.log(storageRef);
+var storageRef = storage.ref();
+// storageRef.child('twice/happy/1.mp4').getDownloadURL().then(function(url){
+// 	console.log(url);
+// });
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
-	video.setAttribute("src", video_url+group+emotion+index);
- 	video.play();
+	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+		console.log(url);
+		video_load_play();
+	});
 
 	$(".emotion-button").on("click", function(event){
 		event.stopPropagation();
@@ -74,18 +96,22 @@ function next_video() {
 
 	index = (index == 3) ? 1 : index + 1;
 
-	video.setAttribute("src", video_url+group+emotion+index);
-
-	video_play();
+	video_load_play();
 }
 
 function prev_video() {
 
 	index = (index == 1) ? 3 : index - 1;
 
-	video.setAttribute("src", video_url+group+emotion+index);
+	video_load_play();
+}
 
-	video_play();
+function video_load_play() {
+	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+		console.log(url);
+		video.setAttribute("src", url);
+		video_play();
+	});
 }
 
 /* COMMENTS */
@@ -209,28 +235,42 @@ $('#share').on('click', function(event) {
 
 	//convert to desired file format
 	var dataURI = canvas.toDataURL("image/png"); // can also use 'image/png'
-	dataURI = dataURI.replace("data:image/png;base64,", "");
-	console.log(dataURI);
+	// dataURI = dataURI.replace("data:image/png;base64,", "");
+	// console.log(dataURI);
 
+	// var image = new Image();
+	// image.src = dataURI;
+	// document.body.appendChild(image);
 
-	$.ajax({
-        type: "POST",
-        url: photos_url+group+emotion+index,
-        data: {
-        	imageBase64: dataURI
-        }
-      }).done(function(response) {
-        console.log('saved: ' + response);
+	var response = makeid();
+	console.log(response);
 
-        var comments = database.ref(group+emotion+index+"/"+response).set({
-        	key: response,
-        	// imageBase64: dataURI,
-        	src: photos_url+group+emotion+index+"/"+response,
-        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
-        	author: '0xdeadbeef123'
+	var comments = database.ref(group+emotion+index+"/"+response).set({
+    	key: response,
+    	image: dataURI,
+    	// src: photos_url+group+emotion+index+"/"+response,
+    	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
+    	author: '0xdeadbeef123'
+    });
 
-        });
-      });
+	// $.ajax({
+ //        type: "POST",
+ //        url: photos_url+group+emotion+index,
+ //        data: {
+ //        	imageBase64: dataURI
+ //        }
+ //      }).done(function(response) {
+ //        console.log('saved: ' + response);
+
+ //        var comments = database.ref(group+emotion+index+"/"+response).set({
+ //        	key: response,
+ //        	imageBase64: dataURI,
+ //        	src: photos_url+group+emotion+index+"/"+response,
+ //        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
+ //        	author: '0xdeadbeef123'
+
+ //        });
+ //      });
 	$('.create-overlay').hide();
 });
 
@@ -292,11 +332,20 @@ $('.menu a').click(function(e) {
   $(".menu").animate({
 		height: 'toggle'
 	});
-  new_type_video();
+  new_emotion_video();
 });
 
-function new_type_video() {
+function new_emotion_video() {
 	index = 1;
-	video.setAttribute("src", video_url+group+emotion+index);
-	video_play();
+	video_load_play();
+}
+
+function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
 }

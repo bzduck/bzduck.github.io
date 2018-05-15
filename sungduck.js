@@ -163,12 +163,13 @@ function idols_init() {
 		.then(function(snapshot) {
 		if (snapshot.exists()) {
 		  snapshot.forEach(function(childSnapshot) {
-		    idols.push(childSnapshot.val().toLowerCase());
+	    	idols.push(childSnapshot.val());
 		  });
 		}
 		else {
-		  idols.push("twice");
-		  ref.set("twice");
+
+		  	idols.push("twice");
+		  	ref.set(["twice"]);
 		}
 		})
 		.then(function() {

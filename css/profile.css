@@ -57,6 +57,12 @@ width: 100%;
 	margin-right: auto;
 }
 
+.main_page {
+    width: 40px; 
+    float:left; 
+    margin-left:10px
+}
+
 
 
 .select-pure__select {

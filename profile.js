@@ -82,36 +82,35 @@ var autocomplete = new SelectPure(".idols-select", {
   options: [
     {
       label: "레드벨벳",
-      value: "레드벨벳",
+      value: "red",
     },
     {
       label: "BTS",
-      value: "BTS",
+      value: "bts",
     },
     {
       label: "EXO",
-      value: "EXO",
+      value: "exo",
     },
     {
       label: "트와이스",
-      value: "트와이스",
+      value: "twice",
     },
     {
       label: "Wanna One",
-      value: "WannaOne",
+      value: "wannaone",
     },
     {
       label: "여자친구",
       value: "girlfriend",
-      disabled: "true",
     },
     {
       label: "GOT7",
-      value: "GOT7",
+      value: "got7",
     },
     {
       label: "EXID",
-      value: "EXID",
+      value: "exid",
     },
   ],
   value: [],
@@ -131,14 +130,9 @@ function update_idols() {
 function init_idols() {
   var ref = database.ref("idols/"+uid);
   ref.on('value', function(snapshot) {
-    if (snapshot.exists()) {
-      snapshot.forEach(function(childSnapshot) {
-        idols.push(childSnapshot.val());
-      });
-    }
-    else {
-      idols.push("트와이스");
-    }
+    snapshot.forEach(function(childSnapshot) {
+      idols.push(childSnapshot.val());
+    });
     update_labels();
   });
 }
@@ -156,7 +150,7 @@ for (i=0; i<options.length; i++) {
 function update_labels() {
   idols.forEach(idol=> {
     for (i=0; i<options.length; i++) {
-      if (options[i].innerHTML == idol) {
+      if (options[i].getAttribute('data-value') == idol) {
         options[i].click();
         options[i].click();
       }

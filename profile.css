@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css?family=Pacifico|Arimo');
+
+body {
+  background-color:#d3d3d3;
+  margin: 0; height: 100%;
+}
+
+
+/* Profile */
+.column{
+width:100%;
+min-height:190px;
+}
+
+
+.image-container{
+width: 30%;
+height: 180px;
+float: left;
+border:3px solid white;
+margin:2px;
+}
+
+.image-container img{
+max-height: 180px;
+width: 100%;
+}
+
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width:100%;
+    /*max-height:250px;*/
+    height:200px;
+    font-family: 'Pacifico';
+    background-color: #8AD6C9;
+
+    margin: auto;
+    text-align: center;
+
+}
+
+.intro {
+    position: relative;
+    bottom: -15px;
+}
+
+.title {
+	margin-top: 0px;
+}
+
+
+#video-rows {
+	margin-top: 10px;
+	width:98%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+
+.select-pure__select {
+align-items: center;
+background: #79c6b9;
+border-radius: 4px;
+/*border: 1px solid rgba(0, 0, 0, 0.15);*/
+/*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);*/
+box-sizing: border-box;
+color: #363b3e;
+cursor: pointer;
+display: flex;
+font-size: 12px;
+font-weight: 500;
+justify-content: left;
+min-height: 44px;
+padding: 0px 10px;
+position: relative;
+transition: 0.2s;
+width: 80%;
+margin-left: auto;
+margin-right: auto;
+}
+
+.select-pure__options {
+border-radius: 4px;
+border: 1px solid rgba(0, 0, 0, 0.15);
+box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+box-sizing: border-box;
+color: #363b3e;
+display: none;
+left: 0;
+max-height: 221px;
+overflow-y: scroll;
+position: absolute;
+top: 50px;
+width: 100%;
+z-index: 5;
+}
+
+.select-pure__select--opened .select-pure__options {
+display: block;
+}
+
+.select-pure__option {
+background: #fff;
+border-bottom: 1px solid #e4e4e4;
+box-sizing: border-box;
+height: 44px;
+line-height: 25px;
+padding: 10px;
+}
+
+.select-pure__option--selected {
+	color: #e4e4e4;
+	cursor: initial;
+	pointer-events: none;
+}
+
+.select-pure__option--hidden {
+display: none;
+}
+
+.select-pure__selected-label {
+background: #5e6264;
+border-radius: 4px;
+color: #fff;
+cursor: initial;
+display: inline-block;
+margin: 5px 5px 5px 0;
+padding: 2px 7px;
+}
+
+.select-pure__selected-label:last-of-type {
+margin-right: 0;
+}
+
+.select-pure__selected-label i {
+cursor: pointer;
+display: inline-block;
+margin-left: 5px;
+}
+
+.select-pure__selected-label i:hover {
+color: #e4e4e4;
+}
+
+.select-pure__autocomplete {
+background: #f9f9f8;
+border-bottom: 1px solid #e4e4e4;
+border-left: none;
+border-right: none;
+border-top: none;
+box-sizing: border-box;
+font-size: 10px;
+outline: none;
+padding: 10px;
+width: 100%;
+}

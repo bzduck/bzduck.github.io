@@ -1,15 +1,10 @@
-var video_url = "https://45.119.146.126:5000/video/";
-var photos_url = "https://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
 var group = "twice/";
 var extender = ".mp4"
-
-// var config = {
-//     apiKey: "",
-//     databaseURL: "https://mine-704af.firebaseio.com/",
-//   };
-
+var user_email;
+var uid;
+var star_dict = {};
 
 // Initialize Firebase
 var config = {
@@ -22,21 +17,30 @@ var config = {
 };
 firebase.initializeApp(config);
 
+initApp = function() {
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    user_email = user.email;
+    uid = user.uid;
+    console.log(uid);
+    star_dict_init();
+  } else {
+    // User is signed out.
+    console.log("singed out");
+  }
+}, function(error) {
+  console.log(error);
+});
+};
+
 var database = firebase.database();
 var storage = firebase.storage();
-
-
-// var storageRef = storage.ref('twice/happy/1.mp4');
-// console.log(storageRef);
 var storageRef = storage.ref();
-// storageRef.child('twice/happy/1.mp4').getDownloadURL().then(function(url){
-// 	console.log(url);
-// });
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
+	initApp();
 	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
-		console.log(url);
 		video_load_play();
 	});
 
@@ -108,8 +112,9 @@ function prev_video() {
 
 function video_load_play() {
 	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
-		console.log(url);
+		// console.log(url);
 		video.setAttribute("src", url);
+		star_update();
 		video_play();
 	});
 }
@@ -161,6 +166,41 @@ $('#capture').on('click', function(event) {
 	ctx.fillRect(0, 0, canvas.width, canvas.height);
 	ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 });
+
+var star_icon = document.getElementById("star-icon");
+$('#star').on('click', event => {
+	event.stopPropagation();
+	if (star_dict[group+emotion+index]) {
+		star_dict[group+emotion+index].remove();
+		delete star_dict[group+emotion+index];
+	}
+	else {
+	    var star_ref = database.ref("stars/"+uid).push(group+emotion+index);
+	    star_dict[group+emotion+index] = star_ref;
+	}
+	star_update();
+});
+
+function star_update() {
+	var src = (star_dict[group+emotion+index])? "icons/star_filled.png" : "icons/star_empty.png";
+	star_icon.setAttribute('src', src);
+}
+
+function star_dict_init() {
+    var query = database.ref("stars/"+uid);
+    console.log("star_dict_init");
+    query.once("value")
+      .then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var val = childSnapshot.val();
+          star_dict[val] = childSnapshot.ref;
+      });
+    })
+      .then(function() {
+      	console.log(star_dict);
+    	star_update();
+      });
+}
 
 
 $('#exit').on('click', function(event) {
@@ -235,42 +275,19 @@ $('#share').on('click', function(event) {
 
 	//convert to desired file format
 	var dataURI = canvas.toDataURL("image/png"); // can also use 'image/png'
-	// dataURI = dataURI.replace("data:image/png;base64,", "");
-	// console.log(dataURI);
 
-	// var image = new Image();
-	// image.src = dataURI;
-	// document.body.appendChild(image);
+	var key = makeid();
 
-	var response = makeid();
-	console.log(response);
-
-	var comments = database.ref(group+emotion+index+"/"+response).set({
-    	key: response,
+	var comments = database.ref(group+emotion+index+"/"+key).set({
+    	key: key,
     	image: dataURI,
     	// src: photos_url+group+emotion+index+"/"+response,
     	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
     	author: '0xdeadbeef123'
     });
 
-	// $.ajax({
- //        type: "POST",
- //        url: photos_url+group+emotion+index,
- //        data: {
- //        	imageBase64: dataURI
- //        }
- //      }).done(function(response) {
- //        console.log('saved: ' + response);
+    // database.ref("main_img/"+group+emotion+index).set(dataURI);
 
- //        var comments = database.ref(group+emotion+index+"/"+response).set({
- //        	key: response,
- //        	imageBase64: dataURI,
- //        	src: photos_url+group+emotion+index+"/"+response,
- //        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
- //        	author: '0xdeadbeef123'
-
- //        });
- //      });
 	$('.create-overlay').hide();
 });
 
@@ -349,3 +366,9 @@ function makeid() {
 
   return text;
 }
+
+$('#profile_button').on('click', function(){
+	window.location.href = 'profile.html';
+});
+
+

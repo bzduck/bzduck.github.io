@@ -391,7 +391,7 @@ $('#share').on('click', function(event) {
 
 
 
-$('.glyphicon-step-backward').on("click", function(event) {
+$('.glyphicon-backward').on("click", function(event) {
 	event.stopPropagation();
 	if(emotionb) {
   	$(".menu").animate({
@@ -402,7 +402,7 @@ $('.glyphicon-step-backward').on("click", function(event) {
 	video.currentTime -= 5;
 });
 
-$('.glyphicon-step-forward').on("click", function(event) {
+$('.glyphicon-forward').on("click", function(event) {
 	event.stopPropagation();
 	if(emotionb) {
   	$(".menu").animate({

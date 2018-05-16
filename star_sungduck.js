@@ -25,7 +25,7 @@ initPage = function() {
 	first_video = str.split("&")[1];
 	var ref = database.ref('users/auth/' + uid);
 	stars_init();
-	
+
 };
 
 
@@ -94,7 +94,7 @@ function next_video() {
 		return
 
 	index = (index == star_video_list.length - 1)? 0 : index + 1;
-	
+
 	video_load_play();
 }
 
@@ -316,12 +316,12 @@ $('#share').on('click', function(event) {
 });
 
 
-$('.glyphicon-step-backward').on("click", function(event) {
+$('.glyphicon-backward').on("click", function(event) {
 	event.stopPropagation();
 	video.currentTime -= 5;
 });
 
-$('.glyphicon-step-forward').on("click", function(event) {
+$('.glyphicon-forward').on("click", function(event) {
 	event.stopPropagation();
 	video.currentTime += 5;
 });

@@ -198,14 +198,3 @@ width: 100%;
 .logo.kbactive {
 	margin-top:0%;
 }
-
-.kbactive{
-    font-size:.8em;
-}
-
-.kbactive img{
-    width:30%!important;
-}
-.kbactive input[type="text"]{
-    width:30%;
-}

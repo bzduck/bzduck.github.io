@@ -221,33 +221,21 @@ for (i=0; i<options.length; i++) {
 //     console.log("close");
 // }
 
-var keyboard_up = true;
 $(document).ready(function(){
   var _originalSize = $(window).width() + $(window).height()
   $(window).resize(function(){
-    if($(window).width() + $(window).height() != _originalSize){
-      console.log("keyboard show up");
+    if($(window).width() + $(window).height() != _originalSize)
       $('.logo').addClass('kbactive');
-      keyboard_up = true;
-      // $(".copyright_link").css("position","relative");  
-    }else{
-      console.log("keyboard closed");
+    else
       $('.logo').removeClass('kbactive');
-      keyboard_up = false;
-      // $(".copyright_link").css("position","fixed");  
-    }
   });
 
 	var e = document.getElementsByClassName('select-pure__select')[0];
 	var observer = new MutationObserver(function (event) {
-	  if (keyboard_up) {
-	  	$('.logo').removeClass('kbactive');
-	  	keyboard_up = false;
-	  }
-	  else {
-	  	$('.logo').addClass('kbactive');
-      	keyboard_up = true;
-	  }
+		if ($('.select-pure__select').hasClass('select-pure__select--opened'))
+			$('.logo').addClass('kbactive');
+		else
+			$('.logo').removeClass('kbactive');
 	});
 
 	observer.observe(e, {
@@ -257,42 +245,3 @@ $(document).ready(function(){
 	  characterData: false
 	});
 });
-
-
-
-// intId =  window.setInterval(function(){ //Setting interval to check screensize changes / not
-//             if($(document.activeElement).attr('type') == "text"){
-// 		    console.log("Keyboard is visible");
-// 			}else{
-// 			    console.log("Keyboard is not visible");  
-// 			}
-// },800);
-
-
-// $("input, textarea").focus(function(){  $(document.body).addClass('when-keyboard-showing');});
-// $("input, textarea").blur( function(){  $(document.body).removeClass('when-keyboard-showing');});
-
-
-// var object1 = document.getElementById("username_login");
-// var object2 = document.getElementById("pw_login");
-// var object3 = document.getElementById("username_signup");
-// var object4 = document.getElementById("pw_signup");
-
-// object1.addEventListener("focus", ONFOCUSELEMENT);
-// object2.addEventListener("focus", ONFOCUSELEMENT);
-// object3.addEventListener("focus", ONFOCUSELEMENT);
-// object4.addEventListener("focus", ONFOCUSELEMENT);
-
-// function ONFOCUSELEMENT() {
-//     console.log("plz work");
-//     $('.logo').addClass('kbactive');
-// }
-
-// object1.addEventListener("blur", ONBLURELEMENT);
-// object2.addEventListener("blur", ONBLURELEMENT);
-// object3.addEventListener("blur", ONBLURELEMENT);
-// object4.addEventListener("blur", ONBLURELEMENT);
-
-// function ONBLURELEMENT() {
-// 	$('.logo').removeClass('kbactive');
-// }

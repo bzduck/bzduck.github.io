@@ -240,14 +240,23 @@ $(document).ready(function(){
 
 	var e = document.getElementsByClassName('select-pure__select')[0];
 	var observer = new MutationObserver(function (event) {
-	  if (keyboard_up) {
-	  	$('.logo').removeClass('kbactive');
-	  	keyboard_up = false;
-	  }
-	  else {
-	  	$('.logo').addClass('kbactive');
-      	keyboard_up = true;
-	  }
+		if ($('.select-pure__select').hasClass('select-pure__select--opened'))
+		{
+			$('.logo').addClass('kbactive');
+			console.log("keyboard_up");
+		}
+		else {
+			$('.logo').removeClass('kbactive');
+			console.log("keyboard_down");
+		}
+	  // if (keyboard_up) {
+	  // 	$('.logo').removeClass('kbactive');
+	  // 	keyboard_up = false;
+	  // }
+	  // else {
+	  // 	$('.logo').addClass('kbactive');
+   //    	keyboard_up = true;
+	  // }
 	});
 
 	observer.observe(e, {

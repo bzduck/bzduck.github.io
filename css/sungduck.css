@@ -10,6 +10,12 @@ body {
   position: relative;
 }
 
+.ui-page-theme-a .ui-btn {
+  background-color: rgba(0,0,0,0);
+  border-color: #fff;
+  color: #ffffff;
+}
+
 ul, li {
   list-style-type: none;
 }

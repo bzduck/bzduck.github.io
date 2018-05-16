@@ -50,6 +50,7 @@ ul, li {
   z-index:10;
   display:flex;
   justify-content:space-between;
+  background-color: rgba(0,0,0,.1);
 }
 
 .topnav a {
@@ -62,7 +63,7 @@ ul, li {
 }
 
 .big_icon{
-  font-size:32px;
+  font-size:28px;
   max-height:1.4em;
 }
 
@@ -266,10 +267,10 @@ ul, li {
 
 iframe {
     position: fixed;
-    /*width: 100%;*/
-    /*height: 900px;*/
-    /*height: 100%;*/
+    width: 100%;
+    height: 100%;
     z-index: 2001;
+    width: 1px; min-width: 100%;
 }
 
 button.iframe-exitbutton {
@@ -358,6 +359,7 @@ div.likes{
   left: 12%;
   z-index: 5;
   color: white;
+  background-color: rgba(0,0,0,.5);
 }
 button.like{
   position: absolute;

@@ -281,6 +281,9 @@ $('.create-screenshot').on('click', function(event) {
 	}
 });
 
+document.getElementById("problem").addEventListener('touchend',function(e)
+	{e.target.focus(); e.preventDefault();}, false);
+
 $('.create-overlay').unbind();
 
 $('#share').on('click', function(event) {

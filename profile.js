@@ -88,8 +88,6 @@ function renderStarVideos() {
           //var el = document.getElementById('main_nav');
           //$(".main_nav").after(iframe);
           document.body.appendChild(iframe);
-          
-          
         });
       });
     });

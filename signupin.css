@@ -43,6 +43,22 @@ h1{
     padding: 4px;
  }
 
+ #pw_validation, #pw_validation_signup {
+    display: block;
+    color: red;
+    background: none;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    padding: 4px;
+    font-size: 12px;
+ }
+
+ #pass-status {
+    color: #fff;
+ }
+
 .select-pure__select {
 align-items: center;
 background: #79c6b9;
@@ -60,7 +76,7 @@ min-height: 44px;
 padding: 0px 10px;
 position: relative;
 transition: 0.2s;
-width: 80%;
+width: 50%;
 margin-left: auto;
 margin-right: auto;
 }

@@ -5,15 +5,16 @@
 
 body {
   font-family: 'Jua', sans-serif;
-  background-color:#000000;
+  background-color:rgba(0,0,0,.9);
   margin: 0; height: 100%;
   position: relative;
 }
 
-.ui-page-theme-a .ui-btn {
-  background-color: rgba(0,0,0,0);
-  border-color: #fff;
-  color: #ffffff;
+#empty {
+    color: #ffffff;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ul, li {
@@ -56,7 +57,7 @@ ul, li {
   z-index:10;
   display:flex;
   justify-content:space-between;
-  background-color: rgba(0,0,0,.1);
+  background-color: rgba(0,0,0,.2);
 }
 
 .topnav a {

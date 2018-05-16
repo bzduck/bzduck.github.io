@@ -38,7 +38,7 @@ $( document ).ready(function() {
                 });
             }
             else {
-                $('.jua').text("아직 컨텐츠가 없습니다");
+                $('.jua').text("아직 컨텐츠가 없습니다").attr('id',"empty");
             }
         });
 });

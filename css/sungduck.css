@@ -50,6 +50,7 @@ ul, li {
   z-index:10;
   display:flex;
   justify-content:space-between;
+  background-color: rgba(0,0,0,.1);
 }
 
 .topnav a {
@@ -62,7 +63,7 @@ ul, li {
 }
 
 .big_icon{
-  font-size:32px;
+  font-size:28px;
   max-height:1.4em;
 }
 
@@ -357,6 +358,7 @@ div.likes{
   left: 12%;
   z-index: 5;
   color: white;
+  background-color: rgba(0,0,0,.5);
 }
 button.like{
   position: absolute;

@@ -4,21 +4,21 @@
 		<meta charset="utf-8">
 	    <meta name="viewport" content="width=device-width, initial-scale=1">
 	    <title>SignIn</title>
-		<link href="./signupin.css" rel="stylesheet"/>
+		<link href="css/signupin.css" rel="stylesheet"/>
 		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
 		<script src="./bundle.min.js"></script>
-		
+
 	</head>
 	<body>
-		<h1>성덕</h1>
-		<div id = 'login'>
+		<h1><img class="logo" src="image/logo_white_medium_heart.png"/></h1>
+		<div id = 'login' class="login">
 			<div>
     			<input type="text" class = "signInput" id="username_login" name="name" placeHolder="아이디">
     			<input type="password" class = "signInput" id="pw_login" name="pw" placeHolder="비밀번호">
     			<label id="pw_validation"></label>
-  			</div>
+  		</div>
  			<div>
     			<button onclick="login_confirm()" class = "top signButtons">로그인</button>
     			<button onclick="signup_page()" class = "signButtons">회원가입</button>

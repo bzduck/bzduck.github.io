@@ -36,11 +36,6 @@ $( document ).ready(function() {
 
 $(".emotion-button").on("click", function(event){
 	event.stopPropagation();
-	// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
-	$(".menu").animate({
-		height: 'toggle'
-	});
-
 });
 
 var star_capture = document.getElementById("star");
@@ -170,32 +165,6 @@ function stars_init() {
 // min (포함) 과 max (불포함) 사이의 난수를 반환
 function getRandomArbitrary(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
-
-$('.menu a').click(function(e) {
-  var txt = $(e.target).text();
-  console.log(txt);
-  $('.emotion-button > li').text(txt);
-  var index = ($( "li" ).index($(e.target)) -1 ) % 3;
-  switch(index) {
-	case 0:
-	    emotion="happy/"
-	    break;
-	case 1:
-	    emotion="bored/"
-	    break;
-	default:
-	    emotion="stressed/"
-	}
-  $(".menu").animate({
-		height: 'toggle'
-	});
-  new_emotion_video();
-});
-
-function new_emotion_video() {
-	index = 1;
-	video_load_play();
 }
 
 function makeid() {
@@ -415,5 +384,5 @@ $('#comments_button').on('click', function(){
 
 $('#exit_button').on('click', function() {
 	event.stopPropagation();
-	window.location.href="star_sungduck.html?"+uid;
+	window.location.href="profile.html?"+uid;
 });

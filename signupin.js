@@ -166,3 +166,40 @@ for (i=0; i<options.length; i++) {
     options[i].style.cursor= "initial";
   }
 }
+
+
+
+$(function(){
+        var i=0,
+        initialScreenSize = screen.height, //Checks initial height of the screen 
+        intId =  window.setInterval(function(){ //Setting interval to check screensize changes / not
+            if(check()){
+                addClass();
+            }else{
+                removeClass();
+            };    
+        },800);
+        
+        function check(){ //Actual screen height change checking code
+            var kbactive = screen.height;
+            if(initialScreenSize !== kbactive ){
+                addClass();
+                return true;
+            }else{
+                removeClass();
+                return false;    
+            }
+        }
+        
+        function addClass(){ //Adds keyboard active class
+            $('#login').addClass('kbactive');    
+            $('#signup').addClass('kbactive');  
+        }
+        
+        function removeClass(){ //Removes keyboard active class
+            $('#login').removeClass('kbactive');
+            $('#signup').removeClass('kbactive'); 
+        }
+    
+})
+ 

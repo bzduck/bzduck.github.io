@@ -328,14 +328,8 @@ button.iframe-exitbutton {
   }
 
   /* line 50, C:/Users/Shubham/Desktop/test/sass/app.sass */
-  .filter_nav .ham-nav .menu a:hover {
-    background: white;
-  }
 
   /* line 53, C:/Users/Shubham/Desktop/test/sass/app.sass */
-  .filter_nav .ham-nav .menu a:hover li {
-    color: #c0392b;
-  }
 
   /* line 56, C:/Users/Shubham/Desktop/test/sass/app.sass */
   .filter_nav .ham-nav .menu a li {
@@ -444,4 +438,3 @@ button {
     text-shadow: none;
     display: table;
 }
-

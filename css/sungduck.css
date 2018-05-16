@@ -241,10 +241,11 @@ ul, li {
 }
 
 #share {
-  position:relative;
+  position:fixed;
   width: max-content;
   text-align: center;
   margin-left: 38%;
+  bottom: 2%;
   /*margin-left: auto;*/
   /*margin-right: auto;*/
 }

@@ -179,9 +179,11 @@ $(function(){
                 removeClass();
             };    
         },800);
+        console.log(initialScreenSize);
         
         function check(){ //Actual screen height change checking code
             var kbactive = screen.height;
+            console.log(kbactive);
             if(initialScreenSize !== kbactive ){
                 addClass();
                 return true;
@@ -199,5 +201,21 @@ $(function(){
             $('.logo').removeClass('kbactive');
         }
     
-})
+});
+
+var isKeyboardOpen;
+
+window.addEventListener('native.showkeyboard', keyboardShowHandler);
+
+window.addEventListener('native.hidekeyboard', keyboardHideHandler);
+
+function keyboardShowHandler(e){
+    isKeyboardOpen = true; //always know status
+    console.log("open");
+}
+
+function keyboardHideHandler(e){
+    isKeyboardOpen = false;
+    console.log("close");
+}
  

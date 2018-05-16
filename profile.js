@@ -1,6 +1,6 @@
 var star_dict = {};
 var uid;
-var user_email;
+var idols;
 
 // Initialize Firebase
 var config = {
@@ -16,34 +16,23 @@ var database = firebase.database();
 var storage = firebase.storage();
 var storageRef = storage.ref();
 
-initApp = function() {
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    user_email = user.email;
-    uid = user.uid;
-    console.log(uid);
-    star_dict_init();
-    init_idols();
-  } else {
-    // User is signed out.
-    console.log("singed out");
-  }
-}, function(error) {
-  console.log(error);
-});
+initPage = function() {
+  var str = window.location.search.substring(1);
+  uid = str.split("&")[0];
+  var ref = database.ref('users/auth/' + uid);
+  ref.once('value')
+    .then(function(snapshot) {
+      idols = snapshot.val().fav_idols;
+      star_dict_init();
+    });
 };
 
-var database = firebase.database();
-var storage = firebase.storage();
-var storageRef = storage.ref();
-
 $( document ).ready(function() {
-  initApp();
+  initPage();
 });
 
 function star_dict_init() {
     var query = database.ref("stars/"+uid);
-    // console.log("star_dict_init");
     query.once("value")
       .then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
@@ -52,13 +41,12 @@ function star_dict_init() {
       });
     })
     .then(function() {
-      // console.log(star_dict);
       update_info();
     });
 }
 
 function update_info() {
-  $('.intro > h1').text(user_email);
+  $('.intro > h1').text(uid);
   renderStarVideos();
 }
 
@@ -122,7 +110,6 @@ $('.main_page').on('click', function() {
   window.location.href="sungduck.html";
 });
 
-var idols=[];
 var autocomplete = new SelectPure(".idols-select", {
   options: [
     {

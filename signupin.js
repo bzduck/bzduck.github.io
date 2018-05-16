@@ -211,11 +211,13 @@ window.addEventListener('native.hidekeyboard', keyboardHideHandler);
 
 function keyboardShowHandler(e){
     isKeyboardOpen = true; //always know status
+    $('.logo').addClass('kbactive');    
     console.log("open");
 }
 
 function keyboardHideHandler(e){
     isKeyboardOpen = false;
+    $('.logo').removeClass('kbactive');
     console.log("close");
 }
  

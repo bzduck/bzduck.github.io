@@ -480,10 +480,12 @@ $(document).ready(function(){
   $(window).resize(function(){
     if($(window).width() + $(window).height() != _originalSize) {
       // $('.logo').addClass('kbactive');
+      $('.textarea').addClass('kbactive');
       console.log("keyboard up");
     }
     else {
-      // $('.logo').removeClass('kbactive');
+      $('.textarea').removeClass('kbactive');
       console.log("keyboard down");
     }
+	});
 });

@@ -77,43 +77,50 @@ function renderComments(comments) {
         if(comment.like_names.indexOf(name) > -1){
             if(comment.author == uid){
                 return `
-            <div id=${comment.key} class="comments-content">
-            <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
-            <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
-            <button id="${comment.key}-unlike" class="unlike mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
-            <button class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
-            <button id="${comment.key}-delete" onclick="delete_post('${comment.key}')">~DELETE~</button>
-            </div>
+            <div class="wrapper">
+              <div id=${comment.key} class="comments-content">
+              <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+              <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
+              <button id="${comment.key}-unlike" class="unlike mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
+              <button class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
+
+            </div></div>
+            <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">delete</button>
             `
             }
             return `
-            <div id=${comment.key} class="comments-content">
-            <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
-            <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
-            <button id="${comment.key}-unlike" class="unlike mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
-            <button class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
+            <div class="wrapper">
+              <div id=${comment.key} class="comments-content">
+              <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+              <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
+              <button id="${comment.key}-unlike" class="unlike mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
+              <button class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
+              </div>
             </div>
             `
         }
         else{
             if(comment.author == uid){
                 return `
-            <div id=${comment.key} class="comments-content">
-            <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
-            <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
-            <button id="${comment.key}-like" class="like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
-            <button class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
-            <button id="${comment.key}-delete" onclick="delete_post('${comment.key}')">~DELETE~</button>
-            </div>
+            <div class="wrapper">
+              <div id=${comment.key} class="comments-content">
+              <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+              <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
+              <button id="${comment.key}-like" class="like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
+              <button class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
+
+            </div></div>
+              <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">delete</button>
             `
             }
             return `
-            <div id=${comment.key}  class="comments-content">
-            <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
-            <div id="${comment.key}-likes" class ="likes">좋아요 ${comment.like_names.length}개</div>
-            <button id="${comment.key}-like" class = "like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
-            <button id="${comment.key}-download" class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
-            </div>
+            <div class="wrapper">
+              <div id=${comment.key}  class="comments-content">
+              <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+              <div id="${comment.key}-likes" class ="likes">좋아요 ${comment.like_names.length}개</div>
+              <button id="${comment.key}-like" class = "like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
+              <button id="${comment.key}-download" class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></button>
+            </div></div>
             `
         }
     })

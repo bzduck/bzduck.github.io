@@ -342,6 +342,11 @@ $('#share').on('click', function(event) {
 	});
 });
 
+$(document).on('click', function() {
+	if ($('.textarea').is(":focus")) {
+		$(".create-overlay").attr('position', fixed);
+	}
+})
 
 
 

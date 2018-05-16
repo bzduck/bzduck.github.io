@@ -192,13 +192,11 @@ $(function(){
         }
         
         function addClass(){ //Adds keyboard active class
-            $('#login').addClass('kbactive');    
-            $('#signup').addClass('kbactive');  
+            $('.logo').addClass('kbactive');    
         }
         
         function removeClass(){ //Removes keyboard active class
-            $('#login').removeClass('kbactive');
-            $('#signup').removeClass('kbactive'); 
+            $('.logo').removeClass('kbactive');
         }
     
 })

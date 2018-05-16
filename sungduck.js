@@ -403,28 +403,40 @@ $('#comments_button').on('click', function(event){
 })
 
 $('#comments_button').on('click', function(){
+	console.log("comments button clicked");
+	var btn = document.createElement('div');
+	btn.className = "topnav exit_comment";
+	btn.display="flex";
+	btn.style.width="100%";
+	var topnav_cmt = '<a href="#" id="profile_button"><img class="big_icon" src="icons/profile.png"/></a>';
+	topnav_cmt += '<button class="emotion-button"><li class="jua">비디오의 짤</li></button>';
+	topnav_cmt += '<a class="exit_comment iframe-exitbutton" href="#"><img class="big_icon exit_comment iframe-exitbutton" src="icons/x.png"/></a>';
+	btn.innerHTML = topnav_cmt;
+	btn.style.position = "absolute";
+	btn.style.zIndex=3000;
+
 	video_pause();
-	var exitbutton = document.createElement('button');
-	exitbutton.classList.add('iframe-exitbutton')
-	exitbutton.classList.add('mdc-button')
-	exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">clear</i></span>'
-	exitbutton.onclick = function(){
+
+	btn.onclick = function(){
+		console.log("exit comment clicked");
 		video_play();
 		document.getElementsByTagName('iframe')[0].remove();
 		document.getElementsByClassName('iframe-exitbutton')[0].remove();
+		document.getElementsByClassName('exit_comment').remove();
 	}
-	document.body.appendChild(exitbutton)
+
 	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
 	iframe.src = 'comments.html?' + group + emotion + index + '&' + uid;
 	//var el = document.getElementById('main_nav');
 	//$(".main_nav").after(iframe);
 	document.body.appendChild(iframe);
+	document.body.appendChild(btn);
 });
 
 
 $('#exit_button').on('click', function() {
 	console.log($('#ifr'));
-	var ifram = document.getElementById("ifr");
+	var iframe = document.getElementById("ifr");
 	iframe.parent.removeChild(iframe);
 });

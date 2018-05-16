@@ -64,14 +64,13 @@ $('#username_login, #pw_login').keyup(function(){
 function signup_confim() {
 	var id = $('#username_signup').val();
 	var pw = $('#pw_signup').val();
-	var re_pw = $('#retypepw').val();
 	var newid_flag = true;
-	if (id && pw && re_pw) {
+	if (id && pw) {
 		if (pw.length < 6)
 			alert("비밀번호는 6자 이상이어야 합니다.");
 		else if (idols.length < 1)
 			alert("좋아하는 아이돌 그룹을 하나 이상 선택해주세요");
-		else if (pw && re_pw) {
+		else {
 			var ref = database.ref("users/auth");
 			ref.once('value')
 				.then(function(snapshot) {
@@ -95,8 +94,6 @@ function signup_confim() {
 						alert("이미 존재하는 아이디입니다");
 				});
 		}
-		else
-			alert("비밀번호가 일치하지 않습니다");
 	}
 	else {
 		alert("아이디 혹은 비밀번호를 입력하지 않았습니다.");
@@ -106,11 +103,8 @@ function signup_confim() {
 $('#username_signup, #pw_signup, #retypepw').keyup(function(){
     var id = $('#username_signup').val();
 	var pw = $('#pw_signup').val();
-	var re_pw = $('#retypepw').val();
 	if (pw.length < 6 && pw.length > 0)
 		$('#pw_validation_signup').text("비밀번호는 6자 이상이어야 합니다.");
-	else if (pw.length > 0 && re_pw.length > 0 && pw != re_pw)
-		$('#pw_validation_signup').text("비밀번호가 일치하지 않습니다.");
 	else
 		$('#pw_validation_signup').text("");
 });

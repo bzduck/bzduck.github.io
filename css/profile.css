@@ -54,6 +54,11 @@ cursor: pointer; /* Add a pointer on hover */
 
 }
 
+.big_icon{
+  font-size:32px;
+  max-height:1.4em;
+}
+
 /*.card h1 {
     margin-top: 0px;
     margin-bottom: 20px;

@@ -1,5 +1,5 @@
-var name = 'jen'
-var uid = 'NOT_SPECIFIED_YET'
+var uid;
+var url;
 var config = {
     apiKey: "AIzaSyDHxrepWNTbLTKrtCWuDae-A2asMqrcPt8",
     authDomain: "sungduck-fed76.firebaseapp.com",
@@ -14,25 +14,22 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $( document ).ready(function() {
-    var url = window.location.search.split('?')[1].split('&');
-    console.log(url);
-    uid = url[1]
-    url = url[0]
-    var commentsRef = database.ref(url);
-    var comments = database.ref(url).once('value').then(function(snapshot){
+    var str = window.location.search.split('?')[1].split('&');
+    url = str[0];
+    uid = str[1];
+    database.ref(url).once('value').then(function(snapshot){
         if (snapshot.val() !== null)
             renderComments(snapshot.val());
         else
             $('.jua').text("아직 컨텐츠가 없습니다");
     })
- 	// video_play();
 });
 
 function like(commentID){
-    var url = window.location.search.substring(1);
     var comments = database.ref(url + '/' + commentID + '/like_names').once('value').then(function(snapshot){
         var like_names = snapshot.val()
-        like_names.push(name)
+        console.log(like_names);
+        like_names.push(uid)
         database.ref(url + '/' + commentID + '/like_names').set(like_names)
     })
     var like_button = document.getElementById(commentID + '-like')
@@ -46,10 +43,9 @@ function like(commentID){
 
 }
 function unlike(commentID){
-    var url = window.location.search.substring(1);
-    var comments = database.ref(url + '/' + commentID + '/like_names').once('value').then(function(snapshot){
+    database.ref(url + '/' + commentID + '/like_names').once('value').then(function(snapshot){
         var like_names = snapshot.val()
-        like_names.splice(like_names.indexOf(name), 1)
+        like_names.splice(like_names.indexOf(uid), 1)
         database.ref(url + '/' + commentID + '/like_names').set(like_names)
     })
     var like_button = document.getElementById(commentID + '-unlike')
@@ -62,7 +58,6 @@ function unlike(commentID){
     likes.innerText = "좋아요 "+(parseInt(likes.innerText.replace(/[^0-9]/gi, '')) - 1) + "개";
 }
 function delete_post(commentID){
-    var url = window.location.search.substring(1);
     database.ref(url + '/' + commentID).set(null)
     document.getElementById(commentID).remove()
 }
@@ -73,9 +68,7 @@ function renderComments(comments) {
         if (Object.keys(comment).indexOf('like_names') == -1){
             comment.like_names=[]
         }
-        console.log(uid)
-        console.log(comment.author == uid)
-        if(comment.like_names.indexOf(name) > -1){
+        if(comment.like_names.indexOf(uid) > -1){
             if(comment.author == uid){
                 return `
             <div class="wrapper">

@@ -1,4 +1,4 @@
-var index = 1;
+var index;
 var uid;
 var star_dict = {};
 var extender = ".mp4"
@@ -302,7 +302,7 @@ $('#share').on('click', function(event) {
     	image: dataURI,
     	// src: photos_url+group+emotion+index+"/"+response,
     	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
-    	author: '0xdeadbeef123'
+    	author: uid,
     });
 
     // database.ref("main_img/"+group+emotion+index).set(dataURI);

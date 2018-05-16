@@ -221,20 +221,53 @@ for (i=0; i<options.length; i++) {
 //     console.log("close");
 // }
 
+var keyboard_up = true;
 $(document).ready(function(){
   var _originalSize = $(window).width() + $(window).height()
   $(window).resize(function(){
     if($(window).width() + $(window).height() != _originalSize){
       console.log("keyboard show up");
       $('.logo').addClass('kbactive');
+      keyboard_up = true;
       // $(".copyright_link").css("position","relative");  
     }else{
       console.log("keyboard closed");
       $('.logo').removeClass('kbactive');
+      keyboard_up = false;
       // $(".copyright_link").css("position","fixed");  
     }
   });
+
+	var e = document.getElementsByClassName('select-pure__select')[0];
+	var observer = new MutationObserver(function (event) {
+	  if (keyboard_up) {
+	  	$('.logo').removeClass('kbactive');
+	  	keyboard_up = false;
+	  }
+	  else {
+	  	$('.logo').addClass('kbactive');
+      	keyboard_up = true;
+	  }
+	});
+
+	observer.observe(e, {
+	  attributes: true, 
+	  attributeFilter: ['class'],
+	  childList: true, 
+	  characterData: false
+	});
 });
+
+
+
+// intId =  window.setInterval(function(){ //Setting interval to check screensize changes / not
+//             if($(document.activeElement).attr('type') == "text"){
+// 		    console.log("Keyboard is visible");
+// 			}else{
+// 			    console.log("Keyboard is not visible");  
+// 			}
+// },800);
+
 
 // $("input, textarea").focus(function(){  $(document.body).addClass('when-keyboard-showing');});
 // $("input, textarea").blur( function(){  $(document.body).removeClass('when-keyboard-showing');});

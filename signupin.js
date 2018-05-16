@@ -236,6 +236,12 @@ $(document).ready(function(){
   });
 });
 
+if($(document.activeElement).attr('type') == "text"){
+    console.log("Keyboard is visible");
+}else{
+    console.log("Keyboard is not visible");  
+}
+
 // $("input, textarea").focus(function(){  $(document.body).addClass('when-keyboard-showing');});
 // $("input, textarea").blur( function(){  $(document.body).removeClass('when-keyboard-showing');});
 

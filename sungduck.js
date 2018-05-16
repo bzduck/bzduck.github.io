@@ -345,7 +345,6 @@ $('#share').on('click', function(event) {
 
 
 
-
 /* COMMENTS */
 
 $('.glyphicon-step-backward').on("click", function(event) {

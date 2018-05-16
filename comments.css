@@ -43,6 +43,12 @@ button.download{
   left: 90%;
   z-index: 5;
 }
+a.download{
+  position: absolute;
+  bottom: 5%;
+  left: 90%;
+  z-index: 5;
+}
 img.comments-img{
   width: 100%;
   height: auto;
@@ -64,6 +70,11 @@ button#exit {
   z-index: 3;
 }
 button {
+  font-size: 50px;
+  size: 50px;
+}
+
+a {
   font-size: 50px;
   size: 50px;
 }

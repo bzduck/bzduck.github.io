@@ -473,3 +473,17 @@ $('#exit_button').on('click', function() {
 	var iframe = document.getElementsByTagName("iframe")[0];
 	iframe.remove();
 });
+
+
+$(document).ready(function(){
+  var _originalSize = $(window).width() + $(window).height()
+  $(window).resize(function(){
+    if($(window).width() + $(window).height() != _originalSize) {
+      // $('.logo').addClass('kbactive');
+      console.log("keyboard up");
+    }
+    else {
+      // $('.logo').removeClass('kbactive');
+      console.log("keyboard down");
+    }
+});

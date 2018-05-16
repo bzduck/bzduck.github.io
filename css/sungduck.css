@@ -208,6 +208,7 @@ ul, li {
 }
 
 .create-screenshot {
+  position: fixed;
   background-color: #2a5d6f;
   border: 3px solid white;
   margin-top: 6%;
@@ -259,6 +260,10 @@ ul, li {
   font-size: 24px;
   text-align: center;
   text-shadow: none;
+}
+
+.textarea.kbactive {
+  bottom: 50%;
 }
 
 

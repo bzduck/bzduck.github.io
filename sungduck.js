@@ -45,6 +45,21 @@ $( document ).ready(function() {
 	// storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
 	// 	video_load_play();
 	// });
+	
+var orientationChange = function () {
+    var $element = $('.selector');
+    $element.css('height', '100vh'); // Change this to your own original vh value.
+    $element.css('height', $element.height() + 'px');
+  };
+
+  var s = screen;
+  var o = s.orientation || s.msOrientation || s.mozOrientation;
+  o.addEventListener('change', function () {
+    setTimeout(function () {
+      orientationChange();
+    }, 250);
+  }, false);
+  orientationChange();
 });
 
 $(".emotion-button").on("click", function(event){

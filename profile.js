@@ -17,7 +17,7 @@ var database = firebase.database();
 initPage = function() {
   var str = window.location.search.substring(1);
   uid = str.split("&")[0];
-  $('.intro > h1').text(uid);
+  $('.intro > h1').text(uid + "님");
   var ref = database.ref('users/auth/' + uid);
   ref.once('value')
     .then(function(snapshot) {
@@ -46,8 +46,22 @@ function star_dict_init() {
 var video = document.getElementById("video");
 
 function renderStarVideos(video) {
+  Object.keys(star_dict).forEach(function(video) {
     console.log(video)
     // var img = document.createElement("img");
+    var ref = database.ref("main_img/"+video);
+    ref.on('value', snapshot=> {
+      $('#video-rows').append("<div class='image-container'><img class= 'image-inside' id='"+video+"' src='" + snapshot.val() + "'/></div>");
+      $('.image-inside').off().on('click', function() {
+        var vid_id = this.id;
+        window.location.href="star_sungduck.html?"+uid+"&"+this.id;
+      });
+    });
+  });
+}
+
+function renderStarVideos(video) {
+    console.log(video)
     var ref = database.ref("main_img/"+video);
     ref.on('value', snapshot=> {
       $('#video-rows').append("<div class='image-container'><img class= 'image-inside' id='"+video+"' src='" + snapshot.val() + "'/></div>");
@@ -60,6 +74,10 @@ function renderStarVideos(video) {
 
 
 $('.main_page').on('click', function() {
+  window.location.href="sungduck.html?"+uid;
+});
+
+$('#exit_profile').on('click', function() {
   window.location.href="sungduck.html?"+uid;
 });
 

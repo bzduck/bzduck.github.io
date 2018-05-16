@@ -343,13 +343,6 @@ $('#share').on('click', function(event) {
 });
 
 
-$(window).bind( 'orientationchange', function(e){
-	if ($('.textarea').is(":focus")) {
-		$(".create-overlay").attr('position', fixed);
-		$(".create-screenshot").attr('position', fixed);
-	}
-});
-
 
 
 /* COMMENTS */

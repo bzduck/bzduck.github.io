@@ -1,3 +1,5 @@
+var idols=[];
+
 // Initialize Firebase
 var config = {
 	apiKey: "AIzaSyDHxrepWNTbLTKrtCWuDae-A2asMqrcPt8",
@@ -10,7 +12,6 @@ var config = {
 firebase.initializeApp(config);
 var database = firebase.database();
 
-console.log("hello");
 
 function signup_page() {
 	$('#login').hide();
@@ -40,7 +41,7 @@ function login_confirm() {
 			})
 			.then(function() {
 				if (login_success) {
-					window.location.href = 'sungduck.html?uid=' + id;
+					window.location.href = 'sungduck.html?' + id;
 				}
 				else
 					alert("아이디 혹은 비밀번호가 틀렸습니다");
@@ -52,7 +53,6 @@ function login_confirm() {
 }
 
 $('#username_login, #pw_login').keyup(function(){
-	console.log("hello");
     var id = $('#username_login').val();
 	var pw = $('#pw_login').val();
 	if (!(id && pw))
@@ -69,6 +69,8 @@ function signup_confim() {
 	if (id && pw && re_pw) {
 		if (pw.length < 6)
 			alert("비밀번호는 6자 이상이어야 합니다.");
+		else if (idols.length < 1)
+			alert("좋아하는 아이돌 그룹을 하나 이상 선택해주세요");
 		else if (pw && re_pw) {
 			var ref = database.ref("users/auth");
 			ref.once('value')
@@ -82,11 +84,12 @@ function signup_confim() {
 					})
 				}).then(function() {
 					if (newid_flag) {
-						ref.push({
+						database.ref("users/auth/"+id).set({
 							uid:id,
-							pw:pw
+							pw:pw,
+							fav_idols: idols,
 						});
-						window.location.href = 'sungduck.html?uid=' + id + "&new";
+						window.location.href = 'sungduck.html?' + id + "&new";
 					}
 					else
 						alert("이미 존재하는 아이디입니다");
@@ -98,11 +101,9 @@ function signup_confim() {
 	else {
 		alert("아이디 혹은 비밀번호를 입력하지 않았습니다.");
 	}
-
 }
 
 $('#username_signup, #pw_signup, #retypepw').keyup(function(){
-	console.log("hello");
     var id = $('#username_signup').val();
 	var pw = $('#pw_signup').val();
 	var re_pw = $('#retypepw').val();
@@ -117,7 +118,7 @@ $('#username_signup, #pw_signup, #retypepw').keyup(function(){
 
 
 
-var idols=[];
+
 var autocomplete = new SelectPure(".idols-select", {
   options: [
     {
@@ -162,3 +163,12 @@ var autocomplete = new SelectPure(".idols-select", {
     console.log(value);
   },
 });
+
+var options=$('.select-pure__option');
+for (i=0; i<options.length; i++) {
+  if (["트와이스", "BTS"].indexOf(options[i].innerHTML) < 0) {
+    options[i].style.color = "#e4e4e4";
+    options[i].style.pointerEvents = "none";
+    options[i].style.cursor= "initial";
+  }
+}

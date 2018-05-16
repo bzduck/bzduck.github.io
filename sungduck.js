@@ -4,8 +4,9 @@ var group = "twice/";
 var extender = ".mp4"
 var user_email;
 var uid;
+var new_user;
 var star_dict = {};
-var idols = [];
+var idols;
 
 // Initialize Firebase
 var config = {
@@ -17,34 +18,27 @@ var config = {
 	messagingSenderId: "445818456963"
 };
 firebase.initializeApp(config);
-
-initApp = function() {
-firebase.auth().onAuthStateChanged(function(user) {
-  if (user) {
-    user_email = user.email;
-    uid = user.uid;
-    console.log(uid);
-    idols_init();
-    star_dict_init();
-  } else {
-    // User is signed out.
-    console.log("singed out");
-  }
-}, function(error) {
-  console.log(error);
-});
-};
-
 var database = firebase.database();
 var storage = firebase.storage();
 var storageRef = storage.ref();
 
+initPage = function() {
+	var str = window.location.search.substring(1);
+	uid = str.split("&")[0];
+	new_user = (str.split("&").length == 1)? false : true;
+	var ref = database.ref('users/auth/' + uid);
+	ref.once('value')
+		.then(function(snapshot) {
+			idols = snapshot.val().fav_idols;
+			video_load_play();
+			star_dict_init();
+		});
+};
+
+
 var video = document.getElementById("video");
 $( document ).ready(function() {
-	initApp();
-	// storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
-	// 	video_load_play();
-	// });
+	initPage();
 });
 
 $(".emotion-button").on("click", function(event){
@@ -136,6 +130,7 @@ function video_load_play() {
 	});
 }
 
+// when click stars
 var star_icon = document.getElementById("star-icon");
 $('#star').on('click', event => {
 	event.stopPropagation();
@@ -144,7 +139,7 @@ $('#star').on('click', event => {
 		delete star_dict[group+emotion+index];
 	}
 	else {
-	    var star_ref = database.ref("stars/"+uid).push(group+emotion+index);
+	    var star_ref = database.ref("users/auth/"+uid+"/stars").push(group+emotion+index);
 	    star_dict[group+emotion+index] = star_ref;
 	}
 	star_update();
@@ -156,7 +151,7 @@ function star_update() {
 }
 
 function star_dict_init() {
-    var query = database.ref("stars/"+uid);
+    var query = database.ref("users/auth/"+uid+"/stars");
     console.log("star_dict_init");
     query.once("value")
       .then(function(snapshot) {
@@ -171,26 +166,26 @@ function star_dict_init() {
       });
 }
 
-function idols_init() {
-	var ref = database.ref("idols/"+uid);
-	ref.once('value')
-		.then(function(snapshot) {
-		if (snapshot.exists()) {
-		  snapshot.forEach(function(childSnapshot) {
-	    	idols.push(childSnapshot.val());
-		  });
-		}
-		else {
-		  	idols.push("twice");
-		  	ref.set(["twice"]);
-		}
-		})
-		.then(function() {
-			console.log(idols);
-			group = idols[getRandomArbitrary(0, idols.length)]+"/";
-			video_load_play();
-		});
-}
+// function idols_init() {
+// 	var ref = database.ref("idols/"+uid);
+// 	ref.once('value')
+// 		.then(function(snapshot) {
+// 		if (snapshot.exists()) {
+// 		  snapshot.forEach(function(childSnapshot) {
+// 	    	idols.push(childSnapshot.val());
+// 		  });
+// 		}
+// 		else {
+// 		  	idols.push("twice");
+// 		  	ref.set(["twice"]);
+// 		}
+// 		})
+// 		.then(function() {
+// 			console.log(idols);
+// 			group = idols[getRandomArbitrary(0, idols.length)]+"/";
+// 			video_load_play();
+// 		});
+// }
 
 // min (포함) 과 max (불포함) 사이의 난수를 반환
 function getRandomArbitrary(min, max) {
@@ -234,7 +229,7 @@ function makeid() {
 }
 
 $('#profile_button').on('click', function(){
-	window.location.href = 'profile.html';
+	window.location.href = 'profile.html?'+uid;
 });
 
 var text_lines = [];

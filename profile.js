@@ -105,7 +105,7 @@ function renderStarVideos() {
 
 $('.main_page').on('click', function() {
   update_idols();
-  window.location.href="sungduck.html";
+  window.location.href="sungduck.html?"+uid;
 });
 
 var autocomplete = new SelectPure(".idols-select", {

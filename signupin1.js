@@ -221,22 +221,45 @@ for (i=0; i<options.length; i++) {
 //     console.log("close");
 // }
 
-var object1 = document.getElementById("username_login");
-var object2 = document.getElementById("pw_login");
-var object3 = document.getElementById("username_signup");
-var object4 = document.getElementById("pw_signup");
-object1.addEventListener("focus", ONFOCUSELEMENT);
-object2.addEventListener("focus", ONFOCUSELEMENT);
-object3.addEventListener("focus", ONFOCUSELEMENT);
-object4.addEventListener("focus", ONFOCUSELEMENT);
+$(document).ready(function(){
+  var _originalSize = $(window).width() + $(window).height()
+  $(window).resize(function(){
+    if($(window).width() + $(window).height() != _originalSize){
+      console.log("keyboard show up");
+      $('.logo').addClass('kbactive');
+      // $(".copyright_link").css("position","relative");  
+    }else{
+      console.log("keyboard closed");
+      $('.logo').removeClass('kbactive');
+      // $(".copyright_link").css("position","fixed");  
+    }
+  });
+});
 
-function ONFOCUSELEMENT() {
-    console.log("plz work");
-    $('.logo').addClass('kbactive');
-}
+// $("input, textarea").focus(function(){  $(document.body).addClass('when-keyboard-showing');});
+// $("input, textarea").blur( function(){  $(document.body).removeClass('when-keyboard-showing');});
 
-object1.addEventListener("blur", ONBLURELEMENT);
 
-function ONBLURELEMENT() {
-	$('.logo').removeClass('kbactive');
-}
+// var object1 = document.getElementById("username_login");
+// var object2 = document.getElementById("pw_login");
+// var object3 = document.getElementById("username_signup");
+// var object4 = document.getElementById("pw_signup");
+
+// object1.addEventListener("focus", ONFOCUSELEMENT);
+// object2.addEventListener("focus", ONFOCUSELEMENT);
+// object3.addEventListener("focus", ONFOCUSELEMENT);
+// object4.addEventListener("focus", ONFOCUSELEMENT);
+
+// function ONFOCUSELEMENT() {
+//     console.log("plz work");
+//     $('.logo').addClass('kbactive');
+// }
+
+// object1.addEventListener("blur", ONBLURELEMENT);
+// object2.addEventListener("blur", ONBLURELEMENT);
+// object3.addEventListener("blur", ONBLURELEMENT);
+// object4.addEventListener("blur", ONBLURELEMENT);
+
+// function ONBLURELEMENT() {
+// 	$('.logo').removeClass('kbactive');
+// }

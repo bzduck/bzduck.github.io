@@ -342,13 +342,13 @@ $('#share').on('click', function(event) {
 	});
 });
 
-$(document).on('click', function() {
+
+$(window).bind( 'orientationchange', function(e){
 	if ($('.textarea').is(":focus")) {
 		$(".create-overlay").attr('position', fixed);
 		$(".create-screenshot").attr('position', fixed);
 	}
-})
-
+});
 
 
 

@@ -439,13 +439,6 @@ $('#comments_button').on('click', function(){
 });
 
 $('#exit_button').on('click', function() {
-<<<<<<< HEAD
-	console.log($('#ifr'));
-	var iframe = document.getElementById("ifr");
-	iframe.parent.removeChild(iframe);
-});
-=======
 	var iframe = document.getElementsByTagName("iframe")[0];
 	iframe.remove();
 });
->>>>>>> dev-hj

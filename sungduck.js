@@ -1,31 +1,59 @@
-var video_url = "https://45.119.146.126:5000/video/";
-var photos_url = "https://45.119.146.126:5000/photos/"
 var index = 1;
 var emotion = "happy/";
 var group = "twice/";
+var extender = ".mp4"
+var user_email;
+var uid;
+var star_dict = {};
+var idols = [];
 
+// Initialize Firebase
 var config = {
-    apiKey: "",
-    databaseURL: "https://mine-704af.firebaseio.com/",
-  };
-
+	apiKey: "AIzaSyDHxrepWNTbLTKrtCWuDae-A2asMqrcPt8",
+	authDomain: "sungduck-fed76.firebaseapp.com",
+	databaseURL: "https://sungduck-fed76.firebaseio.com",
+	projectId: "sungduck-fed76",
+	storageBucket: "sungduck-fed76.appspot.com",
+	messagingSenderId: "445818456963"
+};
 firebase.initializeApp(config);
 
+initApp = function() {
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    user_email = user.email;
+    uid = user.uid;
+    console.log(uid);
+    idols_init();
+    star_dict_init();
+  } else {
+    // User is signed out.
+    console.log("singed out");
+  }
+}, function(error) {
+  console.log(error);
+});
+};
+
 var database = firebase.database();
+var storage = firebase.storage();
+var storageRef = storage.ref();
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
-	video.setAttribute("src", video_url+group+emotion+index);
- 	video.play();
+	initApp();
+	// storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+	// 	video_load_play();
+	// });
+});
 
-	$(".emotion-button").on("click", function(event){
-		event.stopPropagation();
-		// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
-		$(".menu").animate({
-			height: 'toggle'
-		});
-
+$(".emotion-button").on("click", function(event){
+	event.stopPropagation();
+	// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
+	$(".menu").animate({
+		height: 'toggle'
 	});
+
 });
 
 var star_capture = document.getElementById("star");
@@ -73,54 +101,150 @@ function next_video() {
 		return
 
 	index = (index == 3) ? 1 : index + 1;
-
-	video.setAttribute("src", video_url+group+emotion+index);
-
-	video_play();
+	group = idols[getRandomArbitrary(0, idols.length)]+"/";
+	video_load_play();
 }
 
 function prev_video() {
 
 	index = (index == 1) ? 3 : index - 1;
-
-	video.setAttribute("src", video_url+group+emotion+index);
-
-	video_play();
+	group = idols[getRandomArbitrary(0, idols.length)]+"/";
+	video_load_play();
 }
 
-/* COMMENTS */
-
-$('.glyphicon-step-backward').on("click", function(event) {
-	event.stopPropagation();
-	video.currentTime -= 5;
-});
-
-$('.glyphicon-step-forward').on("click", function(event) {
-	event.stopPropagation();
-	video.currentTime += 5;
-});
-
-$(".main-nav, .video").on("swipeleft", function(event){
-	next_video();
-});
-
-$(".main-nav, .video").on("swiperight", function(event){
-	prev_video();
-});
-
-$(".video").on("click", function() {
-	$('.main-nav').show();
-});
-
-$('.main-nav').on('click', function() {
-	$('.main-nav').hide();
-});
-function closeframe(){
-	document.getElementsByTagName('iframe')[0].remove()
+function video_load_play() {
+	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+		// console.log(url);
+		video.setAttribute("src", url);
+		$('.main-nav').hide();
+		star_update();
+		video_play();
+	});
 }
-$('#comments_button').on('click', function(event){
+
+var star_icon = document.getElementById("star-icon");
+$('#star').on('click', event => {
 	event.stopPropagation();
+	if (star_dict[group+emotion+index]) {
+		star_dict[group+emotion+index].remove();
+		delete star_dict[group+emotion+index];
+	}
+	else {
+	    var star_ref = database.ref("stars/"+uid).push(group+emotion+index);
+	    star_dict[group+emotion+index] = star_ref;
+	}
+	star_update();
+});
+
+function star_update() {
+	var src = (star_dict[group+emotion+index])? "icons/star_filled.png" : "icons/star_empty.png";
+	star_icon.setAttribute('src', src);
+}
+
+function star_dict_init() {
+    var query = database.ref("stars/"+uid);
+    console.log("star_dict_init");
+    query.once("value")
+      .then(function(snapshot) {
+        snapshot.forEach(function(childSnapshot) {
+          var val = childSnapshot.val();
+          star_dict[val] = childSnapshot.ref;
+      });
+    })
+      .then(function() {
+      	console.log(star_dict);
+    	star_update();
+      });
+}
+
+function idols_init() {
+	var ref = database.ref("idols/"+uid);
+	ref.once('value')
+		.then(function(snapshot) {
+		if (snapshot.exists()) {
+		  snapshot.forEach(function(childSnapshot) {
+	    	idols.push(childSnapshot.val());
+		  });
+		}
+		else {
+		  	idols.push("twice");
+		  	ref.set(["twice"]);
+		}
+		})
+		.then(function() {
+			console.log(idols);
+			group = idols[getRandomArbitrary(0, idols.length)]+"/";
+			video_load_play();
+		});
+}
+
+// min (포함) 과 max (불포함) 사이의 난수를 반환
+function getRandomArbitrary(min, max) {
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
+$('.menu a').click(function(e) {
+  var txt = $(e.target).text();
+  console.log(txt);
+  $('.emotion-button > li').text(txt);
+  var index = ($( "li" ).index($(e.target)) -1 ) % 3;
+  switch(index) {
+	case 0:
+	    emotion="happy/"
+	    break;
+	case 1:
+	    emotion="bored/"
+	    break;
+	default:
+	    emotion="stressed/"
+	}
+  $(".menu").animate({
+		height: 'toggle'
+	});
+  new_emotion_video();
+});
+
+function new_emotion_video() {
+	index = 1;
+	video_load_play();
+}
+
+function makeid() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++)
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+
+  return text;
+}
+
+$('#profile_button').on('click', function(){
+	window.location.href = 'profile.html';
+});
+
+var text_lines = [];
+
+$('.textarea').on('keypress', function(e) {
+	if(e.which ===13) {
+		var current_text = $('.textarea').text();
+		// console.log($('.textarea').height());
+		var no_line = $('.textarea').height() / 31 - 1;
+		for (i = 0; i < text_lines.length; i++) {
+			current_text = current_text.replace(text_lines[i], "");
+		}
+		if (no_line < text_lines.length) {
+			text_lines[no_line] = current_text;
+			text_lines.splice(no_line+1);
+		}
+		else
+			text_lines.push(current_text);
+		// console.log(text_lines);
+	}
 })
+
+
+// Create jjals
 
 var ctx;
 
@@ -209,49 +333,59 @@ $('#share').on('click', function(event) {
 
 	//convert to desired file format
 	var dataURI = canvas.toDataURL("image/png"); // can also use 'image/png'
-	dataURI = dataURI.replace("data:image/png;base64,", "");
-	console.log(dataURI);
 
+	var key = makeid();
 
-	$.ajax({
-        type: "POST",
-        url: photos_url+group+emotion+index,
-        data: {
-        	imageBase64: dataURI
-        }
-      }).done(function(response) {
-        console.log('saved: ' + response);
+	var comments = database.ref(group+emotion+index+"/"+key).set({
+    	key: key,
+    	image: dataURI,
+    	// src: photos_url+group+emotion+index+"/"+response,
+    	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
+    	author: '0xdeadbeef123'
+    });
 
-        var comments = database.ref(group+emotion+index+"/"+response).set({
-        	key: response,
-        	// imageBase64: dataURI,
-        	src: photos_url+group+emotion+index+"/"+response,
-        	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
-        	author: '0xdeadbeef123'
+    // database.ref("main_img/"+group+emotion+index).set(dataURI);
 
-        });
-      });
 	$('.create-overlay').hide();
 });
 
-var text_lines = [];
 
-$('.textarea').on('keypress', function(e) {
-	if(e.which ===13) {
-		var current_text = $('.textarea').text();
-		// console.log($('.textarea').height());
-		var no_line = $('.textarea').height() / 31 - 1;
-		for (i = 0; i < text_lines.length; i++) {
-			current_text = current_text.replace(text_lines[i], "");
-		}
-		if (no_line < text_lines.length) {
-			text_lines[no_line] = current_text;
-			text_lines.splice(no_line+1);
-		}
-		else
-			text_lines.push(current_text);
-		// console.log(text_lines);
-	}
+
+
+
+/* COMMENTS */
+
+$('.glyphicon-step-backward').on("click", function(event) {
+	event.stopPropagation();
+	video.currentTime -= 5;
+});
+
+$('.glyphicon-step-forward').on("click", function(event) {
+	event.stopPropagation();
+	video.currentTime += 5;
+});
+
+$(".main-nav, .video").on("swipeleft", function(event){
+	next_video();
+});
+
+$(".main-nav, .video").on("swiperight", function(event){
+	prev_video();
+});
+
+$(".video").on("click", function() {
+	$('.main-nav').show();
+});
+
+$('.main-nav').on('click', function() {
+	$('.main-nav').hide();
+});
+
+function closeframe(){
+	document.getElementsByTagName('iframe')[0].remove()
+}
+$('#comments_button').on('click', function(event){
+	event.stopPropagation();
 })
 
 $('#comments_button').on('click', function(){
@@ -274,29 +408,9 @@ $('#comments_button').on('click', function(){
 	document.body.appendChild(iframe);
 });
 
-$('.menu a').click(function(e) {
-  var txt = $(e.target).text();
-  console.log(txt);
-  $('.emotion-button > li').text(txt);
-  var index = ($( "li" ).index($(e.target)) -1 ) % 3;
-  switch(index) {
-	case 0:
-	    emotion="happy/"
-	    break;
-	case 1:
-	    emotion="bored/"
-	    break;
-	default:
-	    emotion="stressed/"
-	}
-  $(".menu").animate({
-		height: 'toggle'
-	});
-  new_type_video();
-});
 
-function new_type_video() {
-	index = 1;
-	video.setAttribute("src", video_url+group+emotion+index);
-	video_play();
-}
+$('#exit_button').on('click', function() {
+	console.log($('#ifr'));
+	var ifram = document.getElementById("ifr");
+	iframe.parent.removeChild(iframe);
+});

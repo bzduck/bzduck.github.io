@@ -30,7 +30,7 @@ ul, li {
     left: 0;
     z-index: 2000;
     background-color: #000000;
-	opacity: 0.8;
+	  opacity: 0.8;
 }
 
 .main_nav:after{
@@ -106,7 +106,7 @@ ul, li {
   right: 0;
 }
 
-#star, #capture{
+#capture{
     font-family: 'Jua', sans-serif;
     border-style: solid;
     border-width: 1px;
@@ -125,6 +125,31 @@ ul, li {
     right:0;
     text-align:center;
     text-shadow: none;
+}
+
+#star {
+  font-family: 'Jua', sans-serif;
+  border-style: solid;
+  border-width: 1px;
+  cursor: pointer;
+  border-radius:0.6em;
+  height:40px;
+  padding: 0.4em 5px 5px 2px;
+  border-color:#ffffff;
+  color:#ffffff;
+  position:absolute;
+  margin:auto;
+  font-size:1.4em;
+  width:6em;
+  bottom:2.8em;
+  left:0;
+  right:0;
+  text-align:center;
+  text-shadow: none;
+}
+
+#star-icon{
+  margin-bottom: 3px;
 }
 
 #emotion-button{

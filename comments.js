@@ -15,6 +15,7 @@ var database = firebase.database();
 
 $( document ).ready(function() {
     var url = window.location.search.split('?')[1].split('&');
+    console.log(url);
     uid = url[1]
     url = url[0]
     var commentsRef = database.ref(url);

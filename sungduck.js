@@ -210,6 +210,7 @@ $('.menu a').click(function(e) {
   $(".menu").animate({
 		height: 'toggle'
 	});
+  emotionb = false;
   new_emotion_video();
 });
 

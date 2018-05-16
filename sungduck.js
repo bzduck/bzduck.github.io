@@ -60,7 +60,7 @@ var star_capture = document.getElementById("star");
 
 $(".play-pause").on("click", function(event) {
   event.stopPropagation();
-  if (video.paused == true) {
+  if (video.paused) {
     video_play();
   } else {
     video_pause();
@@ -70,6 +70,20 @@ $(".play-pause").on("click", function(event) {
 var fast_forward = document.getElementById("fast-forward");
 
 video.onended = next_video();
+
+function video_toggle(){
+	if(video.paused){
+		video_play()
+	}else{
+		video_pause()
+	}
+
+}
+document.body.onkeypress = function(e){
+    if(e.keyCode == 32|| e.key === ' '){
+        video_toggle()
+    }
+}
 
 function video_play() {
 	video.play();

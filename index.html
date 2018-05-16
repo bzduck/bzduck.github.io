@@ -1,18 +1,46 @@
-<!DOCTYPE>
+<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-        <title>Sungduck</title>
-        <script src="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.js"></script>
-        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/2.5.1/firebaseui.css" />
-        <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
-    </head>
-<body>
-    <!-- The surrounding HTML is left untouched by FirebaseUI.
-     Your app may use that space for branding, controls and other customizations.-->
-    <h1>Sungduck</h1>
-    <div id="firebaseui-auth-container"></div>
-    <script src="./index.js"></script>
-</body>
+	<head>
+		<meta charset="utf-8">
+	    <meta name="viewport" content="width=device-width, initial-scale=1">
+	    <title>SignIn</title>
+		<link href="./signupin.css" rel="stylesheet"/>
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
+		<script src="./bundle.min.js"></script>
+		
+	</head>
+	<body>
+		<h1>성덕</h1>
+		<div id = 'login'>
+			<div>
+    			<input type="text" class = "signInput" id="username_login" name="name" placeHolder="아이디">
+    			<input type="password" class = "signInput" id="pw_login" name="pw" placeHolder="비밀번호">
+    			<label id="pw_validation"></label>
+  			</div>
+ 			<div>
+    			<button onclick="login_confirm()" class = "top signButtons">로그인</button>
+    			<button onclick="signup_page()" class = "signButtons">회원가입</button>
+ 			</div>
+		</div>
+		<div id = 'signup' style = "display: none">
+			<div>
+    			<input type="text" class = "signInput" id="username_signup" name="name" placeHolder="아이디">
+    			<!-- <div class = "signInput">
+	    			<input type="password"  id="pw" name="pw" placeHolder="비밀번호" minlength="6">
+	    			<i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
+    			</div> -->
+    			<input type="password" class = "signInput" id="pw_signup" name="pw" placeHolder="비밀번호">
+    			<input type="password" class = "signInput" id="retypepw" name="retypepw" placeHolder="비밀번호 확인">
+    			<label id="pw_validation_signup"></label>
+    			<span class="idols-select">아이돌 그룹</span>
+  			</div>
+ 			<div>
+    			<button onclick="signup_confim()" class = "top signButtons">회원가입 확인</button>
+    			<button onclick="login_page()" class = "signButtons">로그인으로 돌아가기</button>
+ 			</div>
+		</div>
+		<script src="./signupin.js"></script>
+	</body>
 </html>

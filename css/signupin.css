@@ -13,6 +13,11 @@ html{
 
 body {
 	/*background-image: url("../sana.gif");*/
+	content: "";
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 0;
   background:linear-gradient(0deg,rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url("../image/sana_lighter.gif") no-repeat center center fixed;
 	background-color:black;
 	height: 100%;

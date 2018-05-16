@@ -10,10 +10,11 @@ body {
   position: relative;
 }
 
-.ui-page-theme-a .ui-btn {
-  background-color: rgba(0,0,0,0);
-  border-color: #fff;
-  color: #ffffff;
+#empty {
+    color: #ffffff;
+    width: max-content;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 ul, li {

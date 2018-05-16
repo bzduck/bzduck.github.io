@@ -5,6 +5,19 @@ body {
   margin: 0; height: 100%;
 }
 
+button#exitt {
+    position: absolute;
+    z-index: 5000;
+    left: 85%;
+    top: 5%;
+    padding-top: 3px;
+    padding-right: 3px;
+    padding-bottom: 3px;
+    padding-left: 3px;
+    z-index: 2002;
+    font-size: 35px;
+    size: 35px;
+  }
 
 /* Profile */
 .column{

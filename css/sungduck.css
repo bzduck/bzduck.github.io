@@ -8,6 +8,7 @@ body {
   background-color:#000000;
   margin: 0; height: 100%;
   position: relative;
+  overflow:hidden;
 }
 
 ul, li {

@@ -424,7 +424,6 @@ $('#comments_button').on('click', function(){
 
 
 $('#exit_button').on('click', function() {
-	console.log($('#ifr'));
-	var ifram = document.getElementById("ifr");
-	iframe.parent.removeChild(iframe);
+	var iframe = document.getElementsByTagName("iframe")[0];
+	iframe.remove();
 });

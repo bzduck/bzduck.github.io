@@ -445,7 +445,7 @@ $('#comments_button').on('click', function(){
 	btn.display="flex";
 	btn.style.width="100%";
 	var topnav_cmt = '<a></a>';
-	topnav_cmt += '<a><li class="jua" style="background:none;font-size:1.6em; margin-top: 4%; margin-left: 40px; display: inline-block">비디오의 짤</li></a>';
+	topnav_cmt += '<a><li id = "comment_title" class="jua" style="background:none;font-size:1.6em; margin-top: 4%; margin-left: 40px; display: inline-block">비디오의 짤</li></a>';
 	topnav_cmt += '<a class="iframe-exitbutton" href="#"><img class="big_icon iframe-exitbutton" src="icons/x.png"/></a>';
 	btn.innerHTML = topnav_cmt;
 	btn.style.position = "absolute";

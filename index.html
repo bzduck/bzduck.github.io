@@ -27,18 +27,14 @@
 		<div id = 'signup' style = "display: none">
 			<div>
     			<input type="text" class = "signInput" id="username_signup" name="name" placeHolder="아이디">
-    			<!-- <div class = "signInput">
-	    			<input type="password"  id="pw" name="pw" placeHolder="비밀번호" minlength="6">
-	    			<i id="pass-status" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
-    			</div> -->
     			<input type="password" class = "signInput" id="pw_signup" name="pw" placeHolder="비밀번호">
     			<input type="password" class = "signInput" id="retypepw" name="retypepw" placeHolder="비밀번호 확인">
     			<label id="pw_validation_signup"></label>
-    			<span class="idols-select">아이돌 그룹</span>
+    			<span class="idols-select"></span>
   			</div>
  			<div>
-    			<button onclick="signup_confim()" class = "top signButtons">회원가입 확인</button>
-    			<button onclick="login_page()" class = "signButtons">로그인으로 돌아가기</button>
+    			<button onclick="signup_confim()" class = "top signButtons" style="width:40%">회원가입 확인</button>
+    			<button onclick="login_page()" class = "signButtons" style="width:40%">로그인으로 돌아가기</button>
  			</div>
 		</div>
 		<script src="./signupin.js"></script>

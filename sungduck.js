@@ -1,11 +1,12 @@
-var index = 1;
-var emotion = "happy/";
-var group = "twice/";
+var index;
+var emotion;
+var group;
 var extender = ".mp4"
 var uid;
 var new_user;
 var star_dict = {};
 var idols;
+
 
 // Initialize Firebase
 var config = {
@@ -22,6 +23,8 @@ var storage = firebase.storage();
 var storageRef = storage.ref();
 
 initPage = function() {
+	index = getRandomArbitrary(1, 4);
+	emotion_init()
 	var str = window.location.search.substring(1);
 	uid = str.split("&")[0];
 	new_user = (str.split("&").length == 1)? false : true;
@@ -29,10 +32,29 @@ initPage = function() {
 	ref.once('value')
 		.then(function(snapshot) {
 			idols = snapshot.val().fav_idols;
+			group = idols[getRandomArbitrary(0, idols.length)]+"/";
+			console.log(group, emotion, index);
 			video_load_play();
 			star_dict_init();
 		});
 };
+
+function emotion_init() {
+	var elems = $('.menu a');
+	var rand_int = getRandomArbitrary(0, elems.length);
+	var txt = elems[rand_int].getElementsByTagName("li")[0].innerHTML;
+	$('.emotion-button > li').text(txt);
+	switch(rand_int % 3) {
+	case 0:
+	    emotion="happy/"
+	    break;
+	case 1:
+	    emotion="bored/"
+	    break;
+	default:
+	    emotion="stressed/"
+	}
+}
 
 
 var video = document.getElementById("video");
@@ -196,8 +218,8 @@ $('.menu a').click(function(e) {
   var txt = $(e.target).text();
   console.log(txt);
   $('.emotion-button > li').text(txt);
-  var index = ($( "li" ).index($(e.target)) -1 ) % 3;
-  switch(index) {
+  var tmp = ($( "li" ).index($(e.target)) -1 ) % 3;
+  switch(tmp) {
 	case 0:
 	    emotion="happy/"
 	    break;
@@ -214,7 +236,7 @@ $('.menu a').click(function(e) {
 });
 
 function new_emotion_video() {
-	index = 1;
+	index = getRandomArbitrary(1, 4);
 	video_load_play();
 }
 
@@ -353,7 +375,7 @@ $('#share').on('click', function(event) {
     	image: dataURI,
     	// src: photos_url+group+emotion+index+"/"+response,
     	like_names: {0: "mxkxyxuxn", 1: "hyunjong92647"},
-    	author: '0xdeadbeef123'
+    	author: uid,
     });
 
     // database.ref("main_img/"+group+emotion+index).set(dataURI);

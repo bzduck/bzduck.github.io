@@ -3,7 +3,11 @@
 body {
 	/*background-image: url("../sana.gif");*/
   background:linear-gradient(0deg,rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0.6)),url("../image/sana_lighter.gif") no-repeat center center fixed;
-  background-size:cover;
+	background-color:black;
+	height: 100%;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
 
 }
 

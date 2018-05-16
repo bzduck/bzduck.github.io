@@ -156,10 +156,10 @@ var autocomplete = new SelectPure(".idols-select", {
   ],
   value: [],
   multiple: true,
-  autocomplete: true,
+  autocomplete: false,
   icon: "fa fa-times",
   onChange: value => {
-    idols = value; 
+    idols = value;
     console.log(value);
   },
 });

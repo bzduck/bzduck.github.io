@@ -19,7 +19,7 @@ var storageRef = storage.ref();
 initPage = function() {
   var str = window.location.search.substring(1);
   uid = str.split("&")[0];
-  $('.intro > h1').text(uid);
+  $('.intro > h1').text(uid + "님");
   var ref = database.ref('users/auth/' + uid);
   ref.once('value')
     .then(function(snapshot) {
@@ -114,9 +114,14 @@ function renderStarVideos2(video) {
             document.getElementsByTagName('iframe')[0].remove()
             document.getElementById('exitt').remove()
           }
+          $("#exit_profile").onclick=function(){
+            // document.head.removeChild(x)
+            document.getElementsByTagName('iframe')[0].remove()
+            document.getElementById('exitt').remove()
+          }
           // exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">X</i></span>'
-          exitbutton.innerHTML = '<a href="" id="exit_button"><img class="big_icon" src="icons/exit.png"/></a>'
-          document.body.getElementsByTagName('section')[0].appendChild(exitbutton)
+          //exitbutton.innerHTML = '<a href="" id="exit_button"><img class="big_icon" src="icons/exit.png"/></a>'
+          //document.body.getElementsByTagName('section')[0].appendChild(exitbutton)
           // $("#video").attr("src", url);
           // $(".video-container").show();
           // window.location.href="star_sungduck.html?s_d="+star_dict+"&current_video="+video;
@@ -140,6 +145,11 @@ function renderStarVideos2(video) {
 
 
 $('.main_page').on('click', function() {
+  // update_idols();
+  window.location.href="sungduck.html?"+uid;
+});
+
+$('#exit_profile').on('click', function() {
   // update_idols();
   window.location.href="sungduck.html?"+uid;
 });

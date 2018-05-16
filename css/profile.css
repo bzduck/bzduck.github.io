@@ -30,7 +30,7 @@ min-height:190px;
 width: 30%;
 height: 180px;
 float: left;
-border:3px solid white;
+border:1px solid none;
 margin:2px;
 }
 
@@ -45,10 +45,10 @@ cursor: pointer; /* Add a pointer on hover */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
     width:100%;
     /*max-height:250px;*/
-    height:200px;
+    height:16em;
     font-family: 'Pacifico';
-    background-color: #8AD6C9;
-
+    background-color: rgba(255, 255, 255, 0.1);
+    color:white;
     margin: auto;
     text-align: center;
 
@@ -90,8 +90,8 @@ cursor: pointer; /* Add a pointer on hover */
 }
 
 .main_page {
-    width: 40px; 
-    float:left; 
+    width: 40px;
+    float:left;
     margin-left:10px
 }
 
@@ -99,9 +99,9 @@ cursor: pointer; /* Add a pointer on hover */
 
 .select-pure__select {
 align-items: center;
-background: #79c6b9;
-border-radius: 4px;
-/*border: 1px solid rgba(0, 0, 0, 0.15);*/
+background: none;
+border-radius: 1em;
+border: 1px solid rgba(255, 255, 255, 1);
 /*box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);*/
 box-sizing: border-box;
 color: #363b3e;

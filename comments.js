@@ -1,5 +1,5 @@
 var name = 'jen'
-
+var uid = 'NOT_SPECIFIED_YET'
 var config = {
     apiKey: "AIzaSyDHxrepWNTbLTKrtCWuDae-A2asMqrcPt8",
     authDomain: "sungduck-fed76.firebaseapp.com",
@@ -14,6 +14,7 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $( document ).ready(function() {
+    uid = window.parent.uid
     var url = window.location.search.substring(1);
     var commentsRef = database.ref(url);
     var comments = database.ref(url).once('value').then(function(snapshot){
@@ -62,18 +63,16 @@ function delete_post(commentID){
     var url = window.location.search.substring(1);
     database.ref(url + '/' + commentID).set(null)
     document.getElementById(commentID).remove()
-    console.log("HI")
 }
 
 
 function renderComments(comments) {
-
     const htmls = Object.values(comments).map(function (comment) {
         if (Object.keys(comment).indexOf('like_names') == -1){
             comment.like_names=[]
         }
         if(comment.like_names.indexOf(name) > -1){
-            if(comment.author == name){
+            if(comment.author == uid){
                 return `
             <div id=${comment.key} class="comments-content">
             <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
@@ -94,7 +93,7 @@ function renderComments(comments) {
             `
         }
         else{
-            if(comment.author == name){
+            if(comment.author == uid){
                 return `
             <div id=${comment.key} class="comments-content">
             <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>

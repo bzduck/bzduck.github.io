@@ -383,7 +383,7 @@ button.unlike{
 }
 button.download{
   position: absolute;
-  bottom: 2%;
+  bottom: 2.5%;
   left: 80%;
   z-index: 5;
 }

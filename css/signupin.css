@@ -194,3 +194,15 @@ outline: none;
 padding: 10px;
 width: 100%;
 }
+
+
+.kbactive{
+    font-size:.8em;
+}
+
+.kbactive img{
+    width:30%!important;
+}
+.kbactive input[type="text"]{
+    width:30%;
+}

@@ -57,6 +57,8 @@ function renderStarVideos() {
       $('#video-rows').append("<div class='image-container'><img class= 'image-inside' id='"+video+"' src='" + snapshot.val() + "'/></div>");
       $('.image-inside').off().on('click', function() {
         var vid_id = this.id;
+        window.location.href="star_sungduck.html?"+uid+"&"+this.id;
+        /*
         storageRef.child(vid_id+".mp4").getDownloadURL().then(function(url){
           console.log(url);
           console.log(vid_id);
@@ -84,7 +86,7 @@ function renderStarVideos() {
           //var el = document.getElementById('main_nav');
           //$(".main_nav").after(iframe);
           document.body.appendChild(iframe);
-        });
+        });*/
       });
     });
   });

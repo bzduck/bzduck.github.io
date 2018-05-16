@@ -1,11 +1,9 @@
 var index = 1;
-var emotion = "happy/";
-var group = "twice/";
-var extender = ".mp4"
 var uid;
-var new_user;
 var star_dict = {};
-var idols;
+var extender = ".mp4"
+var first_video;
+var star_video_list = [];
 
 // Initialize Firebase
 var config = {
@@ -24,14 +22,10 @@ var storageRef = storage.ref();
 initPage = function() {
 	var str = window.location.search.substring(1);
 	uid = str.split("&")[0];
-	new_user = (str.split("&").length == 1)? false : true;
+	first_video = str.split("&")[1];
 	var ref = database.ref('users/auth/' + uid);
-	ref.once('value')
-		.then(function(snapshot) {
-			idols = snapshot.val().fav_idols;
-			video_load_play();
-			star_dict_init();
-		});
+	stars_init();
+	
 };
 
 
@@ -40,49 +34,20 @@ $( document ).ready(function() {
 	initPage();
 });
 
-var emotion = false;
-
 $(".emotion-button").on("click", function(event){
 	event.stopPropagation();
-	if(emotion)
-		emotion = false;
-	else
-		emotion = true;
-	// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
-	$(".menu").animate({
-		height: 'toggle'
-	});
-
 });
-
-$(document).on('click', function () {
-	if(emotion) {
-		emotion = false;
-		event.stopPropagation();
-		$(".menu").animate({
-		height: 'toggle'
-	});
-	}
-})
 
 var star_capture = document.getElementById("star");
 
 $(".play-pause").on("click", function(event) {
   event.stopPropagation();
-  if(emotion) {
-  	$(".menu").animate({
-		height: 'toggle'
-	});
-	emotion = false;
-  }
   if (video.paused) {
     video_play();
   } else {
     video_pause();
   }
 });
-
-var fast_forward = document.getElementById("fast-forward");
 
 video.onended = next_video();
 
@@ -105,7 +70,6 @@ function video_play() {
 
 	// Update the button text to 'Pause'
 	$(".play-pause").removeClass('glyphicon glyphicon-play').addClass('glyphicon glyphicon-pause');
-    // playPause.src = "https://png.icons8.com/metro/1600/pause.png";
 
     // Display star button
     $('#capture').hide();
@@ -129,20 +93,23 @@ function next_video() {
 	if (video.src === "")
 		return
 
-	index = (index == 3) ? 1 : index + 1;
-	group = idols[getRandomArbitrary(0, idols.length)]+"/";
+	index = (index == star_video_list.length - 1)? 0 : index + 1;
+	
 	video_load_play();
 }
 
 function prev_video() {
 
-	index = (index == 1) ? 3 : index - 1;
-	group = idols[getRandomArbitrary(0, idols.length)]+"/";
+	index = (index == 0)? star_video_list.length-1 : index - 1;
+
 	video_load_play();
 }
 
 function video_load_play() {
-	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+	console.log(star_video_list);
+	console.log(index);
+
+	storageRef.child(star_video_list[index]+extender).getDownloadURL().then(function(url){
 		// console.log(url);
 		video.setAttribute("src", url);
 		$('.main-nav').hide();
@@ -155,23 +122,23 @@ function video_load_play() {
 var star_icon = document.getElementById("star-icon");
 $('#star').on('click', event => {
 	event.stopPropagation();
-	if (star_dict[group+emotion+index]) {
-		star_dict[group+emotion+index].remove();
-		delete star_dict[group+emotion+index];
+	if (star_dict[star_video_list[index]]) {
+		star_dict[star_video_list[index]].remove();
+		delete star_dict[star_video_list[index]];
 	}
 	else {
-	    var star_ref = database.ref("users/auth/"+uid+"/stars").push(group+emotion+index);
-	    star_dict[group+emotion+index] = star_ref;
+	    var star_ref = database.ref("users/auth/"+uid+"/stars").push(star_video_list[index]);
+	    star_dict[star_video_list[index]] = star_ref;
 	}
 	star_update();
 });
 
 function star_update() {
-	var src = (star_dict[group+emotion+index])? "icons/star_filled.png" : "icons/star_empty.png";
+	var src = (star_dict[star_video_list[index]])? "icons/star_filled.png" : "icons/star_empty.png";
 	star_icon.setAttribute('src', src);
 }
 
-function star_dict_init() {
+function stars_init() {
     var query = database.ref("users/auth/"+uid+"/stars");
     console.log("star_dict_init");
     query.once("value")
@@ -179,10 +146,18 @@ function star_dict_init() {
         snapshot.forEach(function(childSnapshot) {
           var val = childSnapshot.val();
           star_dict[val] = childSnapshot.ref;
+          star_video_list.push(val);
       });
     })
       .then(function() {
       	console.log(star_dict);
+      	for (i=0; i < star_video_list.length; i++){
+      		if (first_video === star_video_list[i])
+      			index = i;
+      	}
+      	console.log(star_video_list);
+      	console.log(index);
+      	video_load_play();
     	star_update();
       });
 }
@@ -190,32 +165,6 @@ function star_dict_init() {
 // min (포함) 과 max (불포함) 사이의 난수를 반환
 function getRandomArbitrary(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
-}
-
-$('.menu a').click(function(e) {
-  var txt = $(e.target).text();
-  console.log(txt);
-  $('.emotion-button > li').text(txt);
-  var index = ($( "li" ).index($(e.target)) -1 ) % 3;
-  switch(index) {
-	case 0:
-	    emotion="happy/"
-	    break;
-	case 1:
-	    emotion="bored/"
-	    break;
-	default:
-	    emotion="stressed/"
-	}
-  $(".menu").animate({
-		height: 'toggle'
-	});
-  new_emotion_video();
-});
-
-function new_emotion_video() {
-	index = 1;
-	video_load_play();
 }
 
 function makeid() {
@@ -348,7 +297,7 @@ $('#share').on('click', function(event) {
 
 	var key = makeid();
 
-	var comments = database.ref(group+emotion+index+"/"+key).set({
+	var comments = database.ref(star_video_list[index]+"/"+key).set({
     	key: key,
     	image: dataURI,
     	// src: photos_url+group+emotion+index+"/"+response,
@@ -367,30 +316,15 @@ $('#share').on('click', function(event) {
 });
 
 
-
 $('.glyphicon-step-backward').on("click", function(event) {
 	event.stopPropagation();
-	if(emotion) {
-  	$(".menu").animate({
-		height: 'toggle'
-	});
-	emotion = false;
-  }
 	video.currentTime -= 5;
 });
 
 $('.glyphicon-step-forward').on("click", function(event) {
 	event.stopPropagation();
-	if(emotion) {
-  	$(".menu").animate({
-		height: 'toggle'
-	});
-	emotion = false;
-  }
 	video.currentTime += 5;
 });
-
-/* COMMENTS */
 
 $(".main-nav, .video").on("swipeleft", function(event){
 	next_video();
@@ -407,6 +341,8 @@ $(".video").on("click", function() {
 $('.main-nav').on('click', function() {
 	$('.main-nav').hide();
 });
+
+/* COMMENTS */
 
 function closeframe(){
 	document.getElementsByTagName('iframe')[0].remove()
@@ -441,12 +377,12 @@ $('#comments_button').on('click', function(){
 
 	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
-	iframe.src = 'comments.html?' + group + emotion + index + '&' + uid;
+	iframe.src = 'comments.html?' + star_video_list[index] + '&' + uid;
 	document.body.appendChild(iframe);
 	document.body.appendChild(btn);
 });
 
 $('#exit_button').on('click', function() {
-	var iframe = document.getElementsByTagName("iframe")[0];
-	iframe.remove();
+	event.stopPropagation();
+	window.location.href="profile.html?"+uid;
 });

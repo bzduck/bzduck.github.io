@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="./signupin.css" rel="stylesheet"/>
+		<script src="./bundle.min.js"></script>
+	</head>
+	<body>
+		<h1>성덕</h1>
+		<form id = 'login'>
+			<div>
+    			<input type="text" class = "signInput" id="username" name="name" placeHolder="아이디">
+    			<input type="text" class = "signInput" id="pw" name="pw" placeHolder="비밀번호">
+  			</div>
+ 			<div>
+    			<button class = "top signButtons">로그인</button>
+    			<button class = "signButtons">회원가입</button>
+ 			</div>
+		</form>
+		<form id = 'signup' style = "display: none">
+			<div>
+    			<input type="text" class = "signInput" id="username" name="name" placeHolder="아이디">
+    			<input type="text" class = "signInput" id="pw" name="pw" placeHolder="비밀번호">
+    			<input type="text" class = "signInput" id="retypepw" name="retypepw" placeHolder="비밀번호 확인">
+    			<span class="idols-select">아이돌 그룹</span>
+  			</div>
+ 			<div>
+    			<button class = "top signButtons">회원가입</button>
+    			<button class = "signButtons">로그인</button>
+ 			</div>
+		</form>
+	</body>
+</html>

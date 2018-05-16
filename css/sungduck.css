@@ -73,11 +73,12 @@ ul, li {
   font-size:28px;
   max-height:1.4em;
   margin-top:16%;
-  margin : 0em 0.15em;
 }
 
 .small_icon{
-  max-height:1em;
+  max-height:1.2em;
+  font-size:28px;
+  margin-top:16%;
 }
 
 
@@ -164,7 +165,7 @@ ul, li {
 }
 
 #star-icon{
-  margin-bottom: 3px;
+  margin-top:0em;
 }
 
 #emotion-button{
@@ -209,6 +210,8 @@ ul, li {
 }
 
 .create-capture-nav {
+  display:flex;
+  justify-content:space-between;
   position: absolute;
   width: 80%;
   /*margin-left: 8.5%;

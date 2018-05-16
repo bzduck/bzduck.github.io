@@ -154,7 +154,7 @@ function renderComment(comment) {
           <a href="${comment.image}" download class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></a>
 
         </div></div>
-        <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">delete</button>
+        <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">삭제하기</button>
         `
         }
         return `
@@ -179,7 +179,7 @@ function renderComment(comment) {
           <a href="${comment.image}" download class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></a>
 
         </div></div>
-          <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">delete</button>
+          <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">삭제하기</button>
         `
         }
         return `

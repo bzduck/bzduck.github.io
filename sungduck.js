@@ -167,7 +167,6 @@ function idols_init() {
 		  });
 		}
 		else {
-
 		  	idols.push("twice");
 		  	ref.set(["twice"]);
 		}
@@ -381,6 +380,7 @@ $(".video").on("click", function() {
 $('.main-nav').on('click', function() {
 	$('.main-nav').hide();
 });
+
 function closeframe(){
 	document.getElementsByTagName('iframe')[0].remove()
 }
@@ -406,4 +406,11 @@ $('#comments_button').on('click', function(){
 	//var el = document.getElementById('main_nav');
 	//$(".main_nav").after(iframe);
 	document.body.appendChild(iframe);
+});
+
+
+$('#exit_button').on('click', function() {
+	console.log($('#ifr'));
+	var ifram = document.getElementById("ifr");
+	iframe.parent.removeChild(iframe);
 });

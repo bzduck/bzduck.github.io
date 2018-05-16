@@ -13,6 +13,8 @@ var config = {
 };
 firebase.initializeApp(config);
 var database = firebase.database();
+var storage = firebase.storage();
+var storageRef = storage.ref();
 
 initApp = function() {
 firebase.auth().onAuthStateChanged(function(user) {
@@ -60,6 +62,7 @@ function update_info() {
   renderStarVideos();
 }
 
+var video = document.getElementById("video");
 function renderStarVideos() {
   // console.log(Object.keys(star_dict));
 
@@ -67,10 +70,37 @@ function renderStarVideos() {
     // var img = document.createElement("img");
     var ref = database.ref("main_img/"+video);
     ref.on('value', snapshot=> {
-      $('#video-rows').append("<div class='image-container'><img src='" + snapshot.val() + "'/></div>");
+      $('#video-rows').append("<div class='image-container'><img class= 'image-inside' id='"+video+"' src='" + snapshot.val() + "'/></div>");
+      $('.image-inside').off().on('click', function() {
+        storageRef.child(this.id+".mp4").getDownloadURL().then(function(url){
+          console.log(url);
+          // $("#video").attr("src", url);
+          // $(".video-container").show();
+          // window.location.href="star_sungduck.html?s_d="+star_dict+"&current_video="+video;
+          var iframe = document.createElement('iframe');
+          iframe.src = 'star_sungduck.html?';
+          iframe.id = "ifr";
+          //var el = document.getElementById('main_nav');
+          //$(".main_nav").after(iframe);
+          document.body.appendChild(iframe);
+          var exitbutton = document.createElement('button');
+          exitbutton.classList.add('iframe-exitbutton')
+          exitbutton.classList.add('mdc-button')
+          exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">clear</i></span>'
+        });
+      });
     });
   });
 }
+
+// $(".video").on("click", function() {
+//   $('.main-nav').show();
+// });
+
+// $('.main-nav').on('click', function() {
+//   $('.main-nav').hide();
+// });
+
 
 $('.main_page').on('click', function() {
   update_idols();

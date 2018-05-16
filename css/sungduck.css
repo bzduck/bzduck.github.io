@@ -30,7 +30,7 @@ ul, li {
     left: 0;
     z-index: 2000;
     background-color: #000000;
-	opacity: 0.8;
+	  opacity: 0.8;
 }
 
 .main_nav:after{

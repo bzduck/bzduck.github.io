@@ -149,11 +149,12 @@ function renderComment(comment) {
         <div class="wrapper">
           <div id=${comment.key} class="comments-content">
           <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+          <div class = "bottom-com-overlay">
           <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
           <button id="${comment.key}-unlike" class="unlike mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
           <a href="${comment.image}" download class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></a>
 
-        </div></div>
+        </div></div></div>
         <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">삭제하기</button>
         `
         }
@@ -161,10 +162,12 @@ function renderComment(comment) {
         <div class="wrapper">
           <div id=${comment.key} class="comments-content">
           <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+          <div class = "bottom-com-overlay">
           <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
           <button id="${comment.key}-unlike" class="unlike mdc-button" onclick="unlike('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite</i></button>
           <a href="${comment.image}" download class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></a>
-          </div>
+        </div>  
+        </div>
         </div>
         `
     }
@@ -174,11 +177,12 @@ function renderComment(comment) {
         <div class="wrapper">
           <div id=${comment.key} class="comments-content">
           <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+          <div class = "bottom-com-overlay">
           <div id="${comment.key}-likes" class="likes">좋아요 ${comment.like_names.length}개</div>
           <button id="${comment.key}-like" class="like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
           <a href="${comment.image}" download class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></a>
 
-        </div></div>
+        </div></div></div>
           <button id="${comment.key}-delete" class="delete_jjal" onclick="delete_post('${comment.key}')">삭제하기</button>
         `
         }
@@ -186,10 +190,11 @@ function renderComment(comment) {
         <div class="wrapper">
           <div id=${comment.key}  class="comments-content">
           <img id="${comment.key}-comments-img" class="comments-img" src="${comment.image}"/>
+           <div class = "bottom-com-overlay">
           <div id="${comment.key}-likes" class ="likes">좋아요 ${comment.like_names.length}개</div>
           <button id="${comment.key}-like" class = "like mdc-button" onclick="like('${comment.key}')"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">favorite_border</i></button>
           <a href="${comment.image}" download id="${comment.key}-download" class="download mdc-button"><i class="material-icons mdc-button__icon" aria-hidden="true" style= "text-shadow: none; color: white">save_alt</i></a>
-        </div></div>
+        </div></div></div>
         `
     }
 }

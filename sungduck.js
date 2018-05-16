@@ -40,8 +40,14 @@ $( document ).ready(function() {
 	initPage();
 });
 
+var emotion = false;
+
 $(".emotion-button").on("click", function(event){
 	event.stopPropagation();
+	if(emotion)
+		emotion = false;
+	else
+		emotion = true;
 	// $(".menu").fadeToggle("slow").toggleClass("menu-hide");
 	$(".menu").animate({
 		height: 'toggle'
@@ -49,10 +55,26 @@ $(".emotion-button").on("click", function(event){
 
 });
 
+$(document).on('click', function () {
+	if(emotion) {
+		emotion = false;
+		event.stopPropagation();
+		$(".menu").animate({
+		height: 'toggle'
+	});
+	}
+})
+
 var star_capture = document.getElementById("star");
 
 $(".play-pause").on("click", function(event) {
   event.stopPropagation();
+  if(emotion) {
+  	$(".menu").animate({
+		height: 'toggle'
+	});
+	emotion = false;
+  }
   if (video.paused) {
     video_play();
   } else {
@@ -346,18 +368,29 @@ $('#share').on('click', function(event) {
 
 
 
-
-/* COMMENTS */
-
 $('.glyphicon-step-backward').on("click", function(event) {
 	event.stopPropagation();
+	if(emotion) {
+  	$(".menu").animate({
+		height: 'toggle'
+	});
+	emotion = false;
+  }
 	video.currentTime -= 5;
 });
 
 $('.glyphicon-step-forward').on("click", function(event) {
 	event.stopPropagation();
+	if(emotion) {
+  	$(".menu").animate({
+		height: 'toggle'
+	});
+	emotion = false;
+  }
 	video.currentTime += 5;
 });
+
+/* COMMENTS */
 
 $(".main-nav, .video").on("swipeleft", function(event){
 	next_video();

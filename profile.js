@@ -19,10 +19,12 @@ var storageRef = storage.ref();
 initPage = function() {
   var str = window.location.search.substring(1);
   uid = str.split("&")[0];
+  $('.intro > h1').text(uid);
   var ref = database.ref('users/auth/' + uid);
   ref.once('value')
     .then(function(snapshot) {
       idols = snapshot.val().fav_idols;
+      update_labels();
       star_dict_init();
     });
 };
@@ -32,22 +34,15 @@ $( document ).ready(function() {
 });
 
 function star_dict_init() {
-    var query = database.ref("stars/"+uid);
+    var query = database.ref("users/auth/"+uid+"/stars");
     query.once("value")
       .then(function(snapshot) {
         snapshot.forEach(function(childSnapshot) {
           var val = childSnapshot.val();
           star_dict[val] = childSnapshot.ref;
+          renderStarVideos2(val);
       });
-    })
-    .then(function() {
-      update_info();
     });
-}
-
-function update_info() {
-  $('.intro > h1').text(uid);
-  renderStarVideos();
 }
 
 var video = document.getElementById("video");
@@ -61,30 +56,31 @@ function renderStarVideos() {
     ref.on('value', snapshot=> {
       $('#video-rows').append("<div class='image-container'><img class= 'image-inside' id='"+video+"' src='" + snapshot.val() + "'/></div>");
       $('.image-inside').off().on('click', function() {
-        var vid_id = console.log(this.id)
-        storageRef.child(this.id+".mp4").getDownloadURL().then(function(url){
+        var vid_id = this.id;
+        storageRef.child(vid_id+".mp4").getDownloadURL().then(function(url){
           console.log(url);
-          console.log(this.id)
+          console.log(vid_id);
           var exitbutton = document.createElement('button');
           exitbutton.id = 'exitt'
           exitbutton.classList.add('iframe-exitbutton')
           exitbutton.classList.add('mdc-button')
-          var x = document.createElement('style')
-          x.innerHTML = "html{overflow:hidden}"
-          document.head.appendChild(x)
+          exitbutton.style.display = "none";
+          // var x = document.createElement('style')
+          // x.innerHTML = "html{overflow:hidden}"
+          // document.head.appendChild(x)
           exitbutton.onclick=function(){
-            document.head.removeChild(x)
+            // document.head.removeChild(x)
             document.getElementsByTagName('iframe')[0].remove()
             document.getElementById('exitt').remove()
           }
-          exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">X</i></span>'
+          // exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">X</i></span>'
+          exitbutton.innerHTML = '<a href="" id="exit_button"><img class="big_icon" src="icons/exit.png"/></a>'
           document.body.getElementsByTagName('section')[0].appendChild(exitbutton)
           // $("#video").attr("src", url);
           // $(".video-container").show();
           // window.location.href="star_sungduck.html?s_d="+star_dict+"&current_video="+video;
           var iframe = document.createElement('iframe');
-          iframe.src = 'star_sungduck.html?';
-          iframe.id = "ifr";
+          iframe.src = 'star_sungduck.html?'+ uid +"&"+video;
           //var el = document.getElementById('main_nav');
           //$(".main_nav").after(iframe);
           document.body.appendChild(iframe);
@@ -92,6 +88,46 @@ function renderStarVideos() {
       });
     });
   });
+}
+
+function renderStarVideos2(video) {
+    console.log(video)
+    // var img = document.createElement("img");
+    var ref = database.ref("main_img/"+video);
+    ref.on('value', snapshot=> {
+      $('#video-rows').append("<div class='image-container'><img class= 'image-inside' id='"+video+"' src='" + snapshot.val() + "'/></div>");
+      $('.image-inside').off().on('click', function() {
+        var vid_id = this.id;
+        storageRef.child(vid_id+".mp4").getDownloadURL().then(function(url){
+          console.log(url);
+          console.log(vid_id);
+          var exitbutton = document.createElement('button');
+          exitbutton.id = 'exitt'
+          exitbutton.classList.add('iframe-exitbutton')
+          exitbutton.classList.add('mdc-button')
+          exitbutton.style.display = "none";
+          // var x = document.createElement('style')
+          // x.innerHTML = "html{overflow:hidden}"
+          // document.head.appendChild(x)
+          exitbutton.onclick=function(){
+            // document.head.removeChild(x)
+            document.getElementsByTagName('iframe')[0].remove()
+            document.getElementById('exitt').remove()
+          }
+          // exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">X</i></span>'
+          exitbutton.innerHTML = '<a href="" id="exit_button"><img class="big_icon" src="icons/exit.png"/></a>'
+          document.body.getElementsByTagName('section')[0].appendChild(exitbutton)
+          // $("#video").attr("src", url);
+          // $(".video-container").show();
+          // window.location.href="star_sungduck.html?s_d="+star_dict+"&current_video="+video;
+          var iframe = document.createElement('iframe');
+          iframe.src = 'star_sungduck.html?'+ uid +"&"+video;
+          //var el = document.getElementById('main_nav');
+          //$(".main_nav").after(iframe);
+          document.body.appendChild(iframe);
+        });
+      });
+    });
 }
 
 // $(".video").on("click", function() {
@@ -104,7 +140,7 @@ function renderStarVideos() {
 
 
 $('.main_page').on('click', function() {
-  update_idols();
+  // update_idols();
   window.location.href="sungduck.html?"+uid;
 });
 
@@ -148,25 +184,15 @@ var autocomplete = new SelectPure(".idols-select", {
   autocomplete: true,
   icon: "fa fa-times",
   onChange: value => {
-    idols = value; 
+    idols = value;
     console.log(value);
+    database.ref("users/auth/"+uid+"/fav_idols").set(value);
   },
 });
 
-function update_idols() {
-  database.ref("idols/"+uid).set(idols);
-}
-
-function init_idols() {
-  var ref = database.ref("idols/"+uid);
-  ref.on('value', function(snapshot) {
-    snapshot.forEach(function(childSnapshot) {
-      idols.push(childSnapshot.val());
-    });
-    update_labels();
-  });
-}
-
+// function update_idols() {
+//   database.ref("users/auth/"+uid+"/fav_idols").set(idols);
+// }
 
 var options=$('.select-pure__option');
 for (i=0; i<options.length; i++) {

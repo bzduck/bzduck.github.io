@@ -169,55 +169,74 @@ for (i=0; i<options.length; i++) {
 
 
 
-$(function(){
-        var i=0,
-        initialScreenSize = screen.height, //Checks initial height of the screen 
-        intId =  window.setInterval(function(){ //Setting interval to check screensize changes / not
-            if(check()){
-                addClass();
-            }else{
-                removeClass();
-            };    
-        },800);
-        console.log(initialScreenSize);
+// $(function(){
+//         var i=0,
+//         initialScreenSize = screen.height, //Checks initial height of the screen 
+//         intId =  window.setInterval(function(){ //Setting interval to check screensize changes / not
+//             if(check()){
+//                 addClass();
+//             }else{
+//                 removeClass();
+//             };    
+//         },800);
+//         console.log(initialScreenSize);
         
-        function check(){ //Actual screen height change checking code
-            var kbactive = screen.height;
-            console.log(kbactive);
-            if(initialScreenSize !== kbactive ){
-                addClass();
-                return true;
-            }else{
-                removeClass();
-                return false;    
-            }
-        }
+//         function check(){ //Actual screen height change checking code
+//             var kbactive = screen.height;
+//             console.log(kbactive);
+//             if(initialScreenSize !== kbactive ){
+//                 addClass();
+//                 return true;
+//             }else{
+//                 removeClass();
+//                 return false;    
+//             }
+//         }
         
-        function addClass(){ //Adds keyboard active class
-            $('.logo').addClass('kbactive');    
-        }
+//         function addClass(){ //Adds keyboard active class
+//             $('.logo').addClass('kbactive');    
+//         }
         
-        function removeClass(){ //Removes keyboard active class
-            $('.logo').removeClass('kbactive');
-        }
+//         function removeClass(){ //Removes keyboard active class
+//             $('.logo').removeClass('kbactive');
+//         }
     
-});
+// });
 
-var isKeyboardOpen;
+// var isKeyboardOpen;
 
-window.addEventListener('native.showkeyboard', keyboardShowHandler);
+// window.addEventListener('native.showkeyboard', keyboardShowHandler);
 
-window.addEventListener('native.hidekeyboard', keyboardHideHandler);
+// window.addEventListener('native.hidekeyboard', keyboardHideHandler);
 
-function keyboardShowHandler(e){
-    isKeyboardOpen = true; //always know status
-    $('.logo').addClass('kbactive');    
-    console.log("open");
+// function keyboardShowHandler(e){
+//     isKeyboardOpen = true; //always know status
+//     // $('.logo').addClass('kbactive');    
+//     console.log("open");
+// }
+
+// function keyboardHideHandler(e){
+//     isKeyboardOpen = false;
+//     // $('.logo').removeClass('kbactive');
+//     console.log("close");
+// }
+
+var object1 = document.getElementById("username_login");
+var object2 = document.getElementById("pw_login");
+var object3 = document.getElementById("username_signup");
+var object4 = document.getElementById("pw_signup");
+object1.addEventListener("focus", ONFOCUSELEMENT);
+object2.addEventListener("focus", ONFOCUSELEMENT);
+object3.addEventListener("focus", ONFOCUSELEMENT);
+object4.addEventListener("focus", ONFOCUSELEMENT);
+
+function ONFOCUSELEMENT() {
+    console.log("plz work");
+    $('.logo').addClass('kbactive');
 }
 
-function keyboardHideHandler(e){
-    isKeyboardOpen = false;
-    $('.logo').removeClass('kbactive');
-    console.log("close");
+object1.addEventListener("blur", ONBLURELEMENT);
+
+function ONBLURELEMENT() {
+	$('.logo').removeClass('kbactive');
 }
- 

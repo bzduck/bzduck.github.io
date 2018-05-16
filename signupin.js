@@ -220,4 +220,23 @@ function keyboardHideHandler(e){
     $('.logo').removeClass('kbactive');
     console.log("close");
 }
- 
+
+var object1 = document.getElementById("username_login");
+var object2 = document.getElementById("pw_login");
+var object3 = document.getElementById("username_signup");
+var object4 = document.getElementById("pw_signup");
+object1.addEventListener("focus", ONFOCUSELEMENT);
+object2.addEventListener("focus", ONFOCUSELEMENT);
+object3.addEventListener("focus", ONFOCUSELEMENT);
+object4.addEventListener("focus", ONFOCUSELEMENT);
+
+function ONFOCUSELEMENT() {
+    console.log("plz work");
+    $('.logo').addClass('kbactive');
+}
+
+object1.addEventListener("blur", ONBLURELEMENT);
+
+function ONBLURELEMENT() {
+	$('.logo').removeClass('kbactive');
+}

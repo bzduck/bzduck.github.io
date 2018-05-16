@@ -425,15 +425,13 @@ $('#comments_button').on('click', function(){
 		document.getElementsByClassName('exit_comment')[0].remove();
 	}
 
+
 	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
 	iframe.src = 'comments.html?' + group + emotion + index;
 	document.body.appendChild(iframe);
 	document.body.appendChild(btn);
-
-
 });
-
 
 $('#exit_button').on('click', function() {
 	console.log($('#ifr'));

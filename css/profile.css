@@ -8,7 +8,7 @@ body {
 button#exitt {
     position: absolute;
     z-index: 5000;
-    left: 85%;
+    left: 5%;
     top: 5%;
     padding-top: 3px;
     padding-right: 3px;

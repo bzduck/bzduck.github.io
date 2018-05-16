@@ -14,8 +14,9 @@ firebase.initializeApp(config);
 var database = firebase.database();
 
 $( document ).ready(function() {
-    uid = window.parent.uid
-    var url = window.location.search.substring(1);
+    var url = window.location.search.split('?')[1].split('&');
+    uid = url[1]
+    url = url[0]
     var commentsRef = database.ref(url);
     var comments = database.ref(url).once('value').then(function(snapshot){
         if (snapshot.val() !== null)
@@ -71,6 +72,8 @@ function renderComments(comments) {
         if (Object.keys(comment).indexOf('like_names') == -1){
             comment.like_names=[]
         }
+        console.log(uid)
+        console.log(comment.author == uid)
         if(comment.like_names.indexOf(name) > -1){
             if(comment.author == uid){
                 return `

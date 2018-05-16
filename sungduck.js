@@ -416,7 +416,7 @@ $('#comments_button').on('click', function(){
 	document.body.appendChild(exitbutton)
 	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
-	iframe.src = 'comments.html?' + group + emotion + index;
+	iframe.src = 'comments.html?' + group + emotion + index + '&' + uid;
 	//var el = document.getElementById('main_nav');
 	//$(".main_nav").after(iframe);
 	document.body.appendChild(iframe);

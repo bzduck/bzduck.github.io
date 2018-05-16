@@ -166,27 +166,6 @@ function star_dict_init() {
       });
 }
 
-// function idols_init() {
-// 	var ref = database.ref("idols/"+uid);
-// 	ref.once('value')
-// 		.then(function(snapshot) {
-// 		if (snapshot.exists()) {
-// 		  snapshot.forEach(function(childSnapshot) {
-// 	    	idols.push(childSnapshot.val());
-// 		  });
-// 		}
-// 		else {
-// 		  	idols.push("twice");
-// 		  	ref.set(["twice"]);
-// 		}
-// 		})
-// 		.then(function() {
-// 			console.log(idols);
-// 			group = idols[getRandomArbitrary(0, idols.length)]+"/";
-// 			video_load_play();
-// 		});
-// }
-
 // min (포함) 과 max (불포함) 사이의 난수를 반환
 function getRandomArbitrary(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;

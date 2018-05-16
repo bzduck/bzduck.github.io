@@ -67,13 +67,30 @@ function renderStarVideos() {
   // console.log(Object.keys(star_dict));
 
   Object.keys(star_dict).forEach(function(video) {
+    console.log(video)
     // var img = document.createElement("img");
     var ref = database.ref("main_img/"+video);
     ref.on('value', snapshot=> {
       $('#video-rows').append("<div class='image-container'><img class= 'image-inside' id='"+video+"' src='" + snapshot.val() + "'/></div>");
       $('.image-inside').off().on('click', function() {
+        var vid_id = console.log(this.id)
         storageRef.child(this.id+".mp4").getDownloadURL().then(function(url){
           console.log(url);
+          console.log(this.id)
+          var exitbutton = document.createElement('button');
+          exitbutton.id = 'exitt'
+          exitbutton.classList.add('iframe-exitbutton')
+          exitbutton.classList.add('mdc-button')
+          var x = document.createElement('style')
+          x.innerHTML = "html{overflow:hidden}"
+          document.head.appendChild(x)
+          exitbutton.onclick=function(){
+            document.head.removeChild(x)
+            document.getElementsByTagName('iframe')[0].remove()
+            document.getElementById('exitt').remove()
+          }
+          exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">X</i></span>'
+          document.body.getElementsByTagName('section')[0].appendChild(exitbutton)
           // $("#video").attr("src", url);
           // $(".video-container").show();
           // window.location.href="star_sungduck.html?s_d="+star_dict+"&current_video="+video;
@@ -83,10 +100,8 @@ function renderStarVideos() {
           //var el = document.getElementById('main_nav');
           //$(".main_nav").after(iframe);
           document.body.appendChild(iframe);
-          var exitbutton = document.createElement('button');
-          exitbutton.classList.add('iframe-exitbutton')
-          exitbutton.classList.add('mdc-button')
-          exitbutton.innerHTML = '<span class="dot" style=" height: 34px; width: 34px; background-color: none; border: 1px white solid; border-radius: 50%; display: inline-block;"><i class="material-icons mdc-button__icon" aria-hidden="true" style="text-shadow: none; color: white">clear</i></span>'
+          
+          
         });
       });
     });

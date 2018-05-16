@@ -16,6 +16,10 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/1.11.8/semantic.min.css"/>
+        <script src="easytimer.min.js"></script>
+        <script>
+          var timerInstance = new Timer();
+        </script>
 
         <script src="https://www.gstatic.com/firebasejs/5.0.2/firebase.js"></script>
 
@@ -80,6 +84,7 @@
             </div>
         </div>
         <button id='share'>공유하기</button>
+        <div id='shared' style="display:none"><div class="jua" style="display: table-cell; vertical-align: middle;">공유되었습니다.</div></div>
     </div>
     <script src="./sungduck.js"></script>
 </body>

@@ -359,8 +359,13 @@ $('#share').on('click', function(event) {
     });
 
     // database.ref("main_img/"+group+emotion+index).set(dataURI);
-
-	$('.create-overlay').hide();
+	 $("#shared").show();
+	var timer = new Timer();
+	timer.start({countdown: true, startValues: {seconds: 1}});
+	timer.addEventListener('targetAchieved', function (e) {
+    	$("#shared").hide();
+    	$('.create-overlay').hide();
+	});
 });
 
 
@@ -434,7 +439,6 @@ $('#comments_button').on('click', function(){
 });
 
 $('#exit_button').on('click', function() {
-	console.log($('#ifr'));
-	var iframe = document.getElementById("ifr");
-	iframe.parent.removeChild(iframe);
+	var iframe = document.getElementsByTagName("iframe")[0];
+	iframe.remove();
 });

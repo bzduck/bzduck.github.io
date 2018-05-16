@@ -263,6 +263,10 @@ ul, li {
   text-shadow: none;
 }
 
+.video {
+  position: fixed;
+}
+
 .textarea.kbactive {
   bottom: 50%;
 }

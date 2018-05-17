@@ -6,7 +6,8 @@ var uid;
 var new_user;
 var star_dict = {};
 var idols;
-
+var playlist = [];
+var current_index = 0;
 
 // Initialize Firebase
 var config = {
@@ -32,6 +33,13 @@ initPage = function() {
 	ref.once('value')
 		.then(function(snapshot) {
 			idols = snapshot.val().fav_idols;
+			idols.forEach(function(idol) {
+				for (i = 1; i < 4; i ++) {
+					playlist.push(idol+"/"+emotion+i);
+				}
+			});
+			playlist = shuffle(playlist);
+			console.log(playlist);
 			group = idols[getRandomArbitrary(0, idols.length)]+"/";
 			console.log(group, emotion, index);
 			video_load_play();
@@ -39,6 +47,14 @@ initPage = function() {
 			star_dict_init();
 		});
 };
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
 
 
 
@@ -157,9 +173,18 @@ function video_pause() {
 	$('#capture').show();
 }
 
+var loop = false;
+
 function next_video() {
 	if (video.src === "")
 		return
+
+	if (current_index == playlist.length -1) {
+		loop = true;
+		current_index = 0;
+	}
+	else
+		current_index +=1
 
 	index = (index == 3) ? 1 : index + 1;
 	group = idols[getRandomArbitrary(0, idols.length)]+"/";
@@ -168,13 +193,29 @@ function next_video() {
 
 function prev_video() {
 
+	if (current_index == 0) {
+		if (loop)
+			current_index = playlist.length-1;
+		else
+			return;
+	}
+	else
+		current_index -= 1;
+
 	index = (index == 1) ? 3 : index - 1;
 	group = idols[getRandomArbitrary(0, idols.length)]+"/";
 	video_load_play();
 }
 
 function video_load_play() {
-	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+	// storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+	// 	// console.log(url);
+	// 	video.setAttribute("src", url);
+	// 	$('.main-nav').hide();
+	// 	star_update();
+	// 	video_play();
+	// });
+	storageRef.child(playlist[current_index]+extender).getDownloadURL().then(function(url){
 		// console.log(url);
 		video.setAttribute("src", url);
 		$('.main-nav').hide();

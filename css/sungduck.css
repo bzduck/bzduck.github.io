@@ -486,6 +486,10 @@ button {
 a {
   font-size: 50px;
   size: 50px;
+  position: absolute;
+  bottom: 2.5%;
+  left: 72%;
+  z-index: 5;
 }
 .dot {
 	height: 34px;

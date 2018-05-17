@@ -508,6 +508,7 @@ a {
     text-align: center;
     text-shadow: none;
     display: table;
+    text-shadow: none;
 }
 
 .video.loading{

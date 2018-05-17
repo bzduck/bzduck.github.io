@@ -49,18 +49,21 @@ function shuffle(a) {
 function emotion_init() {
 	var elems = $('.menu a');
 	var rand_int = getRandomArbitrary(0, elems.length);
-	var txt = elems[rand_int].getElementsByTagName("li")[0].innerHTML;
+	var txt = elems[rand_int % 3].getElementsByTagName("li")[0].innerHTML;
 	$('.emotion-button > li').text(txt);
 	switch(rand_int % 3) {
-	case 0:
-	    emotion="happy/"
-	    break;
-	case 1:
-	    emotion="bored/"
-	    break;
-	default:
-	    emotion="stressed/"
-	}
+		case 0:
+		    emotion="happy/"
+		    break;
+		case 1:
+		    emotion="bored/"
+		    break;
+		case 2:
+				emotion="stressed/";
+				break;
+		default:
+		    emotion="bored/"
+		}
 }
 
 function make_playlist() {
@@ -265,8 +268,11 @@ $('.menu a').click(function(e) {
 	case 1:
 	    emotion="bored/"
 	    break;
+	case 2:
+			emotion="stressed/";
+			break;
 	default:
-	    emotion="stressed/"
+	    emotion="bored/"
 	}
   $(".menu").animate({
 		height: 'toggle'
@@ -357,7 +363,7 @@ $('#text').on('click', function(event) {
 			    text_show = false;
 		}
 		//$('.textarea').hide();
-		$('#text-icon').attr("src", "icons/text.png");	
+		$('#text-icon').attr("src", "icons/text.png");
 	}
 });
 
@@ -377,7 +383,7 @@ $('.create-screenshot').on('click', function(event) {
 			    text_show = false;
 			}
 		//$('.textarea').hide();
-		$('#text-icon').attr("src", "icons/text.png");	
+		$('#text-icon').attr("src", "icons/text.png");
 	}
 });
 

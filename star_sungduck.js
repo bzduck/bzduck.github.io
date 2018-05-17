@@ -413,3 +413,15 @@ $('#exit_button').on('click', function() {
 	event.stopPropagation();
 	window.location.href="profile.html?"+uid;
 });
+
+$('#video').on('loadstart', function (event) {
+    $('.video').addClass('loading');
+});
+
+$('#video').on('canplay', function (event) {
+	$('.video').removeClass('loading');
+	if (new_user) {
+		$('.main-nav').show();
+		$('.overboard').show();
+	}
+});

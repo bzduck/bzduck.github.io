@@ -240,10 +240,11 @@ $('#text').on('click', function(event) {
 		var str = $('.textarea').text();
 			if (!str.replace(/\s/g, '').length) {
 			    $('.textarea').hide();
+			    text_show = false;
 		}
 		//$('.textarea').hide();
 		$('#text-icon').attr("src", "icons/text.png");
-		text_show = false;
+		
 	}
 });
 
@@ -260,11 +261,11 @@ $('.create-screenshot').on('click', function(event) {
 		var str = $('.textarea').text();
 			if (!str.replace(/\s/g, '').length) {
 			    $('.textarea').hide();
-			    
+			    text_show = false;
 			}
 		//$('.textarea').hide();
 		$('#text-icon').attr("src", "icons/text.png");
-		text_show = false;
+		
 	}
 });
 

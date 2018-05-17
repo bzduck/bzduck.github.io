@@ -82,7 +82,7 @@ ul, li {
   z-index:10;
   display:flex;
   justify-content:space-between;
-  background-color: rgba(0,0,0,.2);
+  background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.05));
 }
 
 .topnav a {
@@ -270,7 +270,7 @@ ul, li {
   width: max-content;
   text-align: center;
   margin-left: 37%;
-  bottom: 4%;
+  bottom: 2%;
   /*margin-left: auto;*/
   /*margin-right: auto;*/
   z-index: 1000;
@@ -279,6 +279,7 @@ ul, li {
   border-radius: .6em;
   font-size: 1.8rem;
   padding: 4 8;
+  text-shadow: none;
 }
 
 
@@ -485,6 +486,10 @@ button {
 a {
   font-size: 50px;
   size: 50px;
+  /*position: absolute;
+  bottom: 2.5%;
+  left: 72%;
+  z-index: 5;*/
 }
 .dot {
 	height: 34px;
@@ -508,6 +513,7 @@ a {
     text-align: center;
     text-shadow: none;
     display: table;
+    text-shadow: none;
 }
 
 .video.loading{

@@ -1,12 +1,11 @@
-var index;
 var emotion;
-var group;
 var extender = ".mp4"
 var uid;
 var new_user;
 var star_dict = {};
 var idols;
-
+var playlist = [];
+var current_index;
 
 // Initialize Firebase
 var config = {
@@ -23,7 +22,6 @@ var storage = firebase.storage();
 var storageRef = storage.ref();
 
 initPage = function() {
-	index = getRandomArbitrary(1, 4);
 	emotion_init()
 	var str = window.location.search.substring(1);
 	uid = str.split("&")[0];
@@ -32,12 +30,21 @@ initPage = function() {
 	ref.once('value')
 		.then(function(snapshot) {
 			idols = snapshot.val().fav_idols;
-			group = idols[getRandomArbitrary(0, idols.length)]+"/";
-			console.log(group, emotion, index);
+			make_playlist();
 			video_load_play();
 			star_dict_init();
 		});
 };
+
+function shuffle(a) {
+    for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+    }
+    return a;
+}
+
+
 
 function emotion_init() {
 	var elems = $('.menu a');
@@ -56,12 +63,29 @@ function emotion_init() {
 	}
 }
 
+function make_playlist() {
+	current_index = 0;
+	idols.forEach(function(idol) {
+		for (i = 1; i < 4; i ++) {
+			playlist.push(idol+"/"+emotion+i);
+		}
+	});
+	playlist = shuffle(playlist);
+	console.log(playlist);
+}
+
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
 	$('.video').addClass('loading');
 	initPage();
 });
+
+// function init_video() {
+// 	star_update();
+// 	video.setAttribute("src", "./video/1.mp4");
+// 	video_play();
+// }
 
 var emotionb = false;
 
@@ -148,24 +172,38 @@ function video_pause() {
 	$('#capture').show();
 }
 
+var loop = false;
+
 function next_video() {
 	if (video.src === "")
 		return
 
-	index = (index == 3) ? 1 : index + 1;
-	group = idols[getRandomArbitrary(0, idols.length)]+"/";
+	if (current_index == playlist.length -1) {
+		loop = true;
+		current_index = 0;
+	}
+	else
+		current_index +=1
+
 	video_load_play();
 }
 
 function prev_video() {
 
-	index = (index == 1) ? 3 : index - 1;
-	group = idols[getRandomArbitrary(0, idols.length)]+"/";
+	if (current_index == 0) {
+		if (loop)
+			current_index = playlist.length-1;
+		else
+			return;
+	}
+	else
+		current_index -= 1;
+
 	video_load_play();
 }
 
 function video_load_play() {
-	storageRef.child(group+emotion+index+extender).getDownloadURL().then(function(url){
+	storageRef.child(playlist[current_index]+extender).getDownloadURL().then(function(url){
 		// console.log(url);
 		video.setAttribute("src", url);
 		$('.main-nav').hide();
@@ -178,19 +216,19 @@ function video_load_play() {
 var star_icon = document.getElementById("star-icon");
 $('#star').on('click', event => {
 	event.stopPropagation();
-	if (star_dict[group+emotion+index]) {
-		star_dict[group+emotion+index].remove();
-		delete star_dict[group+emotion+index];
+	if (star_dict[playlist[current_index]]) {
+		star_dict[playlist[current_index]].remove();
+		delete star_dict[playlist[current_index]];
 	}
 	else {
-	    var star_ref = database.ref("users/auth/"+uid+"/stars").push(group+emotion+index);
-	    star_dict[group+emotion+index] = star_ref;
+	    var star_ref = database.ref("users/auth/"+uid+"/stars").push(playlist[current_index]);
+	    star_dict[playlist[current_index]] = star_ref;
 	}
 	star_update();
 });
 
 function star_update() {
-	var src = (star_dict[group+emotion+index])? "icons/star_filled.png" : "icons/star_empty.png";
+	var src = (star_dict[playlist[current_index]])? "icons/star_filled.png" : "icons/star_empty.png";
 	star_icon.setAttribute('src', src);
 }
 
@@ -238,7 +276,9 @@ $('.menu a').click(function(e) {
 });
 
 function new_emotion_video() {
-	index = getRandomArbitrary(1, 4);
+	// index = getRandomArbitrary(1, 4);
+	playlist = [];
+	make_playlist()
 	video_load_play();
 }
 
@@ -272,7 +312,6 @@ $('.textarea').on('keypress', function(e) {
 		}
 		else
 			text_lines.push(current_text);
-		// console.log(text_lines);
 	}
 })
 
@@ -301,7 +340,7 @@ $('#exit').on('click', function(event) {
 	$('.textarea').hide();
 });
 
-var text_show = false;
+var text_show = false;;
 
 $('#text').on('click', function(event) {
 	console.log(text_show + "1");
@@ -315,10 +354,10 @@ $('#text').on('click', function(event) {
 		var str = $('.textarea').text();
 			if (!str.replace(/\s/g, '').length) {
 			    $('.textarea').hide();
+			    text_show = false;
 		}
 		//$('.textarea').hide();
-		$('#text-icon').attr("src", "icons/text.png");
-		text_show = false;
+		$('#text-icon').attr("src", "icons/text.png");	
 	}
 });
 
@@ -335,11 +374,10 @@ $('.create-screenshot').on('click', function(event) {
 		var str = $('.textarea').text();
 			if (!str.replace(/\s/g, '').length) {
 			    $('.textarea').hide();
-			    
+			    text_show = false;
 			}
 		//$('.textarea').hide();
-		$('#text-icon').attr("src", "icons/text.png");
-		text_show = false;
+		$('#text-icon').attr("src", "icons/text.png");	
 	}
 });
 
@@ -399,7 +437,7 @@ $('#share').on('click', function(event) {
 
 	var key = makeid();
 
-	var comments = database.ref(group+emotion+index+"/"+key).set({
+	var comments = database.ref(playlist[current_index]+"/"+key).set({
     	key: key,
     	image: dataURI,
     	// src: photos_url+group+emotion+index+"/"+response,
@@ -492,16 +530,10 @@ $('#comments_button').on('click', function(){
 
 	$('.main-nav').show();
 	var iframe = document.createElement('iframe');
-	iframe.src = 'comments.html?' + group + emotion + index + '&' + uid;
+	iframe.src = 'comments.html?' + playlist[current_index] + '&' + uid;
 	document.body.appendChild(iframe);
 	document.body.appendChild(btn);
 });
-
-$('#exit_button').on('click', function() {
-	var iframe = document.getElementsByTagName("iframe")[0];
-	iframe.remove();
-});
-
 
 $(document).ready(function(){
   var _originalSize = $(window).width() + $(window).height()

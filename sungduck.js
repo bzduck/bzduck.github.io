@@ -301,7 +301,7 @@ $('#exit').on('click', function(event) {
 	$('.textarea').hide();
 });
 
-var text_show = false;
+var text_show = false;;
 
 $('#text').on('click', function(event) {
 	console.log(text_show + "1");
@@ -315,10 +315,10 @@ $('#text').on('click', function(event) {
 		var str = $('.textarea').text();
 			if (!str.replace(/\s/g, '').length) {
 			    $('.textarea').hide();
+			    text_show = false;
 		}
 		//$('.textarea').hide();
-		$('#text-icon').attr("src", "icons/text.png");
-		text_show = false;
+		$('#text-icon').attr("src", "icons/text.png");	
 	}
 });
 
@@ -335,11 +335,10 @@ $('.create-screenshot').on('click', function(event) {
 		var str = $('.textarea').text();
 			if (!str.replace(/\s/g, '').length) {
 			    $('.textarea').hide();
-			    
+			    text_show = false;
 			}
 		//$('.textarea').hide();
-		$('#text-icon').attr("src", "icons/text.png");
-		text_show = false;
+		$('#text-icon').attr("src", "icons/text.png");	
 	}
 });
 
@@ -496,12 +495,6 @@ $('#comments_button').on('click', function(){
 	document.body.appendChild(iframe);
 	document.body.appendChild(btn);
 });
-
-$('#exit_button').on('click', function() {
-	var iframe = document.getElementsByTagName("iframe")[0];
-	iframe.remove();
-});
-
 
 $(document).ready(function(){
   var _originalSize = $(window).width() + $(window).height()

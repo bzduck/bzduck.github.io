@@ -167,60 +167,6 @@ for (i=0; i<options.length; i++) {
   }
 }
 
-
-
-// $(function(){
-//         var i=0,
-//         initialScreenSize = screen.height, //Checks initial height of the screen 
-//         intId =  window.setInterval(function(){ //Setting interval to check screensize changes / not
-//             if(check()){
-//                 addClass();
-//             }else{
-//                 removeClass();
-//             };    
-//         },800);
-//         console.log(initialScreenSize);
-        
-//         function check(){ //Actual screen height change checking code
-//             var kbactive = screen.height;
-//             console.log(kbactive);
-//             if(initialScreenSize !== kbactive ){
-//                 addClass();
-//                 return true;
-//             }else{
-//                 removeClass();
-//                 return false;    
-//             }
-//         }
-        
-//         function addClass(){ //Adds keyboard active class
-//             $('.logo').addClass('kbactive');    
-//         }
-        
-//         function removeClass(){ //Removes keyboard active class
-//             $('.logo').removeClass('kbactive');
-//         }
-    
-// });
-
-// var isKeyboardOpen;
-
-// window.addEventListener('native.showkeyboard', keyboardShowHandler);
-
-// window.addEventListener('native.hidekeyboard', keyboardHideHandler);
-
-// function keyboardShowHandler(e){
-//     isKeyboardOpen = true; //always know status
-//     // $('.logo').addClass('kbactive');    
-//     console.log("open");
-// }
-
-// function keyboardHideHandler(e){
-//     isKeyboardOpen = false;
-//     // $('.logo').removeClass('kbactive');
-//     console.log("close");
-// }
-
 $(document).ready(function(){
   var _originalSize = $(window).width() + $(window).height()
   $(window).resize(function(){

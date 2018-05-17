@@ -28,6 +28,8 @@ initPage = function() {
 	var str = window.location.search.substring(1);
 	uid = str.split("&")[0];
 	new_user = (str.split("&").length == 1)? false : true;
+	if (new_user)
+		$('.overboard').show();
 	var ref = database.ref('users/auth/' + uid);
 	ref.once('value')
 		.then(function(snapshot) {
@@ -415,11 +417,11 @@ $('.glyphicon-forward').on("click", function(event) {
 
 /* COMMENTS */
 
-$(".main-nav, .video").on("swipeleft", function(event){
+$(".main-nav, .video, .overboard").on("swipeleft", function(event){
 	next_video();
 });
 
-$(".main-nav, .video").on("swiperight", function(event){
+$(".main-nav, .video, .overboard").on("swiperight", function(event){
 	prev_video();
 });
 
@@ -489,3 +491,7 @@ $(document).ready(function(){
     }
 	});
 });
+
+$('.overboard').on('click', function() {
+	$('.overboard').hide();
+})

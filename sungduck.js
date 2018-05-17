@@ -518,7 +518,8 @@ $(document).ready(function(){
 	});
 });
 
-$('.overboard').on('click', function() {
+$('.overboard').on('click', function(event) {
+	event.stopPropagation();
 	if (new_user) {
 		video_pause();
 		document.getElementById("overboard_img").setAttribute('src', 'icons/overboarding_2.png');

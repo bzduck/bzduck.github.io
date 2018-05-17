@@ -3,6 +3,10 @@
   size: 10px;
 }
 
+@media {
+  background:black;
+}
+
 body {
   font-family: 'Jua', sans-serif;
   background-color:rgba(0,0,0,.9);
@@ -18,7 +22,7 @@ body {
 }
 
 .ui-page{
-  background-color:rgba(0, 0, 0, 1);
+  background-color:black;
 }
 
 .bottom-com-overlay {

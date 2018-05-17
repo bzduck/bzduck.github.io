@@ -78,16 +78,16 @@
         </canvas>
         <div id='problem' class='textarea' style="display:none" contenteditable='true'>짤 텍스트</div>
         <div class="create-capture-nav">
-            <div id="exit" class="ui left icon button full-circle" style="background:none" tabindex="0">
+            <div id="exit">
                 <!--<i class="icon window close"></i>-->
-                <img class="small_icon" src="icons/x.png"/>
+                <img class="small_icon" style = "margin-top: 0%;" src="icons/x.png"/>
             </div>
-            <div id="text" class="ui right icon button full-circle" style="background:none" tabindex="0">
+            <div id="text">
                 <!--<i class="icon edit outline"></i>-->
-                <img class="small_icon" src="icons/text.png"/>
+                <img class="small_icon" id = "text-icon" style = "margin-top: 0%;" src="icons/text.png"/>
             </div>
         </div>
-        <button id='share'>공유하기</button>
+        <button id='share' class="jua" style="background-color: rgba(0,0,0,.8)">공유하기</button>
         <div id='shared' style="display:none"><div class="jua" style="display: table-cell; vertical-align: middle;">공유되었습니다.</div></div>
     </div>
     <script src="./sungduck.js"></script>

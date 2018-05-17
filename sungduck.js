@@ -304,25 +304,52 @@ $('#exit').on('click', function(event) {
 var text_show = false;
 
 $('#text').on('click', function(event) {
+	console.log(text_show + "1");
 	if (text_show == false) {
 		$('.textarea').show();
+		$('.textarea').focus();
+		$('#text-icon').attr("src", "icons/text_filled.png");
 		text_show = true;
 	}
 	else {
-		$('.textarea').hide();
+		var str = $('.textarea').text();
+			if (!str.replace(/\s/g, '').length) {
+			    $('.textarea').hide();
+		}
+		//$('.textarea').hide();
+		$('#text-icon').attr("src", "icons/text.png");
 		text_show = false;
 	}
 });
 
 
 $('.create-screenshot').on('click', function(event) {
+	console.log(text_show + "2");
 	if (text_show == false) {
 		$('.textarea').show();
+		$('.textarea').focus();
+		$('#text-icon').attr("src", "icons/text_filled.png");
 		text_show = true;
 	}
 	else {
-		$('.textarea').hide();
+		var str = $('.textarea').text();
+			if (!str.replace(/\s/g, '').length) {
+			    $('.textarea').hide();
+			    
+			}
+		//$('.textarea').hide();
+		$('#text-icon').attr("src", "icons/text.png");
 		text_show = false;
+	}
+});
+
+$('.textarea').on('click', function(event) {
+	console.log(text_show + "2");
+	if (text_show == false) {
+		$('.textarea').show();
+		$('.textarea').focus();
+		$('#text-icon').attr("src", "icons/text_filled.png");
+		text_show = true;
 	}
 });
 

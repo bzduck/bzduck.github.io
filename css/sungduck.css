@@ -50,15 +50,20 @@ ul, li {
 }
 
 .overboard{
-  position:fixed;
+  position:relative;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
-  z-index: 2000;
+  z-index: 2500;
   /*background-color: rgba(0,0,0,.2);*/
-  /*background-color: #000000;*/
+  background-color: #000000;
   opacity: 0.8;
+}
+
+.overboard img {
+    width: 100%;
+    height: 100%;
 }
 
 .main_nav:after{
@@ -66,7 +71,9 @@ ul, li {
 }
 
 .video{
+  width: 100%;
   max-width: 100%;
+  position: fixed;
 }
 
 
@@ -100,6 +107,12 @@ ul, li {
   max-height:1.2em;
   font-size:28px;
   margin-top:16%;
+}
+
+.star_icon{
+  max-height:1em;
+  font-size:20px;
+  /*margin-top:16%;*/
 }
 
 
@@ -187,6 +200,7 @@ ul, li {
 
 #star-icon{
   margin-top:0em;
+  margin-bottom:3px;
 }
 
 #emotion-button{
@@ -275,9 +289,7 @@ ul, li {
   text-shadow: none;
 }
 
-.video {
-  position: fixed;
-}
+
 
 .textarea.kbactive {
   bottom: 50%;
@@ -492,4 +504,12 @@ a {
     text-align: center;
     text-shadow: none;
     display: table;
+}
+
+.video.loading{
+  background-image: url("../gif/loading.gif");
+  background-repeat: no-repeat;
+  background-size: 50px 50px;
+  background-position: center;
+  pointer-events: none;
 }

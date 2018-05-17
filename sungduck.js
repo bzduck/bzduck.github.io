@@ -28,8 +28,6 @@ initPage = function() {
 	var str = window.location.search.substring(1);
 	uid = str.split("&")[0];
 	new_user = (str.split("&").length == 1)? false : true;
-	if (new_user)
-		$('.overboard').show();
 	var ref = database.ref('users/auth/' + uid);
 	ref.once('value')
 		.then(function(snapshot) {
@@ -61,6 +59,7 @@ function emotion_init() {
 
 var video = document.getElementById("video");
 $( document ).ready(function() {
+	$('.video').addClass('loading');
 	initPage();
 });
 
@@ -417,11 +416,11 @@ $('.glyphicon-forward').on("click", function(event) {
 
 /* COMMENTS */
 
-$(".main-nav, .video, .overboard").on("swipeleft", function(event){
+$(".main-nav, .video").on("swipeleft", function(event){
 	next_video();
 });
 
-$(".main-nav, .video, .overboard").on("swiperight", function(event){
+$(".main-nav, .video").on("swiperight", function(event){
 	prev_video();
 });
 
@@ -493,5 +492,24 @@ $(document).ready(function(){
 });
 
 $('.overboard').on('click', function() {
-	$('.overboard').hide();
-})
+	if (new_user) {
+		video_pause();
+		document.getElementById("overboard_img").setAttribute('src', 'icons/overboarding_2.png');
+		new_user = false;
+	}
+	else {
+		$('.overboard').hide();
+	}
+});
+
+$('#video').on('loadstart', function (event) {
+    $('.video').addClass('loading');
+});
+
+$('#video').on('canplay', function (event) {
+	$('.video').removeClass('loading');
+	if (new_user) {
+		$('.main-nav').show();
+		$('.overboard').show();
+	}
+});

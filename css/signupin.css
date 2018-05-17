@@ -96,6 +96,11 @@ body {
     color: #fff;
  }
 
+ .idol_label {
+ 	font-size:1.5em;
+ 	color: white;
+ }
+
 .select-pure__select {
 align-items: center;
 width:60%;
@@ -157,8 +162,8 @@ display: none;
 }
 
 .select-pure__selected-label {
-  font-family:'Jua', sans-serif;
-  font-size:1.5em;
+font-family:'Jua', sans-serif;
+font-size:1.5em;
 background: #5e6264;
 border-radius: 4px;
 color: #fff;

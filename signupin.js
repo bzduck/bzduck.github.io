@@ -155,8 +155,28 @@ var autocomplete = new SelectPure(".idols-select", {
   onChange: value => {
     idols = value;
     console.log(value);
+    check_idol();
   },
 });
+
+$('.select-pure__label').bind('DOMNodeInserted DOMNodeRemoved', function() {
+	console.log($('.select-pure__label').text());
+	if ($('.select-pure__label').html()==="") {
+		console.log("hello");
+	}
+	else
+		console.log("hi");
+});
+
+function check_idol() {
+	if (idols.length == 0) {
+		$('.select-pure__label').addClass("idol_label");
+		$('.select-pure__label').text('최애 아이돌을 선택해주세요');
+	}
+	else
+		$('.select-pure__label').removeClass("idol_label");
+}	
+
 
 var options=$('.select-pure__option');
 for (i=0; i<options.length; i++) {
@@ -168,6 +188,7 @@ for (i=0; i<options.length; i++) {
 }
 
 $(document).ready(function(){
+  check_idol();
   var _originalSize = $(window).width() + $(window).height()
   $(window).resize(function(){
     if($(window).width() + $(window).height() != _originalSize)

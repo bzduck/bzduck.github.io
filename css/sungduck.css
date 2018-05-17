@@ -447,14 +447,14 @@ a.download{
 
 a.unlike {
   position: absolute;
-  bottom: 2.5%;
+  //bottom: 2.5%;
   left: 72%;
   z-index: 5;
 }
 
 a.like {
   position: absolute;
-  bottom: 2.5%;
+  //bottom: 2.5%;
   left: 72%;
   z-index: 5;
 }

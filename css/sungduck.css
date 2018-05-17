@@ -20,7 +20,7 @@ body {
 .bottom-com-overlay {
     position: absolute;
     width: 100%;
-    background-color: rgba(0,0,0,.3);
+    background: linear-gradient(rgba(0,0,0,.1), rgba(0,0,0,.8));
     bottom: .1%;
     height: 5%;
     z-index: 100;
@@ -404,7 +404,6 @@ div.likes{
   left: 12%;
   z-index: 5;
   color: white;
-  background-color: rgba(0,0,0,.5);
 }
 button.like{
   position: absolute;

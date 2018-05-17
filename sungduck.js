@@ -527,6 +527,7 @@ $('.overboard').on('click', function(event) {
 	}
 	else {
 		$('.overboard').hide();
+		video_play();
 	}
 });
 

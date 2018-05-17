@@ -17,6 +17,10 @@ body {
     margin-right: auto;
 }
 
+.ui-page{
+  background-color:rgba(0, 0, 0, 1);
+}
+
 .bottom-com-overlay {
     position: absolute;
     width: 100%;
@@ -72,9 +76,9 @@ ul, li {
   max-width: 100%;
   position: fixed;
   left:0;
-  width: max-content;
   margin-left: auto;
   margin-right: auto;
+  background-color:black;
 }
 
 

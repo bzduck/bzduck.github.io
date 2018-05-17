@@ -34,10 +34,13 @@ initPage = function() {
 			idols = snapshot.val().fav_idols;
 			group = idols[getRandomArbitrary(0, idols.length)]+"/";
 			console.log(group, emotion, index);
-			video_load_play();
+			// video_load_play();
+			init_video();
 			star_dict_init();
 		});
 };
+
+
 
 function emotion_init() {
 	var elems = $('.menu a');
@@ -62,6 +65,12 @@ $( document ).ready(function() {
 	$('.video').addClass('loading');
 	initPage();
 });
+
+function init_video() {
+	star_update();
+	video.setAttribute("src", "./video/1.mp4");
+	video_play();
+}
 
 var emotionb = false;
 

@@ -13,6 +13,4 @@ comments.html: It will be opened in an iframe with url followed by parameters.
 comments.js: It loads the comments(=posts/jjal) according to the video. It reads the firebase DB.  
 profile.html, profile.js: It handles the profile, where it holds your favorite star and the starred videos.  
 star_sungduck.html, star_sungduck.js: It handles the interaction when you are watching videos from your starred video list@profile.  
-index.html
 
-README file that briefly describes the code, e.g., main JavaScript file, or where main feature implementations are, etc. Several lines are enough.

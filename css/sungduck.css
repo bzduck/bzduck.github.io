@@ -82,7 +82,7 @@ ul, li {
   z-index:10;
   display:flex;
   justify-content:space-between;
-  background-color: rgba(0,0,0,.2);
+  background: linear-gradient(rgba(0,0,0,.8), rgba(0,0,0,.05));
 }
 
 .topnav a {
@@ -279,6 +279,7 @@ ul, li {
   border-radius: .6em;
   font-size: 1.8rem;
   padding: 4 8;
+  text-shadow: none;
 }
 
 
@@ -508,6 +509,7 @@ a {
     text-align: center;
     text-shadow: none;
     display: table;
+    text-shadow: none;
 }
 
 .video.loading{

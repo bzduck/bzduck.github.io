@@ -72,6 +72,9 @@ ul, li {
   max-width: 100%;
   position: fixed;
   left:0;
+  width: max-content;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 
@@ -445,6 +448,21 @@ a.download{
   left: 80%;
   z-index: 5;
 }
+
+a.unlike {
+  position: absolute;
+  //bottom: 2.5%;
+  left: 72%;
+  z-index: 5;
+}
+
+a.like {
+  position: absolute;
+  //bottom: 2.5%;
+  left: 72%;
+  z-index: 5;
+}
+
 img.comments-img{
   width: 80%;
   height: auto;

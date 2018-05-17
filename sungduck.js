@@ -454,7 +454,7 @@ $('#share').on('click', function(event) {
     // database.ref("main_img/"+group+emotion+index).set(dataURI);
 	 $("#shared").show();
 	var timer = new Timer();
-	timer.start({countdown: true, startValues: {seconds: 1}});
+	timer.start({countdown: true, startValues: {seconds: 1.3}});
 	timer.addEventListener('targetAchieved', function (e) {
     	$("#shared").hide();
     	$('.create-overlay').hide();

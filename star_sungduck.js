@@ -419,10 +419,10 @@ $('#video').on('loadstart', function (event) {
     $('.video').addClass('loading');
 });
 
-$('#video').on('canplay', function (event) {
-	$('.video').removeClass('loading');
-	if (new_user) {
-		$('.main-nav').show();
-		$('.overboard').show();
-	}
-});
+// $('#video').on('canplay', function (event) {
+// 	$('.video').removeClass('loading');
+// 	if (new_user) {
+// 		$('.main-nav').show();
+// 		$('.overboard').show();
+// 	}
+// });

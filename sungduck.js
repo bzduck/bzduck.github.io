@@ -69,7 +69,9 @@ function emotion_init() {
 function make_playlist() {
 	current_index = 0;
 	idols.forEach(function(idol) {
-		for (i = 1; i < 4; i ++) {
+		for (i = 1; i < 5; i ++) {
+			if (idol=="bts" && i > 3)
+				break
 			playlist.push(idol+"/"+emotion+i);
 		}
 	});

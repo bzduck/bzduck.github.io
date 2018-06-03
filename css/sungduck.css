@@ -53,8 +53,8 @@ ul, li {
     top: 0;
     left: 0;
     z-index: 2000;
-    background-color: #000000;
-	  opacity: 0.8;
+    background-color: rgba(0,0,0,.5);
+    opacity: 0.9;
 }
 
 .overboard{

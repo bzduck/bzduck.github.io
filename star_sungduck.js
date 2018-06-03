@@ -72,8 +72,8 @@ function video_play() {
 	$(".play-pause").removeClass('glyphicon glyphicon-play').addClass('glyphicon glyphicon-pause');
 
     // Display star button
-    $('#capture').hide();
-    $('#star').show();
+    //$('#capture').hide();
+    //$('#star').show();
 }
 
 function video_pause() {
@@ -85,8 +85,8 @@ function video_pause() {
 	// playPause.src = "https://png.icons8.com/metro/1600/play.png";
 
 	// Display capture button
-	$('#star').hide();
-	$('#capture').show();
+	//$('#star').hide();
+	//$('#capture').show();
 }
 
 function next_video() {
@@ -208,6 +208,7 @@ var ctx;
 
 $('#capture').on('click', function(event) {
 	event.stopPropagation();
+	video_pause();
 	$('.create-overlay').show();
 	var canvas = document.querySelector('canvas');
 	canvas.width = video.videoWidth;

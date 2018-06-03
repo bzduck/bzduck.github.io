@@ -5,6 +5,7 @@ var new_user;
 var star_dict = {};
 var idols;
 var playlist = [];
+var title_dict = {};
 var current_index;
 
 // Initialize Firebase
@@ -33,6 +34,7 @@ initPage = function() {
 			make_playlist();
 			video_load_play();
 			star_dict_init();
+			title_dict_init();
 		});
 };
 
@@ -213,6 +215,7 @@ function video_load_play() {
 		// console.log(url);
 		video.setAttribute("src", url);
 		$('.main-nav').hide();
+		title_update();
 		star_update();
 		video_play();
 	});
@@ -252,6 +255,37 @@ function star_dict_init() {
       	console.log(star_dict);
     	star_update();
       });
+}
+
+function title_update() {
+	title_index = playlist[current_index].split("/");
+	console.log(title_index);
+	console.log(title_dict[title_index[0]][title_index[1]][title_index[2]]);
+	$('.video_title').text(title_dict[title_index[0]][title_index[1]][title_index[2]]);
+}
+
+function title_dict_init() {
+	idols.forEach(function(idol) {
+		firebase.database().ref('title/'+idol).once('value', function(snap){
+			title_dict[idol] = snap.val();
+			console.log(title_dict);
+		})
+	});
+
+	
+    
+    // console.log("star_dict_init");
+    // query.once("value")
+    //   .then(function(snapshot) {
+    //     snapshot.forEach(function(childSnapshot) {
+    //       var val = childSnapshot.val();
+    //       star_dict[val] = childSnapshot.ref;
+    //   });
+    // })
+    //   .then(function() {
+    //   	console.log(star_dict);
+    // 	star_update();
+    //   });
 }
 
 // min (포함) 과 max (불포함) 사이의 난수를 반환

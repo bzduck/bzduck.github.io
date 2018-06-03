@@ -51,27 +51,28 @@ function emotion_init() {
 	var rand_int = getRandomArbitrary(0, elems.length);
 	var txt = elems[rand_int % 3].getElementsByTagName("li")[0].innerHTML;
 	$('.emotion-button > li').text(txt);
-	switch(rand_int % 3) {
+	switch(rand_int % 4) {
 		case 0:
-		    emotion="happy/"
+		    emotion="cute/"
 		    break;
 		case 1:
-		    emotion="bored/"
+		    emotion="sexy/"
 		    break;
 		case 2:
-				emotion="stressed/";
-				break;
+			emotion="bored/";
+			break;
+		case 3:
+			emotion="touching/"
+			break;
 		default:
-		    emotion="bored/"
+		    emotion="cute/"
 		}
 }
 
 function make_playlist() {
 	current_index = 0;
 	idols.forEach(function(idol) {
-		for (i = 1; i < 5; i ++) {
-			if (idol=="bts" && i > 3)
-				break
+		for (i = 1; i < 4; i ++) {
 			playlist.push(idol+"/"+emotion+i);
 		}
 	});
@@ -265,16 +266,19 @@ $('.menu a').click(function(e) {
   var tmp = ($( "li" ).index($(e.target)) -1 ) % 3;
   switch(tmp) {
 	case 0:
-	    emotion="happy/"
+	    emotion="cute/"
 	    break;
 	case 1:
-	    emotion="bored/"
+	    emotion="sexy/"
 	    break;
 	case 2:
-			emotion="stressed/";
-			break;
+		emotion="bored/";
+		break;
+	case 3:
+		emotion="touching/"
+		break;
 	default:
-	    emotion="bored/"
+	    emotion="cute/"
 	}
   $(".menu").animate({
 		height: 'toggle'

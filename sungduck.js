@@ -107,16 +107,22 @@ $(".emotion-button").on("click", function(event){
 	$(".menu").animate({
 		height: 'toggle'
 	});
+	if ($('.video_title').is(":visible"))
+		$('.video_title').hide();
+	else
+		$('.video_title').show();
 
 });
 
 $(document).on('click', function () {
 	if(emotionb) {
 		emotionb = false;
+		$('.video_title').show();
 		event.stopPropagation();
 		$(".menu").animate({
 		height: 'toggle'
 	});
+		$('.video_title').show();
 	}
 })
 
@@ -128,6 +134,7 @@ $(".play-pause").on("click", function(event) {
   	$(".menu").animate({
 		height: 'toggle'
 	});
+	$('.video_title').show();
 	emotionb = false;
   }
   if (video.paused) {
@@ -234,6 +241,13 @@ $('#star').on('click', event => {
 	    star_dict[playlist[current_index]] = star_ref;
 	}
 	star_update();
+	if(emotionb) {
+  	$(".menu").animate({
+		height: 'toggle'
+	});
+	$('.video_title').show();
+	emotionb = false;
+  }
 });
 
 function star_update() {
@@ -317,6 +331,7 @@ $('.menu a').click(function(e) {
   $(".menu").animate({
 		height: 'toggle'
 	});
+  $('.video_title').show();
   emotionb = false;
   new_emotion_video();
 });
@@ -510,6 +525,7 @@ $('.glyphicon-backward').on("click", function(event) {
   	$(".menu").animate({
 		height: 'toggle'
 	});
+	$('.video_title').show();
 	emotionb = false;
   }
 	video.currentTime -= 5;
@@ -521,6 +537,7 @@ $('.glyphicon-forward').on("click", function(event) {
   	$(".menu").animate({
 		height: 'toggle'
 	});
+	$('.video_title').show();
 	emotionb = false;
   }
 	video.currentTime += 5;
@@ -621,3 +638,4 @@ $('#video').on('canplay', function (event) {
 		$('.overboard').show();
 	}
 });
+

@@ -525,8 +525,8 @@ $('#share').on('click', function(event) {
     });
 
 	// for making main images (for profile)
-	title_index = playlist[current_index].split("/");
- 	database.ref("main_img/"+title_index[0]+"/"+title_index[1]+"/"+title_index[2]+"/").set(dataURI);
+	// title_index = playlist[current_index].split("/");
+ 	// database.ref("main_img/"+title_index[0]+"/"+title_index[1]+"/"+title_index[2]+"/").set(dataURI);
 	
 	$("#shared").show();
 	var timer = new Timer();

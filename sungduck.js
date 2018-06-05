@@ -111,19 +111,18 @@ $(".emotion-button").on("click", function(event){
 	if ($('.video_title').is(":visible"))
 		$('.video_title').hide();
 	else
-		$('.video_title').show();
-
+		setTimeout(function(){ $('.video_title').show(); }, 300);
 });
 
 $(document).on('click', function () {
 	if(emotionb) {
 		emotionb = false;
-		$('.video_title').show();
+		setTimeout(function(){ $('.video_title').show(); }, 300);
 		event.stopPropagation();
 		$(".menu").animate({
 		height: 'toggle'
 	});
-		$('.video_title').show();
+		setTimeout(function(){ $('.video_title').show(); }, 300);
 	}
 })
 
@@ -135,7 +134,7 @@ $(".play-pause").on("click", function(event) {
   	$(".menu").animate({
 		height: 'toggle'
 	});
-	$('.video_title').show();
+	setTimeout(function(){ $('.video_title').show(); }, 300);
 	emotionb = false;
   }
   if (video.paused) {
@@ -257,7 +256,7 @@ $('#star').on('click', event => {
   	$(".menu").animate({
 		height: 'toggle'
 	});
-	$('.video_title').show();
+	setTimeout(function(){ $('.video_title').show(); }, 300);
 	emotionb = false;
   }
 });
@@ -343,9 +342,15 @@ $('.menu a').click(function(e) {
   $(".menu").animate({
 		height: 'toggle'
 	});
-  $('.video_title').show();
   emotionb = false;
   new_emotion_video();
+  $('.video_title').show();
+
+ //  sleep(3000).then(() => {
+ //    // Do something after the sleep!
+ //    $('.video_title').show();
+	// });
+
 });
 
 function new_emotion_video() {
@@ -540,7 +545,7 @@ $('.glyphicon-backward').on("click", function(event) {
   	$(".menu").animate({
 		height: 'toggle'
 	});
-	$('.video_title').show();
+	setTimeout(function(){ $('.video_title').show(); }, 300);
 	emotionb = false;
   }
 	video.currentTime -= 5;
@@ -552,7 +557,7 @@ $('.glyphicon-forward').on("click", function(event) {
   	$(".menu").animate({
 		height: 'toggle'
 	});
-	$('.video_title').show();
+	setTimeout(function(){ $('.video_title').show(); }, 300);
 	emotionb = false;
   }
 	video.currentTime += 5;

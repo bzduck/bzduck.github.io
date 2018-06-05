@@ -638,7 +638,7 @@ $('.overboard').on('click', function(event) {
 	event.stopPropagation();
 	if (new_user) {
 		video_pause();
-		document.getElementById("overboard_img").setAttribute('src', 'icons/onboarding_2a.png');
+		document.getElementById("overboard_img").setAttribute('src', 'icons/onboarding_2b.png');
 		new_user = false;
 	}
 	else {

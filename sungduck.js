@@ -639,7 +639,7 @@ $('.overboard').on('click', function(event) {
 	event.stopPropagation();
 	if (new_user) {
 		video_pause();
-		document.getElementById("overboard_img").setAttribute('src', 'icons/onboarding_2c.png');
+		document.getElementById("overboard_img").setAttribute('src', 'icons/onboarding_2d.png');
 		new_user = false;
 	}
 	else {

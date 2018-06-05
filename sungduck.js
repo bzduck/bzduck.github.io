@@ -51,7 +51,7 @@ function shuffle(a) {
 function emotion_init() {
 	var elems = $('.menu a');
 	var rand_int = getRandomArbitrary(0, elems.length);
-	var txt = elems[rand_int % 3].getElementsByTagName("li")[0].innerHTML;
+	var txt = elems[rand_int].getElementsByTagName("li")[0].innerHTML;
 	$('.emotion-button > li').text(txt);
 	switch(rand_int % 4) {
 		case 0:
@@ -303,13 +303,13 @@ $('.menu a').click(function(e) {
 	    emotion="cute/"
 	    break;
 	case 1:
-	    emotion="sexy/"
+	    emotion="bored/"
 	    break;
 	case 2:
-		emotion="bored/";
+		emotion="touching/";
 		break;
 	case 3:
-		emotion="touching/"
+		emotion="sexy/"
 		break;
 	default:
 	    emotion="cute/"

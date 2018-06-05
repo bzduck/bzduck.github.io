@@ -36,6 +36,7 @@ initPage = function() {
 			star_dict_init();
 			title_dict_init();
 		});
+	progressBar=document.getElementById('progressBar');
 };
 
 function shuffle(a) {
@@ -161,9 +162,20 @@ document.body.onkeypress = function(e){
         video_toggle()
     }
 }
+barSize = window.innerWidth;
+function update_bar() {
+	if (!video.ended){
+		var size = parseInt(video.currentTime*barSize/video.duration);
+		progressBar.style.width=size+'px';
+	} else {
+		progressBar.style.width='0px';
+		window.clearInterval(updateBar);
+	}
+}
 
 function video_play() {
 	video.play();
+	updateBar = setInterval(update_bar, 500);
 
 	// Update the button text to 'Pause'
 	$(".play-pause").removeClass('glyphicon glyphicon-play').addClass('glyphicon glyphicon-pause');

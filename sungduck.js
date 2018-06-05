@@ -54,7 +54,7 @@ function emotion_init() {
 	var rand_int = getRandomArbitrary(0, elems.length);
 	var txt = elems[rand_int].getElementsByTagName("li")[0].innerHTML;
 	$('.emotion-button > li').text(txt);
-	switch(rand_int % 4) {
+	switch(rand_int) {
 		case 0:
 		    emotion="cute/"
 		    break;
@@ -110,7 +110,7 @@ $(".emotion-button").on("click", function(event){
 	});
 	if ($('.video_title').is(":visible"))
 		$('.video_title').hide();
-	else 
+	else
 		setTimeout(function(){ $('.video_title').show(); }, 300);
 });
 
@@ -297,8 +297,8 @@ function title_dict_init() {
 		})
 	});
 
-	
-    
+
+
     // console.log("star_dict_init");
     // query.once("value")
     //   .then(function(snapshot) {
@@ -322,7 +322,8 @@ $('.menu a').click(function(e) {
   var txt = $(e.target).text();
   console.log(txt);
   $('.emotion-button > li').text(txt);
-  var tmp = ($( "li" ).index($(e.target)) -1 ) % 4;
+  var tmp = $('.menu a').index(this);
+  console.log(tmp);
   switch(tmp) {
 	case 0:
 	    emotion="cute/"
@@ -350,7 +351,7 @@ $('.menu a').click(function(e) {
  //    // Do something after the sleep!
  //    $('.video_title').show();
 	// });
-  
+
 });
 
 function new_emotion_video() {
@@ -527,7 +528,7 @@ $('#share').on('click', function(event) {
 	// for making main images (for profile)
 	// title_index = playlist[current_index].split("/");
  	// database.ref("main_img/"+title_index[0]+"/"+title_index[1]+"/"+title_index[2]+"/").set(dataURI);
-	
+
 	$("#shared").show();
 	var timer = new Timer();
 	timer.start({countdown: true, startValues: {seconds: 1.3}});
@@ -638,7 +639,7 @@ $('.overboard').on('click', function(event) {
 	event.stopPropagation();
 	if (new_user) {
 		video_pause();
-		document.getElementById("overboard_img").setAttribute('src', 'icons/overboarding_2.png');
+		document.getElementById("overboard_img").setAttribute('src', 'icons/overboarding_2_edited.png');
 		new_user = false;
 	}
 	else {
@@ -658,4 +659,3 @@ $('#video').on('canplay', function (event) {
 		$('.overboard').show();
 	}
 });
-

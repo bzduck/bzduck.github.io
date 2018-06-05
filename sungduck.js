@@ -298,8 +298,8 @@ function title_dict_init() {
 		})
 	});
 
-	
-    
+
+
     // console.log("star_dict_init");
     // query.once("value")
     //   .then(function(snapshot) {
@@ -522,7 +522,7 @@ $('#share').on('click', function(event) {
 	// for making main images (for profile)
 	// title_index = playlist[current_index].split("/");
  //    database.ref("main_img/"+title_index[0]+"/"+title_index[1]+"/"+title_index[2]+"/").set(dataURI);
-	
+
 	$("#shared").show();
 	var timer = new Timer();
 	timer.start({countdown: true, startValues: {seconds: 1.3}});
@@ -633,7 +633,7 @@ $('.overboard').on('click', function(event) {
 	event.stopPropagation();
 	if (new_user) {
 		video_pause();
-		document.getElementById("overboard_img").setAttribute('src', 'icons/overboarding_2.png');
+		document.getElementById("overboard_img").setAttribute('src', 'icons/overboarding_2_edited.png');
 		new_user = false;
 	}
 	else {
@@ -653,4 +653,3 @@ $('#video').on('canplay', function (event) {
 		$('.overboard').show();
 	}
 });
-

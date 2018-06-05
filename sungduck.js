@@ -52,20 +52,20 @@ function shuffle(a) {
 function emotion_init() {
 	var elems = $('.menu a');
 	var rand_int = getRandomArbitrary(0, elems.length);
-	var txt = elems[rand_int % 3].getElementsByTagName("li")[0].innerHTML;
+	var txt = elems[rand_int].getElementsByTagName("li")[0].innerHTML;
 	$('.emotion-button > li').text(txt);
 	switch(rand_int % 4) {
 		case 0:
 		    emotion="cute/"
 		    break;
 		case 1:
-		    emotion="sexy/"
+		    emotion="bored/"
 		    break;
 		case 2:
-			emotion="bored/";
+			emotion="touching/";
 			break;
 		case 3:
-			emotion="touching/"
+			emotion="sexy/"
 			break;
 		default:
 		    emotion="cute/"
@@ -323,19 +323,19 @@ $('.menu a').click(function(e) {
   var txt = $(e.target).text();
   console.log(txt);
   $('.emotion-button > li').text(txt);
-  var tmp = ($( "li" ).index($(e.target)) -1 ) % 3;
+  var tmp = ($( "li" ).index($(e.target)) -1 ) % 4;
   switch(tmp) {
 	case 0:
 	    emotion="cute/"
 	    break;
 	case 1:
-	    emotion="sexy/"
+	    emotion="bored/"
 	    break;
 	case 2:
-		emotion="bored/";
+		emotion="touching/";
 		break;
 	case 3:
-		emotion="touching/"
+		emotion="sexy/"
 		break;
 	default:
 	    emotion="cute/"
@@ -519,8 +519,11 @@ $('#share').on('click', function(event) {
     	author: uid,
     });
 
-    // database.ref("main_img/"+group+emotion+index).set(dataURI);
-	 $("#shared").show();
+	// for making main images (for profile)
+	// title_index = playlist[current_index].split("/");
+ //    database.ref("main_img/"+title_index[0]+"/"+title_index[1]+"/"+title_index[2]+"/").set(dataURI);
+	
+	$("#shared").show();
 	var timer = new Timer();
 	timer.start({countdown: true, startValues: {seconds: 1.3}});
 	timer.addEventListener('targetAchieved', function (e) {

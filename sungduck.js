@@ -54,7 +54,7 @@ function emotion_init() {
 	var rand_int = getRandomArbitrary(0, elems.length);
 	var txt = elems[rand_int].getElementsByTagName("li")[0].innerHTML;
 	$('.emotion-button > li').text(txt);
-	switch(rand_int % 4) {
+	switch(rand_int) {
 		case 0:
 		    emotion="cute/"
 		    break;
@@ -322,7 +322,8 @@ $('.menu a').click(function(e) {
   var txt = $(e.target).text();
   console.log(txt);
   $('.emotion-button > li').text(txt);
-  var tmp = ($( "li" ).index($(e.target)) -1 ) % 4;
+  var tmp = $('.menu a').index(this);
+  console.log(tmp);
   switch(tmp) {
 	case 0:
 	    emotion="cute/"
@@ -526,7 +527,7 @@ $('#share').on('click', function(event) {
 
 	// for making main images (for profile)
 	// title_index = playlist[current_index].split("/");
- //    database.ref("main_img/"+title_index[0]+"/"+title_index[1]+"/"+title_index[2]+"/").set(dataURI);
+ 	// database.ref("main_img/"+title_index[0]+"/"+title_index[1]+"/"+title_index[2]+"/").set(dataURI);
 
 	$("#shared").show();
 	var timer = new Timer();
